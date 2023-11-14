@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import style from "./Logo.module.scss";
 import { IconI } from "../../../types/icon";
 
-const Logo: FC = ({}) => {
+const Logo: FC = memo(({}) => {
   return (
     <svg
       data-v-13ec0cb2=""
@@ -25,6 +25,6 @@ const Logo: FC = ({}) => {
       ></path>
     </svg>
   );
-};
+});
 
 export default Logo;

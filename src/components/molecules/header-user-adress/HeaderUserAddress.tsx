@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 //
 import style from "./HeaderUserAddress.module.scss";
 import DropdownSmallBlack from "../../../assets/icons/dropdown-small-black/DropdownSmallBlack";
@@ -11,7 +11,8 @@ interface HeaderUserAddressI {
   onItemClick?: () => void;
 }
 
-const HeaderUserAddress: FC<HeaderUserAddressI> = ({ onItemClick }) => {
+const HeaderUserAddress: FC<HeaderUserAddressI> = memo(({ onItemClick }) => {
+  console.log("HeaderUserAddress RERENDER");
   return (
     <div onClick={onItemClick} className={style["header-user-address"]}>
       <LocationSmall />
@@ -19,6 +20,6 @@ const HeaderUserAddress: FC<HeaderUserAddressI> = ({ onItemClick }) => {
       <DropdownSmallBlack />
     </div>
   );
-};
+});
 
 export default HeaderUserAddress;

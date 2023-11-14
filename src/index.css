@@ -2,7 +2,12 @@
   --color-globalBackground: #ffc345;
   --color-accent: #00a082;
   --color-accentHover: #00846b;
+  --helio-space-3XL: 64px;
   --helio-space-2XL: 48px;
+  --helio-space-XL: 32px;
+  --helio-space-L: 24px;
+  --helio-space-M: 16px;
+  --helio-space-S: 12px;
   --helio-space-XS: 8px;
 }
 body {

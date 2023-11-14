@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import style from "./HeaderInput.module.scss";
 //
 import cn from "classnames";
@@ -9,9 +9,10 @@ interface HeaderInputI {}
 
 const HEADER_INPUT_PLACEHOLDER = "Search";
 
-const HeaderInput: FC<HeaderInputI> = ({}) => {
+const HeaderInput: FC<HeaderInputI> = memo(({}) => {
+  console.log("HeaderInput RERENDER");
   return (
-    <ul className={style.headerInput}>
+    <form className={style.headerInput}>
       <input
         type="text"
         placeholder=""
@@ -21,8 +22,8 @@ const HeaderInput: FC<HeaderInputI> = ({}) => {
         <InputHolder />
         <span className={style.text}>{HEADER_INPUT_PLACEHOLDER}</span>
       </li>
-    </ul>
+    </form>
   );
-};
+});
 
 export default HeaderInput;

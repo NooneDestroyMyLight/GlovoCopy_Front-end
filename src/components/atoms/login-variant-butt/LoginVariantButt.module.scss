@@ -1,0 +1,13 @@
+.login-variant-butt {
+  display: grid;
+
+  width: 100%;
+  height: var(--helio-space-2XL);
+
+  border-radius: var(--helio-space-L);
+  border: 1px solid black;
+  &__text {
+    justify-self: center;
+    align-self: center;
+  }
+}

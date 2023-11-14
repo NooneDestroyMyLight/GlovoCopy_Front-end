@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import style from "./MainPage.module.scss";
 import Layaout from "../../templates/layaout/Layaout";
 
