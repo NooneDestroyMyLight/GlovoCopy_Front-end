@@ -1,0 +1,16 @@
+.logo__header {
+  max-width: 119px;
+
+  &__balloon {
+  }
+}
+@media (max-width: 600px) {
+  .logo__header {
+    &__text {
+      display: none;
+    }
+    &__balloon {
+      max-width: 32px;
+    }
+  }
+}

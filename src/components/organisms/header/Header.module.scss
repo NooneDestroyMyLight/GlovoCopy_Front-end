@@ -1,0 +1,20 @@
+.header {
+  width: 100%;
+  background-color: var(--color-globalBackground);
+  padding: 32px 144px;
+
+  position: fixed;
+
+  display: grid;
+  gap: 16px;
+
+  grid-template-columns: minmax(max-content, 1fr) minmax(0, 406px) minmax(
+      min-content,
+      1fr
+    );
+  &__right-bar {
+    gap: var(--helio-space-XS);
+    display: flex;
+    justify-self: end;
+  }
+}
