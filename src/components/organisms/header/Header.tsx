@@ -29,18 +29,6 @@ const Header: FC<HeaderI> = memo(
       /*className*/
     }
   ) => {
-    // const [isOpen, toggleMW] = useToggle(false);
-    // const [currentMW, setCurrentMW] = useState<string | null>(null);
-
-    // const openMWLogin = useCallback(() => {
-    //   setCurrentMW("MWLogin");
-    //   toggleMW();
-    // }, [currentMW, isOpen]);
-
-    // const openMWDelivery = useCallback(() => {
-    //   setCurrentMW("MWDelivery");
-    //   toggleMW();
-    // }, [currentMW, isOpen]);
 
     const [isOpen, currentMW, toggleMW, funArray] = useMoreMWToggle(mWName);
 

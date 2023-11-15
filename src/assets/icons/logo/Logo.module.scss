@@ -1,16 +1,18 @@
-.logo__header {
-  max-width: 119px;
-
-  &__balloon {
-  }
+.header-logo__brand {
+  width: 119px;
+  // width: 100%;
 }
-@media (max-width: 600px) {
-  .logo__header {
-    &__text {
-      display: none;
-    }
-    &__balloon {
-      max-width: 32px;
-    }
+.header-logo__ballon {
+  display: none;
+}
+
+@media (max-width: 650px) {
+  .header-logo__brand {
+    display: none;
+  }
+  .header-logo__ballon {
+    display: block;
+    width: 32px;
+    // width: 100%;
   }
 }

@@ -1,24 +1,31 @@
 import { FC, memo } from "react";
 //
 import style from "./LoginVariantButt.module.scss";
+import { LoginDataI } from "../../organisms/mw-organism/data";
 
 interface LoginVariantButtI {
   // className: string;
+  data: LoginDataI;
   onButtonClick?: () => void;
-  text: string;
 }
 
 // const HEADER_BUTTON_TEXT = "Розпочати!";
 
 const LoginVariantButt: FC<LoginVariantButtI> = memo(
-  ({ text, onButtonClick }) => {
+  ({ data, onButtonClick }) => {
+    const { label, Icon } = data;
+
+    console.log(label);
     return (
       <button
         type={"button"}
         onClick={onButtonClick}
         className={style["login-variant-butt"]}
       >
-        <span className={style["login-variant-butt__text"]}>{text}</span>
+        <div className={style["icon-wrapper"]}>
+          <Icon />
+        </div>
+        <span className={style["login-variant-butt__text"]}>{label}</span>
       </button>
     );
   }

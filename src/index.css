@@ -2,6 +2,10 @@
   --color-globalBackground: #ffc345;
   --color-accent: #00a082;
   --color-accentHover: #00846b;
+  --helio-color-primaryBorder: #e4e4e4;
+  --helio-primitiveColor-white: white;
+  --helio-color-secondaryBackground: #f5f5f5;
+  --helio-color-secondaryBorder: #d8d8d8;
   --helio-space-3XL: 64px;
   --helio-space-2XL: 48px;
   --helio-space-XL: 32px;
@@ -74,4 +78,5 @@ li {
   list-style: none;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }

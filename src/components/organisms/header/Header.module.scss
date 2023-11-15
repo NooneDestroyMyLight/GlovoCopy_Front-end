@@ -1,7 +1,7 @@
 .header {
   width: 100%;
   background-color: var(--color-globalBackground);
-  padding: 32px 144px;
+  padding: var(--helio-space-XL) 7.5%;
 
   position: fixed;
 
@@ -12,9 +12,22 @@
       min-content,
       1fr
     );
+  grid-template-areas: "logo input ";
+
   &__right-bar {
     gap: var(--helio-space-XS);
     display: flex;
     justify-self: end;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header {
+    padding: var(--helio-space-XL) 5%;
+  }
+}
+@media (max-width: 600px) {
+  .header {
+    // padding: ;
   }
 }
