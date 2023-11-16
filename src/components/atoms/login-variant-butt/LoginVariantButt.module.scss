@@ -1,0 +1,27 @@
+.login-variant-butt {
+  display: grid;
+
+  width: 100%;
+  height: var(--helio-space-2XL);
+
+  position: relative;
+
+  background-color: var(--helio-primitiveColor-white);
+  border-radius: var(--helio-space-L);
+  border: 1px solid var(--helio-color-primaryBorder);
+  padding: 0 var(--helio-space-M);
+
+  &:hover {
+    background-color: var(--helio-color-secondaryBackground);
+    border-color: var(--helio-color-secondaryBorder);
+  }
+  &__text {
+    justify-self: center;
+    align-self: center;
+
+    position: absolute;
+  }
+  .icon-wrapper {
+    align-self: center;
+  }
+}

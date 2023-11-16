@@ -1,0 +1,27 @@
+.header-user-address {
+  display: flex;
+  align-self: center;
+
+  cursor: pointer;
+  &__text {
+    max-width: 170px;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .icon-location {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header-user-address {
+    &__text {
+      max-width: 90px;
+    }
+  }
+}
+@media (max-width: 650px) {
+}
