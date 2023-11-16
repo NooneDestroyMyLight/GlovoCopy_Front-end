@@ -1,0 +1,4 @@
+@mixin mw-position($justify, $align) {
+  justify-self: $justify;
+  align-self: $align;
+}

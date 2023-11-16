@@ -24,4 +24,9 @@
   }
 }
 @media (max-width: 650px) {
+  .header-user-address {
+    &__text {
+      max-width: 200px;
+    }
+  }
 }

@@ -1,6 +1,8 @@
 import { FC, memo } from "react";
 import style from "./MainPage.module.scss";
-import Layaout from "../../templates/layaout/Layaout";
+//
+import Layout from "../../templates/layout/Layout";
+import GeneralCategory from "../../organisms/general-category/GeneralCategory";
 
 interface MainPageI {
   //   className: string;
@@ -9,7 +11,9 @@ interface MainPageI {
 const MainPage: FC<MainPageI> = ({}) => {
   return (
     <>
-      <Layaout />
+      <Layout>
+        <GeneralCategory />
+      </Layout>
     </>
   );
 };
