@@ -5,6 +5,7 @@
   --helio-color-primaryBorder: #e4e4e4;
   --helio-primitiveColor-white: white;
   --helio-primitiveColor-yellow500: #e19f17ff;
+  --helio-primitiveColor-grey900: #1d1d1d;
   --helio-color-secondaryBackground: #f5f5f5;
   --helio-color-secondaryBorder: #d8d8d8;
   --helio-color-warning: #8b620e;
@@ -79,6 +80,24 @@ ul,
 ol,
 li {
   list-style: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+footer {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
   margin: 0;
   padding: 0;
   box-sizing: border-box;

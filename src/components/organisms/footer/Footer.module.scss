@@ -1,0 +1,15 @@
+.custom-border {
+  width: 100%;
+}
+
+.footer-content {
+  width: 100%;
+
+  background-color: var(--helio-primitiveColor-grey900);
+  display: flex;
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}

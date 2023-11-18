@@ -11,7 +11,7 @@
   .header-container {
     display: grid;
     align-items: center;
-    gap: 16px;
+    gap: var(--helio-space-M);
     grid-template-columns:
       minmax(max-content, 1fr)
       minmax(0, 406px)
@@ -44,6 +44,9 @@
 @media (max-width: 650px) {
   .header {
     padding: var(--helio-space-S) var(--helio-space-M);
+    .header-container {
+      gap: var(--helio-space-S);
+    }
     .mobile-address {
       margin-top: var(--helio-space-S);
       display: flex;

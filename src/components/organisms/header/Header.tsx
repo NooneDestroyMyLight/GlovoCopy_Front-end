@@ -8,7 +8,7 @@ import Logo from "../../../assets/icons/logo/Logo";
 import HeaderInput from "../../molecules/header-input/HeaderInput";
 //
 import Button from "../../atoms/button/Button";
-import buttonStyle from "../../atoms/button/Button.module.scss";
+import BUTTON_STYLE from "../../atoms/button/Button.module.scss";
 //
 import HeaderUserAddress from "../../molecules/header-user-adress/HeaderUserAddress";
 //
@@ -44,7 +44,7 @@ const Header: FC<HeaderI> = memo(
                 <HeaderUserAddress onItemClick={funArray[0]} />
               </div>
               <Button
-                className={buttonStyle["header-button"]}
+                className={BUTTON_STYLE["header-button"]}
                 onButtonClick={funArray[1]}
               />
             </li>

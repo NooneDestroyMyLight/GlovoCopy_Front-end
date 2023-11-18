@@ -1,7 +1,7 @@
 import { FC, memo } from "react";
 //
 import style from "./LoginVariantButt.module.scss";
-import { LoginDataI } from "../../organisms/mw-organism/data";
+import { LoginDataI } from "../../organisms/mw-organism/login/mw-login.data";
 
 interface LoginVariantButtI {
   // className: string;

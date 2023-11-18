@@ -1,11 +1,14 @@
 import { FC, memo } from "react";
 //
 import style from "./HeaderUserAddress.module.scss";
-import DropdownSmallBlack from "../../../assets/icons/dropdown-small-black/DropdownSmallBlack";
 import LocationSmall from "../../../assets/icons/location-small/LocationSmall";
+//
+import DropdownBlack, {
+  DD_ICON_SMALL,
+} from "../../../assets/icons/dropdown-black/DropdownBlack";
 
-const FAKE_DATA = "УлицаПоле, НомерПоле, БизнесПоле, ЭтажПоле";
-
+export const HEADER_USER_ADDRESS_DATA =
+  "УлицаПоле, НомерПоле, БизнесПоле, ЭтажПоле";
 interface HeaderUserAddressI {
   // className: string;
   onItemClick?: () => void;
@@ -16,8 +19,10 @@ const HeaderUserAddress: FC<HeaderUserAddressI> = memo(({ onItemClick }) => {
   return (
     <div onClick={onItemClick} className={style["header-user-address"]}>
       <LocationSmall />
-      <span className={style["header-user-address__text"]}>{FAKE_DATA}</span>
-      <DropdownSmallBlack />
+      <span className={style["header-user-address__text"]}>
+        {HEADER_USER_ADDRESS_DATA}
+      </span>
+      <DropdownBlack className={DD_ICON_SMALL} />
     </div>
   );
 });

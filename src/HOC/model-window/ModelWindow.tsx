@@ -1,6 +1,6 @@
 import { FC, ReactNode, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import style from "./ModelWindow.module.scss";
+import { motion, AnimatePresence } from "framer-motion";
 import ReactDOM from "react-dom";
 
 interface ModelWindowProps {

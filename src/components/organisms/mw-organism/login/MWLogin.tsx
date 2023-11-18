@@ -3,9 +3,9 @@ import { FC } from "react";
 import style from "./MWLogin.module.scss";
 
 import LoginVariantButt from "../../../atoms/login-variant-butt/LoginVariantButt";
-import { MWLoginData } from "../data";
+import { MW_LOGIN_DATA } from "./mw-login.data";
 
-const { title, description, socialMedia, terms } = MWLoginData;
+const { title, description, socialMedia, terms } = MW_LOGIN_DATA;
 
 export interface MWLoginI {
   //   className: string;
