@@ -12,8 +12,8 @@ const Layout: FC<LayoutI> = memo(({ children }) => {
   return (
     <>
       <Header />
-      {children}
-      <Footer />
+      <div className={style["layout"]}>{children}</div>
+      {/* <Footer /> */}
     </>
   );
 });

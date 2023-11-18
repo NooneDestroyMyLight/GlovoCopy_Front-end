@@ -36,7 +36,7 @@ export const FOOTER_DATA: FooterDataI = {
   ],
   populars: [
     {
-      countryName: "Україна",
+      countryName: "Назва країни",
       list: [
         { name: "KFC", link: "" },
         { name: "McDonald's", link: "" },
@@ -44,7 +44,7 @@ export const FOOTER_DATA: FooterDataI = {
       ],
     },
     {
-      countryName: "Україна",
+      countryName: "Назва країни",
       list: [
         { name: "Міжнародна", link: "" },
         { name: "Міжнародна", link: "" },

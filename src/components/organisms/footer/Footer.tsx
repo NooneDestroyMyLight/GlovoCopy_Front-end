@@ -10,17 +10,25 @@ const Footer: FC = () => {
         alt=""
         className={style["custom-border"]}
       />
-      <footer className={style["footer-content"]}>
-        {/* Logo*/}
-        {FOOTER_DATA.topics.map((item) => (
-          <ul className={style["block"]}>
-            <li key={item.title}>{item.title}</li>
-            {item.list.map((inner, index) => (
-              <li key={index}>{inner.name}</li>
-            ))}
-          </ul>
-        ))}
-        <ul className={style["topic-vertical"]}></ul>
+      <footer className={style["footer"]}>
+        <div
+          className={`${style["footer__container"]} ${style["layout-container"]}`}
+        >
+          {/* Logo*/}
+          {FOOTER_DATA.topics.map((item) => (
+            <ul className={style["column"]}>
+              <li className={style["block-title"]} key={item.title}>
+                {item.title}
+              </li>
+              {item.list.map((inner, index) => (
+                <li className={style["block-item"]} key={index}>
+                  {inner.name}
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
+
         <button>{/* Button with dropdown*/}</button>
       </footer>
     </>
