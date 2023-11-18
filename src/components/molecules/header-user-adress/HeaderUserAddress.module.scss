@@ -1,5 +1,6 @@
 .header-user-address {
   display: flex;
+  align-items: center;
   align-self: center;
 
   cursor: pointer;
@@ -24,4 +25,9 @@
   }
 }
 @media (max-width: 650px) {
+  .header-user-address {
+    &__text {
+      max-width: 200px;
+    }
+  }
 }

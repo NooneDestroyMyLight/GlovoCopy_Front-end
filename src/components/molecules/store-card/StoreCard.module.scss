@@ -1,0 +1,99 @@
+@import "/src/styles/globalStyles.scss";
+
+.store-suggestion-item {
+  &:hover {
+    .store-suggestion-item__img-container {
+      transition: 0.25s ease-in-out;
+      .img {
+        transition: 0.25s ease-in-out;
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  &__img-wrapper {
+    position: relative;
+    .diskont {
+      padding: var(--helio-space-2XS) var(--helio-space-XS);
+
+      font-weight: 700;
+      font-size: 14px;
+
+      background-color: var(--color-globalBackground);
+      border-bottom-right-radius: 4px;
+      border-bottom-left-radius: 4px;
+
+      top: calc(var(--helio-space-2XS) * -1);
+      right: var(--helio-space-M);
+
+      position: absolute;
+    }
+    .store-suggestion-item__img-container {
+      display: grid;
+      position: relative;
+
+      min-width: 150px;
+
+      border-radius: 10px;
+      overflow: hidden;
+      .img {
+        object-fit: cover;
+
+        height: 122px;
+        width: 100%;
+
+        transition: 0.25s ease-in-out;
+      }
+      .category {
+        padding: var(--helio-space-2XS);
+
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--helio-color-buttonText);
+
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 4px;
+
+        position: absolute;
+        left: var(--helio-space-XS);
+        bottom: var(--helio-space-XS);
+      }
+    }
+  }
+
+  &__descr {
+    display: flex;
+    flex-direction: column;
+    gap: var(--helio-space-XS);
+    padding: var(--helio-space-XS);
+
+    .rating-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .name {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .stats {
+      display: flex;
+      align-items: center;
+      gap: var(--helio-space-2XS);
+
+      &__rating-score {
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 17px;
+      }
+
+      &__rating-votes {
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 14px;
+        color: var(--helio-color-secondaryText);
+      }
+    }
+  }
+}

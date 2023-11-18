@@ -1,21 +1,21 @@
-import { FC, memo, useCallback, useState } from "react";
-import { useToggle } from "../../../hooks/useToggle";
+import { FC, memo } from "react";
+import { useMoreMWToggle } from "../../../hooks/useMoreMWToggle";
 import style from "./Header.module.scss";
 import cn from "classnames";
 //
 import Logo from "../../../assets/icons/logo/Logo";
-import logoStyle from "../../../assets/icons/logo/Logo.module.scss";
 //
 import HeaderInput from "../../molecules/header-input/HeaderInput";
 //
 import Button from "../../atoms/button/Button";
-import buttonStyle from "../../atoms/button/Button.module.scss";
+import BUTTON_STYLE from "../../atoms/button/Button.module.scss";
 //
 import HeaderUserAddress from "../../molecules/header-user-adress/HeaderUserAddress";
 //
 import ModelWindow from "../../../HOC/model-window/ModelWindow";
-import MWLogin from "../mw-organism/login/MWLogin";
-import { useMoreMWToggle } from "../../../hooks/useMoreMWToggle";
+import { STYLE_MW_POSITION_LOGIN } from "../../../constant/const";
+import LoginWrapper from "../../atoms/login-wrapper/LoginWrapper";
+//
 
 interface HeaderI {
   //   className: string;
@@ -29,7 +29,6 @@ const Header: FC<HeaderI> = memo(
       /*className*/
     }
   ) => {
-
     const [isOpen, currentMW, toggleMW, funArray] = useMoreMWToggle(mWName);
 
     console.log("Header RERENDER");
@@ -37,20 +36,37 @@ const Header: FC<HeaderI> = memo(
     return (
       <>
         <header className={cn(style.header)}>
-          <Logo /*className={logoStyle.logo__header}*/ />
-          <HeaderInput />
-          <div className={style["header__right-bar"]}>
+          <ul className={style["header-container"]}>
+            <Logo /*className={logoStyle.logo__header}*/ />
+            <HeaderInput />
+            <li className={style["header-container__right-bar"]}>
+              <div className={style["header-container__right-bar__address"]}>
+                <HeaderUserAddress onItemClick={funArray[0]} />
+              </div>
+              <Button
+                className={BUTTON_STYLE["header-button"]}
+                onButtonClick={funArray[1]}
+              />
+            </li>
+          </ul>
+          <div className={style["mobile-address"]}>
             <HeaderUserAddress onItemClick={funArray[0]} />
-            <Button
-              className={buttonStyle["header-button"]}
-              onButtonClick={funArray[1]}
-            />
           </div>
         </header>
-        <ModelWindow isOpen={isOpen} toggleMW={toggleMW}>
-          {currentMW === mWName[0] && <MWLogin onIconClick={toggleMW} />}
-          {currentMW === mWName[1] && <div>123</div>}
-        </ModelWindow>
+        {currentMW === mWName[0] && (
+          <ModelWindow isOpen={isOpen} toggleMW={toggleMW}>
+            <div>123</div>
+          </ModelWindow>
+        )}
+        {currentMW === mWName[1] && (
+          <ModelWindow
+            isOpen={isOpen}
+            toggleMW={toggleMW}
+            position={STYLE_MW_POSITION_LOGIN}
+          >
+            <LoginWrapper onIconClick={toggleMW} isOpen={isOpen} />
+          </ModelWindow>
+        )}
       </>
     );
   }

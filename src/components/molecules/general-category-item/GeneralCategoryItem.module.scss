@@ -1,0 +1,144 @@
+.general-category__item {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  min-height: 180px;
+  width: 110px;
+
+  position: relative;
+  transition: 0.25s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+    transition: 0.25s ease-in;
+    &:after {
+      content: "";
+      width: 100%;
+      height: 2px;
+
+      background-color: var(--helio-color-warning);
+      border-radius: var(--helio-space-M);
+
+      position: absolute;
+      bottom: 0;
+    }
+  }
+  .bubble__wrapper {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+
+    width: 98px;
+    height: 98px;
+
+    background: rgba(225, 159, 23, 0.5); //rgba(225, 159, 23, 0.5);
+    border-radius: 46% 54% 54% 46%/58% 56% 44% 42%;
+
+    position: relative;
+
+    .bubble {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      align-self: center;
+      justify-self: center;
+
+      height: 93px;
+      width: 91px;
+
+      border: 2px solid var(--helio-primitiveColor-yellow500);
+      border-radius: 56% 44% 45% 55%/58% 53% 47% 42%;
+      background-color: white;
+
+      position: absolute;
+
+      .bubble-img {
+        height: 45px;
+      }
+      .bubble-title__mobile {
+        width: fit-content;
+        display: none;
+        text-align: center;
+
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 1.1;
+      }
+    }
+  }
+  .bubble-title__desktop-hidden {
+    padding-top: var(--helio-space-XS);
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .general-category__item {
+    display: grid;
+    position: absolute;
+
+    width: 118px;
+    height: 118px;
+
+    min-height: auto;
+
+    &:hover {
+      pointer-events: none;
+    }
+
+    .bubble__wrapper {
+      width: inherit;
+      height: inherit;
+
+      .bubble {
+        height: 112px;
+        width: 110px;
+      }
+
+      .bubble-title__mobile {
+        display: block !important;
+      }
+    }
+    .bubble-title__desktop-hidden {
+      display: none;
+    }
+  }
+  //POSITION
+  .top-left {
+    top: 0;
+    left: 0;
+  }
+  .top-right {
+    top: 0;
+    right: 0;
+  }
+  .bottom-left {
+    bottom: 0;
+    left: 0;
+  }
+  .bottom-right {
+    bottom: 0;
+    right: 0;
+  }
+  .center {
+    width: 137px !important;
+    height: 137px !important;
+
+    align-self: center;
+    justify-content: center;
+
+    .bubble__wrapper {
+      width: inherit;
+      height: inherit;
+
+      .bubble {
+        height: 131px !important;
+        width: 128px !important;
+      }
+    }
+  }
+}

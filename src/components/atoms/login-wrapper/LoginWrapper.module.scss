@@ -1,0 +1,16 @@
+.mw-login__mobile {
+  width: fit-content;
+  height: fit-content;
+  display: none;
+}
+.mw-login__desktop {
+}
+
+@media (max-width: 650px) {
+  .mw-login__mobile {
+    display: block;
+  }
+  .mw-login__desktop {
+    display: none;
+  }
+}

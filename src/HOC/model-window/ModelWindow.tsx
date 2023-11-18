@@ -7,6 +7,7 @@ interface ModelWindowProps {
   children: ReactNode;
   isOpen?: boolean;
   toggleMW: () => void;
+  position?: string; //children screen position
 }
 
 let backdrop = {
@@ -14,15 +15,15 @@ let backdrop = {
   hidden: { opacity: 0 },
 };
 
-const ModelWindow: FC<ModelWindowProps> = ({ children, isOpen, toggleMW }) => {
-  console.log(isOpen);
-
+const ModelWindow: FC<ModelWindowProps> = ({
+  children,
+  isOpen,
+  toggleMW,
+  position,
+}) => {
   useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add("modal-open");
-    } else if (!isOpen) {
-      document.body.classList.remove("modal-open");
-    }
+    if (isOpen) document.body.classList.add("modal-open");
+    if (!isOpen) document.body.classList.remove("modal-open");
   }, [isOpen]);
 
   return ReactDOM.createPortal(
@@ -39,7 +40,9 @@ const ModelWindow: FC<ModelWindowProps> = ({ children, isOpen, toggleMW }) => {
         >
           <li
             onClick={(e): void => e.stopPropagation()}
-            className={style.modelWindow__content}
+            className={`${style.modelWindow__content} ${
+              !position ? style["mw-position__center"] : position
+            }`}
           >
             {children}
           </li>

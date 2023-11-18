@@ -20,3 +20,9 @@
     background-color: var(--color-accentHover);
   }
 }
+@media (max-width: 650px) {
+  .header-button {
+    height: 38px;
+    min-width: 130px;
+  }
+}
