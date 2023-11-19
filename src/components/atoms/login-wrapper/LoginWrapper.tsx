@@ -9,6 +9,10 @@ const initial = {
   closed: { y: "100%", opacity: 0 },
 };
 
+// interface LoginWrapperI extends MWLoginI {
+//   onDrag?: () => void;
+// }
+
 const LoginWrapper: FC<MWLoginI> = ({
   /*className*/
   onIconClick,
@@ -19,6 +23,13 @@ const LoginWrapper: FC<MWLoginI> = ({
       <motion.div
         className={style["mw-login__mobile"]}
         variants={initial}
+        //drag
+        drag="y"
+        dragConstraints={{ top: 0 }}
+        dragElastic={0}
+        dragMomentum={false}
+        onDragEnd={onIconClick}
+        //
         initial="closed"
         exit={{ y: "100%" }}
         //

@@ -7,6 +7,15 @@ h3 {
   max-width: 1120px;
   width: 100%;
 
-  min-width: 350px;
-  // margin: 0 auto;
+  margin: 0 auto;
+  // min-width: 350px;
+}
+
+.stickyScreen {
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  overflow: hidden;
+  z-index: -1;
 }
