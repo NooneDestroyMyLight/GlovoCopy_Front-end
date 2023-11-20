@@ -29,6 +29,16 @@
       &__address {
         display: flex;
         align-items: center;
+
+        font-size: 14px;
+        font-weight: 400;
+
+        visibility: visible;
+        transition: 0.3 ease-in-out;
+      }
+      .address-hide {
+        visibility: hidden;
+        transition: 0.3 ease-in-out;
       }
     }
   }

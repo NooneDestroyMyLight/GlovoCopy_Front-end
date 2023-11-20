@@ -1,0 +1,45 @@
+@import "/src/styles/globalStyles.module.scss";
+
+.close-icon__wrapper {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+
+  height: 32px;
+
+  padding: var(--helio-space-M);
+  box-sizing: content-box;
+
+  .close-icon {
+    display: flex;
+    justify-content: center;
+
+    height: 21px;
+    width: 21px;
+
+    cursor: pointer;
+
+    &:after {
+      content: "";
+      height: inherit;
+      width: 2px;
+
+      background-color: rgb(100, 99, 99);
+      border-radius: 2px;
+
+      transform: rotateZ(135deg);
+      position: absolute;
+    }
+    &:before {
+      content: "";
+      height: inherit;
+      width: 2px;
+
+      background-color: rgb(100, 99, 99);
+      border-radius: 2px;
+
+      transform: rotateZ(45deg);
+      position: absolute;
+    }
+  }
+}

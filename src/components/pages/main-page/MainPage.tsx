@@ -24,7 +24,9 @@ const MainPage: FC<MainPageI> = ({}) => {
     <>
       <Layout>
         <GeneralCategory />
-        <div className={style["suggestions-group"]}>
+        <div
+          className={`${style["suggestions-group"]} ${style["layout-container`"]}`}
+        >
           <StoreSuggestions
             title={ESTABLISH_SUGGESTIONS_TEMPLATE.suggestions}
             titleIconSrc={

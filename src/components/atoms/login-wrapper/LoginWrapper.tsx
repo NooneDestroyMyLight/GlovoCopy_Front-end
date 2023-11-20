@@ -3,11 +3,16 @@ import { motion } from "framer-motion";
 import style from "./LoginWrapper.module.scss";
 //
 import MWLogin, { MWLoginI } from "../../organisms/mw-organism/login/MWLogin";
+import { useSticky } from "../../../hooks/useSticky";
 
 const initial = {
   open: { y: 0, opacity: 1 },
   closed: { y: "100%", opacity: 0 },
 };
+
+// interface LoginWrapperI extends MWLoginI {
+//   onDrag?: () => void;
+// }
 
 const LoginWrapper: FC<MWLoginI> = ({
   /*className*/
@@ -19,6 +24,19 @@ const LoginWrapper: FC<MWLoginI> = ({
       <motion.div
         className={style["mw-login__mobile"]}
         variants={initial}
+        //drag
+        drag="y"
+        dragConstraints={{ top: 0 }}
+        dragElastic={0}
+        dragMomentum={false}
+        onDragEnd={onIconClick}
+        // onDragEnd={(event, info) => {
+        //   console.log(info.offset.y);
+        //   if (info.offset.y >= 100) {
+        //     onIconClick && onIconClick();
+        //   }
+        // }}
+        //
         initial="closed"
         exit={{ y: "100%" }}
         //
