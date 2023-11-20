@@ -3,12 +3,15 @@ import style from "./MWTemplate.module.scss";
 
 interface MWTemplateI {
   onIconClick?: () => void;
+  className: string;
   children: ReactNode;
 }
 
-const MWTemplate: FC<MWTemplateI> = ({ onIconClick, children }) => {
+const MWTemplate: FC<MWTemplateI> = ({ onIconClick, children, className }) => {
+  console.log(className);
   return (
-    <ul className={style["mw-template__set-address"]}>
+    <ul className={className}>
+      {/* style["mw-template__set-address"]*/}
       <li className={style["close-icon__wrapper"]}>
         <i className={style["close-icon"]} onClick={onIconClick} />
       </li>

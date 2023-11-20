@@ -1,5 +1,7 @@
 import { FC, memo } from "react";
 import { useMoreMWToggle } from "../../../hooks/useMoreMWToggle";
+import { useSticky } from "../../../hooks/useSticky";
+//
 import style from "./Header.module.scss";
 import cn from "classnames";
 //
@@ -13,10 +15,13 @@ import BUTTON_STYLE from "../../atoms/button/Button.module.scss";
 import HeaderUserAddress from "../../molecules/header-user-adress/HeaderUserAddress";
 //
 import ModelWindow from "../../../HOC/model-window/ModelWindow";
-import { STYLE_MW_POSITION_LOGIN } from "../../../constant/const";
 import LoginWrapper from "../../atoms/login-wrapper/LoginWrapper";
-import { useSticky } from "../../../hooks/useSticky";
-import MWTemplate from "../../templates/mw-template/MWTemplate";
+
+import SetAddress from "../mw-organism/set-address/SetAddress";
+import {
+  STYLE_MW_POSITION_LOGIN,
+  STYLE_MW_SET_ADDRESS_SIZE,
+} from "../../../constant/styles";
 //
 
 interface HeaderI {
@@ -32,10 +37,10 @@ const Header: FC<HeaderI> = memo(
     }
   ) => {
     const [isOpen, currentMW, toggleMW, funArray] = useMoreMWToggle(mWName);
-
-    console.log("Header RERENDER");
     const [isSticky, elRef] = useSticky(false);
-    console.log(isSticky);
+
+    console.log(STYLE_MW_POSITION_LOGIN);
+    console.log("Header RERENDER");
     return (
       <>
         <div ref={elRef} className={style.stickyScreen} />
@@ -62,10 +67,12 @@ const Header: FC<HeaderI> = memo(
           </div>
         </header>
         {currentMW === mWName[0] && (
-          <ModelWindow isOpen={isOpen} toggleMW={toggleMW}>
-            <MWTemplate>
-              <div>123</div>
-            </MWTemplate>
+          <ModelWindow
+            isOpen={isOpen}
+            toggleMW={toggleMW}
+            position={STYLE_MW_SET_ADDRESS_SIZE}
+          >
+            <SetAddress onCloseClick={toggleMW} />
           </ModelWindow>
         )}
         {currentMW === mWName[1] && (
