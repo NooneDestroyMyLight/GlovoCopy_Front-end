@@ -2,27 +2,30 @@
 
 .close-icon__wrapper {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
-
-  height: 32px;
 
   padding: var(--helio-space-M);
   box-sizing: content-box;
 
+  .text {
+  }
+
   .close-icon {
+    // align-self: center;
+    // justify-self: self-end;
+
     display: flex;
     justify-content: center;
-
-    height: 21px;
-    width: 21px;
+    align-items: center;
+    height: 32px;
+    width: 32px;
 
     cursor: pointer;
-
     &:after {
       content: "";
-      height: inherit;
-      width: 2px;
+      height: 21px;
+      width: 3px;
 
       background-color: rgb(100, 99, 99);
       border-radius: 2px;
@@ -32,8 +35,8 @@
     }
     &:before {
       content: "";
-      height: inherit;
-      width: 2px;
+      height: 21px;
+      width: 3px;
 
       background-color: rgb(100, 99, 99);
       border-radius: 2px;
@@ -42,4 +45,10 @@
       position: absolute;
     }
   }
+}
+
+.content {
+  padding-left: var(--helio-space-2XL);
+  padding-right: var(--helio-space-2XL);
+  padding-bottom: var(--helio-space-M);
 }

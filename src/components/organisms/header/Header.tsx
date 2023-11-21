@@ -17,7 +17,7 @@ import HeaderUserAddress from "../../molecules/header-user-adress/HeaderUserAddr
 import ModelWindow from "../../../HOC/model-window/ModelWindow";
 import LoginWrapper from "../../atoms/login-wrapper/LoginWrapper";
 
-import SetAddress from "../mw-organism/set-address/SetAddress";
+import SetAddress from "../mw-organism/set-location/choose-address/ChooseAddress";
 import {
   STYLE_MW_POSITION_LOGIN,
   STYLE_MW_SET_ADDRESS_SIZE,
