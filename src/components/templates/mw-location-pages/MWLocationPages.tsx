@@ -5,8 +5,10 @@ import MWTemplate from "../mw-template/MWTemplate";
 import { STYLE_MW_TEMPLATE_SET_ADDRESS } from "../../../constant/styles";
 //
 import MwLocationPrevButton from "../../../assets/icons/mw-location-prev-button/MwLocationPrevButton";
+//
 import ChooseAddress from "../../organisms/mw-organism/set-location/choose-address/ChooseAddress";
 import SearchLocation from "../../organisms/mw-organism/set-location/search-location/SearchLocation";
+import PinMapLocation from "../../organisms/mw-organism/set-location/pin-map-location/PinMapLocation";
 
 interface MWLocationPagesI {
   onCloseClick?: () => void;
@@ -33,12 +35,16 @@ const MWLocationPages: FC<MWLocationPagesI> = ({ onCloseClick }) => {
   //set-location-info
   //confirm-location
 
+  const moveToAddNewLocation = useCallback(() => {
+    setCurrentPage(1);
+  }, []);
+
   const moveToPinMapLocation = useCallback(() => {
     setCurrentPage(2);
   }, []);
 
-  const moveToAddNewLocation = useCallback(() => {
-    setCurrentPage(1);
+  const moveToSetLocationInfo = useCallback(() => {
+    setCurrentPage(3);
   }, []);
 
   console.log(currentPage);
@@ -55,6 +61,9 @@ const MWLocationPages: FC<MWLocationPagesI> = ({ onCloseClick }) => {
         )}
         {currentPage === 1 && (
           <SearchLocation onNextButtonClick={moveToPinMapLocation} />
+        )}
+        {currentPage === 2 && (
+          <PinMapLocation onNextButtonClick={moveToSetLocationInfo} />
         )}
       </MWTemplate>
     </>

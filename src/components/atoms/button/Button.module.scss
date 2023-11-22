@@ -1,3 +1,5 @@
+@import "/src/styles/globalStyles.module.scss";
+
 .header-button {
   justify-self: end;
   display: flex;
@@ -24,5 +26,30 @@
   .header-button {
     height: 38px;
     min-width: 130px;
+  }
+}
+
+.mw-location-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  max-width: 100%;
+  width: 340px;
+
+  padding-left: var(--helio-space-M);
+  padding-right: var(--helio-space-M);
+
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--helio-color-buttonText);
+  height: 48px;
+
+  background-color: var(--color-accent);
+  border-radius: 24px;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    background-color: var(--color-accentHover);
+    transition: 0.3s ease-in-out;
   }
 }

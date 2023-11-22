@@ -110,7 +110,8 @@ footer {
   box-sizing: border-box;
 }
 
-img {
+img,
+fieldset {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -120,4 +121,10 @@ main {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
 }

@@ -25,10 +25,17 @@
     font-size: 16px;
     word-break: break-word;
 
-    border: 2px solid orange;
+    border: 2px solid var(--color-globalBackground);
+
     border-radius: 6px;
 
     cursor: pointer;
+
+    transition: 0.3s ease-in-out;
+    &:hover {
+      border: 2px solid var(--helio-color-warning);
+      transition: 0.3s ease-in-out;
+    }
   }
 
   &__button-container {

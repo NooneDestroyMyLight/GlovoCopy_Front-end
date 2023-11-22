@@ -22,6 +22,7 @@ import {
   STYLE_MW_POSITION_LOGIN,
   STYLE_MW_SET_ADDRESS_SIZE,
 } from "../../../constant/styles";
+import { HEADER_TEMPLATE } from "./header.data";
 //
 
 interface HeaderI {
@@ -59,6 +60,7 @@ const Header: FC<HeaderI> = memo(
               <Button
                 className={BUTTON_STYLE["header-button"]}
                 onButtonClick={funArray[1]}
+                text={HEADER_TEMPLATE.loginButton}
               />
             </li>
           </ul>
@@ -66,7 +68,7 @@ const Header: FC<HeaderI> = memo(
             <HeaderUserAddress onItemClick={funArray[0]} />
           </div>
         </header>
-        {currentMW === mWName[0] && (
+        {/* {currentMW === mWName[0] && (
           <ModelWindow
             isOpen={isOpen}
             toggleMW={toggleMW}
@@ -74,7 +76,7 @@ const Header: FC<HeaderI> = memo(
           >
             <SetAddress onCloseClick={toggleMW} />
           </ModelWindow>
-        )}
+        )} */}
         {currentMW === mWName[1] && (
           <ModelWindow
             isOpen={isOpen}

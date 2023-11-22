@@ -1,4 +1,5 @@
 import { FC } from "react";
+import style from "./Flag.module.scss";
 
 const Flag: FC = ({}) => {
   return (

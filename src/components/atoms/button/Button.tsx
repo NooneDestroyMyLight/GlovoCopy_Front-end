@@ -7,15 +7,14 @@ interface ButtonI {
   className: string;
   onButtonClick?: () => void;
   // text: string;
+  text?: string;
 }
 
-const HEADER_BUTTON_TEXT = "Розпочати!";
-
-const Button: FC<ButtonI> = memo(({ className, onButtonClick }) => {
+const Button: FC<ButtonI> = memo(({ className, onButtonClick, text }) => {
   console.log("Button RERENDER");
   return (
     <button type={"button"} onClick={onButtonClick} className={className}>
-      {HEADER_BUTTON_TEXT}
+      {text}
     </button>
   );
 });

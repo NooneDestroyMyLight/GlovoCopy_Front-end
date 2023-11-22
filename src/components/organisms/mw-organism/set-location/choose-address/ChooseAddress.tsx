@@ -19,6 +19,7 @@ interface ChooseAddressI {
 //confirm-location
 
 const ChooseAddress: FC<ChooseAddressI> = ({ onNextButtonClick }) => {
+  //Add hover effect and adaptive
   return (
     // <MWTemplate
     //   onIconClick={onCloseClick}
