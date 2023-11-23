@@ -1,31 +1,53 @@
 .mw-input {
-  display: grid;
+  display: flex;
   align-items: center;
-  grid-template-columns: auto 1fr;
+  gap: 12px;
   height: 34px;
 
   border-bottom: 2px solid var(--helio-color-primaryBorder);
-
   background-color: transparent;
+  transition: 0.3s;
 
   .font {
     font-size: 16px;
     font-weight: 300;
   }
-  transition: 0.3s;
+
   &__content {
-    position: relative;
     display: flex;
     align-items: center;
-    margin-left: 12px;
 
+    width: 100%;
+
+    position: relative;
     z-index: 2;
-
     .input {
       width: 100%;
       background-color: transparent;
 
       transition: 0.4s;
+
+      overflow: visible;
+
+      &::-webkit-search-cancel-button {
+        appearance: none;
+        position: absolute;
+
+        right: 0;
+
+        width: 25px;
+        height: 25px;
+
+        background-size: cover;
+        background-image: url("/src/assets/icons/input/input-clear-button.svg");
+        background-repeat: no-repeat;
+
+        cursor: pointer;
+      }
+
+      &:not(:focus)::-webkit-search-cancel-button {
+        opacity: 1;
+      }
       &:focus ~ .input-placeholder,
       &:not(:placeholder-shown) ~ .input-placeholder {
         top: -1rem;

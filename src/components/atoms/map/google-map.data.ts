@@ -1,5 +1,5 @@
 export const MAP_DEFAULT_OPTION: google.maps.MapOptions = {
-  zoomControl: false,
+  zoomControl: true,
   mapTypeControl: false,
   scaleControl: true,
   streetViewControl: false,
@@ -10,9 +10,8 @@ export const MAP_DEFAULT_OPTION: google.maps.MapOptions = {
 };
 
 export const STYLE_MAP = {
-  width: "500px",
-  height: "500px",
-  borderRadius: "1rem",
+  width: "100%",
+  height: "100%",
 };
 export const MAP_DATA = {
   locationCoordinate: {

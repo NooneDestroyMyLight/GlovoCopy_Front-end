@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="47" height="58" viewBox="0 0 47 58">
+    <defs>
+        <filter id="a" width="240%" height="652%" x="-70%" y="-276%" filterUnits="objectBoundingBox">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="4"/>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(8 20)">
+            <path fill="#6F6E6E" fill-rule="nonzero" d="M8 1a1 1 0 1 1 2 0v24.205a1 1 0 1 1-2 0V1z"/>
+            <ellipse cx="8.781" cy="26.377" fill="#000" filter="url(#a)" opacity=".4" rx="8.571" ry="2.174"/>
+        </g>
+        <path fill="#2ABB9B" fill-rule="nonzero" d="M18 2v20.4h26.4l-8.907-10.2L44.4 2z"/>
+        <path fill="#6F6E6E" fill-rule="nonzero" d="M18 2v20.4h26.4l-8.907-10.2L44.4 2H18zm27.906 19.085c1.13 1.293.211 3.315-1.506 3.315H18a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h26.4c1.717 0 2.636 2.022 1.506 3.315L38.148 12.2l7.758 8.885z"/>
+        <path stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 16V4h12"/>
+    </g>
+</svg>

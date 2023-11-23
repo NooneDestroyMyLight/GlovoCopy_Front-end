@@ -1,9 +1,10 @@
 import { FC } from "react";
 import style from "./SeatchLocation.module.scss";
 import { SEARCH_LOCATION_TEMPLATE } from "./searchLocation.data";
-import Flag from "../../../../../assets/icons/set-address/Flag";
+//
 import LocationIcon from "../../../../../assets/icons/set-address/LocationIcon";
 import MWInput from "../../../../molecules/mw-input/MWInput";
+import FlagMedium from "../../../../../assets/icons/set-address/FlagMedium";
 
 interface SearchLocationI {
   onNextButtonClick: () => void;
@@ -24,7 +25,11 @@ const SearchLocation: FC<SearchLocationI> = ({ onNextButtonClick }) => {
       <ul className={style["search-location"]}>
         <li className={style["search-location__input-wrapper"]}>
           <div className={style["input"]}>
-            <MWInput placeholder={SEARCH_LOCATION_TEMPLATE.inputPlaceHolder} />
+            <MWInput
+              Icon={FlagMedium}
+              placeholder={SEARCH_LOCATION_TEMPLATE.inputPlaceHolder}
+              isAutoFocus={true}
+            />
           </div>
           <button
             className={`${style["get-current-location__button"]} ${style["text"]} `}

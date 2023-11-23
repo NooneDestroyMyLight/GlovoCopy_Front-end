@@ -1,0 +1,34 @@
+@import "/src/styles/globalStyles.module.scss";
+.confirm-location {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 0 72px;
+  padding-bottom: var(--helio-space-2XL);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--helio-space-2XL);
+
+    width: 100%;
+    .current-address {
+      display: flex;
+      justify-content: start;
+      align-items: start;
+
+      width: 100%;
+      .font {
+        font-size: 16px;
+        line-height: 1.25;
+        margin-bottom: 4px;
+        word-break: break-word;
+      }
+      .icon {
+        margin: 0 var(--helio-space-XS);
+      }
+    }
+  }
+}

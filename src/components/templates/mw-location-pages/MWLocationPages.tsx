@@ -9,13 +9,15 @@ import MwLocationPrevButton from "../../../assets/icons/mw-location-prev-button/
 import ChooseAddress from "../../organisms/mw-organism/set-location/choose-address/ChooseAddress";
 import SearchLocation from "../../organisms/mw-organism/set-location/search-location/SearchLocation";
 import PinMapLocation from "../../organisms/mw-organism/set-location/pin-map-location/PinMapLocation";
+import ConfirmLocation from "../../organisms/mw-organism/set-location/confirm-location/ConfirmLocation";
+import SetLocationInfo from "../../organisms/mw-organism/set-location/set-location-info/SetLocationInfo";
 
 interface MWLocationPagesI {
   onCloseClick?: () => void;
 }
 
 const MWLocationPages: FC<MWLocationPagesI> = ({ onCloseClick }) => {
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(0);
 
   useEffect(() => {
     currentPage !== 0 && setCurrentPage(0);
@@ -47,6 +49,15 @@ const MWLocationPages: FC<MWLocationPagesI> = ({ onCloseClick }) => {
     setCurrentPage(3);
   }, []);
 
+  const moveToConfirmLocation = useCallback(() => {
+    setCurrentPage(4);
+  }, []);
+
+  const onConfirmClick = useCallback(() => {
+    console.log("Confirm!!!");
+    onCloseClick?.();
+  }, []);
+
   console.log(currentPage);
   return (
     <>
@@ -64,6 +75,12 @@ const MWLocationPages: FC<MWLocationPagesI> = ({ onCloseClick }) => {
         )}
         {currentPage === 2 && (
           <PinMapLocation onNextButtonClick={moveToSetLocationInfo} />
+        )}
+        {currentPage === 3 && (
+          <SetLocationInfo onNextButtonClick={moveToConfirmLocation} />
+        )}
+        {currentPage === 4 && (
+          <ConfirmLocation onNextButtonClick={onConfirmClick} />
         )}
       </MWTemplate>
     </>

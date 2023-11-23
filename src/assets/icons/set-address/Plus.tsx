@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
-const Plus: FC = ({}) => {
+const Plus: FC = memo(({}) => {
   return (
     <svg
       data-v-ac01b0d8=""
@@ -34,6 +34,6 @@ const Plus: FC = ({}) => {
       ></path>
     </svg>
   );
-};
+});
 
 export default Plus;
