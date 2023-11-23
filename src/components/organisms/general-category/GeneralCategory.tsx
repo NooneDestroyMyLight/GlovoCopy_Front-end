@@ -1,17 +1,16 @@
 import { FC } from "react";
 import { useToggle } from "../../../hooks/useToggle";
 import style from "./GeneralCategory.module.scss";
-
 import DropdownBlack, {
   DD_ICON_MEDIUM,
 } from "../../../assets/icons/dropdown-black/DropdownBlack";
-
 import { GENERAL_CATEGORY_DATA } from "./general-category.data";
 import { HEADER_USER_ADDRESS_DATA } from "../../molecules/header-user-adress/HeaderUserAddress";
 import GeneralCategoryItem from "../../molecules/general-category-item/GeneralCategoryItem";
 import ModelWindow from "../../../HOC/model-window/ModelWindow";
-import SetAddress from "../mw-organism/set-address/SetAddress";
+import ChooseAddress from "../mw-organism/set-location/choose-address/ChooseAddress";
 import { STYLE_MW_SET_ADDRESS_SIZE } from "../../../constant/styles";
+import MWLocationPages from "../../templates/mw-location-pages/MWLocationPages";
 
 const ADDRESS = "Доставка за адресою: ";
 
@@ -59,7 +58,7 @@ const GeneralCategory: FC<GeneralCategoryI> = ({}) => {
         toggleMW={toggleMW}
         position={STYLE_MW_SET_ADDRESS_SIZE}
       >
-        <SetAddress onCloseClick={toggleMW} />
+        <MWLocationPages onCloseClick={toggleMW} />
       </ModelWindow>
     </>
   );

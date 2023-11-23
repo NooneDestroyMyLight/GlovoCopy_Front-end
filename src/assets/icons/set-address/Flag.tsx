@@ -1,6 +1,7 @@
-import { FC } from "react";
+import { FC, memo } from "react";
+import style from "./Flag.module.scss";
 
-const Flag: FC = ({}) => {
+const Flag: FC = memo(({}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,6 +21,6 @@ const Flag: FC = ({}) => {
       </g>
     </svg>
   );
-};
+});
 
 export default Flag;

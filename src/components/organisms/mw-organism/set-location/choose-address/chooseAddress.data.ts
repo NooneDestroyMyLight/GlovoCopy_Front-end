@@ -1,6 +1,6 @@
-export const SET_ADDRESS_TEMPLATE = {
+export const CHOOSE_ADDRESS_TEMPLATE = {
   title: "Виберіть адресу доставки",
   addAddress: "Додати іншу адресу",
 };
 
-export const SET_ADDRESS_DATA: [] = [];
+export const CHOOSE_ADDRESS_DATA: [] = [];

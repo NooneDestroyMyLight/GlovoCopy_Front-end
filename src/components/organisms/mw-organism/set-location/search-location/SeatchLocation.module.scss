@@ -1,0 +1,68 @@
+@import "/src/styles/globalStyles.module.scss";
+
+.text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-accent);
+}
+
+.search-location__wrapper {
+  display: grid;
+
+  .title {
+    justify-self: center;
+  }
+
+  .search-location {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding-bottom: 122px;
+
+    &__input-wrapper {
+      // display: grid;
+      // grid-template-rows: repeat(2, fit-content);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 1.25%;
+      position: relative;
+
+      .input {
+        height: fit-content;
+      }
+
+      .get-current-location__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--helio-space-XS);
+
+        height: fit-content;
+      }
+
+      .move-to-next {
+        align-self: self-end;
+        justify-self: self-end;
+
+        text-overflow: ellipsis;
+        position: absolute;
+        bottom: 0;
+      }
+    }
+    &__map {
+      height: 308px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      margin: 1.25%;
+      img {
+        height: 100%;
+        // width: 100%;
+
+        object-fit: cover;
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import style from "./DropdownBlack.module.scss";
 import { IconI } from "../../../types/icon";
 
@@ -6,7 +6,7 @@ import { IconI } from "../../../types/icon";
 export const DD_ICON_SMALL = style.small;
 export const DD_ICON_MEDIUM = style.medium;
 
-const DropdownBlack: FC<IconI> = ({ className }) => {
+const DropdownBlack: FC<IconI> = memo(({ className }) => {
   return (
     <svg
       width="21"
@@ -22,6 +22,6 @@ const DropdownBlack: FC<IconI> = ({ className }) => {
       />
     </svg>
   );
-};
+});
 
 export default DropdownBlack;
