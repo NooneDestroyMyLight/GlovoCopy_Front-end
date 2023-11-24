@@ -3,21 +3,20 @@ import style from "./SeatchLocation.module.scss";
 import { SEARCH_LOCATION_TEMPLATE } from "./searchLocation.data";
 //
 import LocationIcon from "../../../../../assets/icons/set-address/LocationIcon";
-import MWInput from "../../../../molecules/mw-input/MWInput";
-import FlagMedium from "../../../../../assets/icons/set-address/FlagMedium";
+//
+import { UseFormRegister } from "react-hook-form";
+import { UserLocationI } from "../../../../../types/UserLocation";
 
 interface SearchLocationI {
   onNextButtonClick: () => void;
+  register: UseFormRegister<UserLocationI>;
 }
 
-const SearchLocation: FC<SearchLocationI> = ({ onNextButtonClick }) => {
+const SearchLocation: FC<SearchLocationI> = ({
+  onNextButtonClick,
+  register,
+}) => {
   return (
-    // <MWTemplate
-    //   onIconClick={onCloseClick}
-    //   AdditionIcon={MwLocationPrevButton}
-    //   //
-    //   className={STYLE_MW_TEMPLATE_SET_ADDRESS}
-    // >
     <div className={style["search-location__wrapper"]}>
       <h2 className={`${style["mw-location-title"]} ${style["title"]}`}>
         {SEARCH_LOCATION_TEMPLATE.title}
@@ -25,11 +24,13 @@ const SearchLocation: FC<SearchLocationI> = ({ onNextButtonClick }) => {
       <ul className={style["search-location"]}>
         <li className={style["search-location__input-wrapper"]}>
           <div className={style["input"]}>
-            <MWInput
+            {/* <MWInput
               Icon={FlagMedium}
               placeholder={SEARCH_LOCATION_TEMPLATE.inputPlaceHolder}
               isAutoFocus={true}
-            />
+              //
+              register={register}
+            /> */}
           </div>
           <button
             className={`${style["get-current-location__button"]} ${style["text"]} `}
