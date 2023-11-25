@@ -1,4 +1,4 @@
-import { FC, ReactNode, useCallback, useState, useEffect } from "react";
+import { FC, ReactNode, useCallback } from "react";
 import style from "./MWLocationPages.module.scss";
 //
 import MWTemplate from "../mw-template/MWTemplate";
@@ -11,31 +11,73 @@ import SearchLocation from "../../organisms/mw-organism/set-location/search-loca
 import PinMapLocation from "../../organisms/mw-organism/set-location/pin-map-location/PinMapLocation";
 import ConfirmLocation from "../../organisms/mw-organism/set-location/confirm-location/ConfirmLocation";
 import SetLocationInfo from "../../organisms/mw-organism/set-location/set-location-info/SetLocationInfo";
+import { SubmitHandler, useForm } from "react-hook-form";
+import {
+  UserConfirmedLocationI,
+  UserLocationEntries,
+  UserLocationI,
+  UserLocationKeys,
+} from "../../../types/UserLocation";
+import { useMWLocationSlides } from "../../../hooks/useMWLocationSlides";
 
 interface MWLocationPagesI {
   onCloseClick?: () => void;
 }
 
+let userConfirmedLocation: UserConfirmedLocationI;
+
+interface MWLocationSlides {}
+//choose-address
+//search-location
+//pin-map-location
+//set-location-info
+//confirm-location
+
 const MWLocationPages: FC<MWLocationPagesI> = ({ onCloseClick }) => {
-  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [currentPage, setCurrentPage, onPrevPage] = useMWLocationSlides();
+  const prevButton: FC = useCallback(
+    () => <MwLocationPrevButton onIconClick={onPrevPage} />,
+    [currentPage]
+  );
+  //
+  const {
+    register,
+    trigger,
+    setValue,
+    getValues,
+    handleSubmit,
+    watch,
+    resetField,
+    reset,
+    formState: { errors, isValid },
+  } = useForm<UserLocationI>({ mode: "onChange" });
+  const onSubmit: SubmitHandler<UserLocationI> = (data) => {
+    //
+    let userLocationEntr = Object.entries(data) as UserLocationEntries;
+    const deletedProp: (keyof UserLocationI)[] = ["description", "coordinate"];
+    const userStringAddress = userLocationEntr
+      .reduce((total: string[], item) => {
+        if (
+          !deletedProp.includes(item[0] as keyof UserLocationI) &&
+          item[1] &&
+          typeof item[1] === "string"
+        )
+          total.push(item[1]);
+        return total;
+      }, [] as string[])
+      .join(", ");
 
-  useEffect(() => {
-    currentPage !== 0 && setCurrentPage(0);
-  }, []);
+    console.log("USER_TOTAL_ADDRESS", userConfirmedLocation);
 
-  const onPrevPage = useCallback(() => {
-    setCurrentPage(currentPage > 0 ? currentPage - 1 : currentPage);
-  }, [currentPage, setCurrentPage]);
+    userConfirmedLocation = {
+      address: userStringAddress,
+      description: data.description,
+      coordinate: data.coordinate,
+    };
 
-  const prevButton: FC = useCallback(() => {
-    return <MwLocationPrevButton onIconClick={onPrevPage} />;
-  }, [currentPage]);
-
-  //choose-address
-  //search-location
-  //pin-map-location
-  //set-location-info
-  //confirm-location
+    if (currentPage === 3) setCurrentPage(4);
+    else onCloseClick?.();
+  };
 
   const moveToAddNewLocation = useCallback(() => {
     setCurrentPage(1);
@@ -46,11 +88,8 @@ const MWLocationPages: FC<MWLocationPagesI> = ({ onCloseClick }) => {
   }, []);
 
   const moveToSetLocationInfo = useCallback(() => {
-    setCurrentPage(3);
-  }, []);
-
-  const moveToConfirmLocation = useCallback(() => {
-    setCurrentPage(4);
+    //add postal index
+    if (getValues("street") && getValues("streetNumber")) setCurrentPage(3);
   }, []);
 
   const onConfirmClick = useCallback(() => {
@@ -58,7 +97,6 @@ const MWLocationPages: FC<MWLocationPagesI> = ({ onCloseClick }) => {
     onCloseClick?.();
   }, []);
 
-  console.log(currentPage);
   return (
     <>
       <MWTemplate
@@ -67,21 +105,39 @@ const MWLocationPages: FC<MWLocationPagesI> = ({ onCloseClick }) => {
         //
         className={STYLE_MW_TEMPLATE_SET_ADDRESS}
       >
-        {currentPage === 0 && (
-          <ChooseAddress onNextButtonClick={moveToAddNewLocation} />
-        )}
-        {currentPage === 1 && (
-          <SearchLocation onNextButtonClick={moveToPinMapLocation} />
-        )}
-        {currentPage === 2 && (
-          <PinMapLocation onNextButtonClick={moveToSetLocationInfo} />
-        )}
-        {currentPage === 3 && (
-          <SetLocationInfo onNextButtonClick={moveToConfirmLocation} />
-        )}
-        {currentPage === 4 && (
-          <ConfirmLocation onNextButtonClick={onConfirmClick} />
-        )}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {currentPage === 0 && (
+            <ChooseAddress onNextButtonClick={moveToAddNewLocation} />
+          )}
+          {currentPage === 1 && (
+            <SearchLocation
+              onNextButtonClick={moveToPinMapLocation}
+              register={register}
+            />
+          )}
+          {currentPage === 2 && (
+            <PinMapLocation
+              onNextButtonClick={moveToSetLocationInfo}
+              setLocation={setValue}
+              reset={reset}
+            />
+          )}
+          {currentPage === 3 && (
+            <SetLocationInfo
+              register={register}
+              errors={errors}
+              isValid={isValid}
+              trigger={trigger}
+              resetField={resetField}
+            />
+          )}
+          {currentPage === 4 && (
+            <ConfirmLocation
+              onNextButtonClick={onConfirmClick}
+              userConfirmedLocation={userConfirmedLocation}
+            />
+          )}
+        </form>
       </MWTemplate>
     </>
   );

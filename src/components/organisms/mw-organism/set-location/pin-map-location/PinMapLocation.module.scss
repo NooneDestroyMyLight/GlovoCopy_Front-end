@@ -1,10 +1,15 @@
 @import "/src/styles/globalStyles.module.scss";
 
 .pin-map-location {
-  display: grid;
-  grid-template-rows: auto auto auto;
-  justify-content: center;
+  // display: grid;
+  // grid-template-rows: auto auto;
+  display: flex;
+  flex-direction: column;
 
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
   padding: 0 72px;
 
   .title {
@@ -16,12 +21,15 @@
     flex-direction: column;
     align-items: center;
 
+    width: 100%;
+
     gap: var(--helio-space-2XL);
     padding-bottom: var(--helio-space-2XL);
 
     .map-container {
-      width: 100%;
       height: 308px;
+
+      width: 100%;
 
       object-fit: cover;
       overflow: hidden;

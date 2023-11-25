@@ -7,7 +7,6 @@ import Flag from "../../../../../assets/icons/set-address/Flag";
 import Plus from "../../../../../assets/icons/set-address/Plus";
 
 interface ChooseAddressI {
-  // onCloseClick?: () => void;
   onNextButtonClick?: () => void;
 }
 

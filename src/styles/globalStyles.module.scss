@@ -32,6 +32,7 @@ h3 {
 
   border-radius: var(--helio-space-S);
   background-color: white;
+
   @media (max-width: 600px) {
     border-radius: 0;
   }
