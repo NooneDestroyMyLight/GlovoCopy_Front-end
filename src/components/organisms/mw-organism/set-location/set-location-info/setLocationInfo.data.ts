@@ -22,24 +22,24 @@ export const SET_LOCATION_INFO_TEMPLATE: SET_LOCATION_INFO_TEMPLATE_I = {
     {
       name: "*Назва вулиці",
       fieldName: "street",
-      fieldOptions: { required: `${REQUIRED_MESSAGE} "*Назва вулиці"` },
+      fieldOptions: { required: `${REQUIRED_MESSAGE}` },
     },
     {
       name: "*Номер вулиці",
       fieldName: "streetNumber",
-      fieldOptions: { required: `${REQUIRED_MESSAGE} "*Номер вулиці"` },
+      fieldOptions: { required: `${REQUIRED_MESSAGE}` },
     },
     {
       name: "*Назва бізнесу / будівлі",
       fieldName: "building",
       fieldOptions: {
-        required: `${REQUIRED_MESSAGE} "*Назва бізнесу / будівлі"`,
+        required: `${REQUIRED_MESSAGE}`,
       },
     },
     {
       name: "*Номер поверху",
       fieldName: "floor",
-      fieldOptions: { required: `${REQUIRED_MESSAGE} "*Номер поверху"` },
+      fieldOptions: { required: `${REQUIRED_MESSAGE}` },
     },
     //
     {

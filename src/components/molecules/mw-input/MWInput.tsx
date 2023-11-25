@@ -5,17 +5,19 @@ import {
   FieldError,
   FieldErrors,
   UseFormRegisterReturn,
+  UseFormReset,
 } from "react-hook-form";
 //mw-location-slides
 
 interface MWInputI {
   Icon?: FC;
   label?: string;
-  placeholder: string;
   isAutoFocus?: boolean;
-  //
-  register: UseFormRegisterReturn<any>;
+  placeholder: string;
   error?: FieldError;
+  resetField?: () => void;
+  //
+  register?: UseFormRegisterReturn<any>;
 }
 
 //TODO
@@ -30,24 +32,35 @@ const MWInput: FC<MWInputI> = memo(
     //
     register,
     error,
+    resetField,
   }) => {
-    // console.log(placeholder, error);
     return (
-      <div>
+      <div className={style["mw-input-wrapper"]}>
         <ul className={style["mw-input"]}>
           {Icon && <Icon />}
           <fieldset className={style["mw-input__content"]}>
             <input
-              type="search"
+              type="text"
               className={style["input"]}
               placeholder=""
               autoFocus={isAutoFocus}
-              {...register}
+              {...(register as UseFormRegisterReturn<any>)}
+            />
+            <button
+              className={style["button-cleaner"]}
+              aria-label="Clear input"
+              title="Clear input"
+              //
+              type="button"
+              onClick={resetField as () => void}
             />
             <label className={style["input-placeholder"]}>{placeholder}</label>
           </fieldset>
         </ul>
-        {error && <span className={style["error"]}>{error.message}</span>}
+        <span className={`${style["error"]} ${error && style["error-show"]} `}>
+          {error && error.message}
+          {!error && "Empty"}
+        </span>
       </div>
     );
   }

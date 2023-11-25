@@ -15,5 +15,11 @@ export type UserLocationKeys = keyof UserLocationI;
 
 export interface UserConfirmedLocationI {
   address: string;
+  description: string;
   coordinate: google.maps.LatLngLiteral;
 }
+
+export type UserLocationEntries = [
+  keyof UserLocationI,
+  UserLocationI[keyof UserLocationI]
+][];

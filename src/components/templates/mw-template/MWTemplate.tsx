@@ -15,7 +15,7 @@ const MWTemplate: FC<MWTemplateI> = memo(
       <ul className={className}>
         {/* style["mw-template__set-address"]*/}
         <li className={style["close-icon__wrapper"]}>
-          {AdditionIcon ? <AdditionIcon /> : <div className="placeholder" />}
+          {AdditionIcon ? <AdditionIcon /> : <div className="empty" />}
           <i className={style["close-icon"]} onClick={onIconClick} />
         </li>
         <li className={style["content"]}>{children}</li>

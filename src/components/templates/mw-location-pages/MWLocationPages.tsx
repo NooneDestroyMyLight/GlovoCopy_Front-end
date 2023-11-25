@@ -1,4 +1,4 @@
-import { FC, ReactNode, useCallback, useState, useEffect } from "react";
+import { FC, ReactNode, useCallback } from "react";
 import style from "./MWLocationPages.module.scss";
 //
 import MWTemplate from "../mw-template/MWTemplate";
@@ -11,16 +11,14 @@ import SearchLocation from "../../organisms/mw-organism/set-location/search-loca
 import PinMapLocation from "../../organisms/mw-organism/set-location/pin-map-location/PinMapLocation";
 import ConfirmLocation from "../../organisms/mw-organism/set-location/confirm-location/ConfirmLocation";
 import SetLocationInfo from "../../organisms/mw-organism/set-location/set-location-info/SetLocationInfo";
-import {
-  FieldValues,
-  SubmitHandler,
-  UseFormSetValue,
-  useForm,
-} from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import {
   UserConfirmedLocationI,
+  UserLocationEntries,
   UserLocationI,
+  UserLocationKeys,
 } from "../../../types/UserLocation";
+import { useMWLocationSlides } from "../../../hooks/useMWLocationSlides";
 
 interface MWLocationPagesI {
   onCloseClick?: () => void;
@@ -36,51 +34,50 @@ interface MWLocationSlides {}
 //confirm-location
 
 const MWLocationPages: FC<MWLocationPagesI> = ({ onCloseClick }) => {
-  const [currentPage, setCurrentPage] = useState<number>(0);
-  useEffect(() => {
-    currentPage !== 0 && setCurrentPage(0);
-  }, []);
-
-  const {
-    register,
-    setValue,
-    getValues,
-    handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm<UserLocationI>({ mode: "onChange" });
-
-  const onSubmit: SubmitHandler<UserLocationI> = (data) => {
-    const userStringAddress = Object.values(data)
-      .filter((item) => item && typeof item === "string")
-      .join(", ");
-
-    userConfirmedLocation = {
-      address: userStringAddress,
-      coordinate: data.coordinate,
-    };
-
-    console.log("USER_ADDRESS", userConfirmedLocation);
-    setCurrentPage(4);
-    // reset();
-  };
-
-  // useEffect(() => {
-  //   const subscription = watch((value, { name, type }) =>
-  //     console.log(value, name, type)
-  //   );
-  //   return () => subscription.unsubscribe();
-  // }, [watch]);
-
-  const onPrevPage = useCallback(() => {
-    setCurrentPage(currentPage > 0 ? currentPage - 1 : currentPage);
-  }, [currentPage, setCurrentPage]);
-
+  const [currentPage, setCurrentPage, onPrevPage] = useMWLocationSlides();
   const prevButton: FC = useCallback(
     () => <MwLocationPrevButton onIconClick={onPrevPage} />,
     [currentPage]
   );
+  //
+  const {
+    register,
+    trigger,
+    setValue,
+    getValues,
+    handleSubmit,
+    watch,
+    resetField,
+    reset,
+    formState: { errors, isValid },
+  } = useForm<UserLocationI>({ mode: "onChange" });
+  const onSubmit: SubmitHandler<UserLocationI> = (data) => {
+    //
+    let userLocationEntr = Object.entries(data) as UserLocationEntries;
+    const deletedProp: (keyof UserLocationI)[] = ["description", "coordinate"];
+    const userStringAddress = userLocationEntr
+      .reduce((total: string[], item) => {
+        if (
+          !deletedProp.includes(item[0] as keyof UserLocationI) &&
+          item[1] &&
+          typeof item[1] === "string"
+        )
+          total.push(item[1]);
+        return total;
+      }, [] as string[])
+      .join(", ");
+
+    console.log("USER_TOTAL_ADDRESS", userConfirmedLocation);
+
+    userConfirmedLocation = {
+      address: userStringAddress,
+      description: data.description,
+      coordinate: data.coordinate,
+    };
+
+    if (currentPage === 3) setCurrentPage(4);
+    else onCloseClick?.();
+  };
 
   const moveToAddNewLocation = useCallback(() => {
     setCurrentPage(1);
@@ -92,14 +89,8 @@ const MWLocationPages: FC<MWLocationPagesI> = ({ onCloseClick }) => {
 
   const moveToSetLocationInfo = useCallback(() => {
     //add postal index
-
     if (getValues("street") && getValues("streetNumber")) setCurrentPage(3);
   }, []);
-
-  // const moveToConfirmLocation = useCallback(() => {
-  //   handleSubmit(onSubmit)();
-  //   setCurrentPage(4);
-  // }, []);
 
   const onConfirmClick = useCallback(() => {
     console.log("Confirm!!!");
@@ -133,9 +124,11 @@ const MWLocationPages: FC<MWLocationPagesI> = ({ onCloseClick }) => {
           )}
           {currentPage === 3 && (
             <SetLocationInfo
-              // onNextButtonClick={moveToConfirmLocation}
               register={register}
               errors={errors}
+              isValid={isValid}
+              trigger={trigger}
+              resetField={resetField}
             />
           )}
           {currentPage === 4 && (

@@ -4,11 +4,7 @@ import style from "./PinMapLocation.module.scss";
 import { PIN_MAP_LOCATION_TEMPLATE } from "./pinMapLocation.data";
 //
 import Map from "../../../../atoms/map/Map";
-import {
-  UseFormRegister,
-  UseFormReset,
-  UseFormSetValue,
-} from "react-hook-form";
+import { UseFormReset, UseFormSetValue } from "react-hook-form";
 import { UserLocationI } from "../../../../../types/UserLocation";
 //
 import Button from "../../../../atoms/button/Button";

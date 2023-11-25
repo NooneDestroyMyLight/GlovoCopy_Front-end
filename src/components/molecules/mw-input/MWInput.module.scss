@@ -1,75 +1,90 @@
-.mw-input {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  height: 34px;
+.mw-input-wrapper {
+  position: relative;
+  transition: height 1s ease;
 
-  border-bottom: 2px solid var(--helio-color-primaryBorder);
-  background-color: transparent;
-  transition: 0.3s;
-
-  .font {
-    font-size: 16px;
-    font-weight: 300;
-  }
-
-  &__content {
+  .mw-input {
     display: flex;
     align-items: center;
+    gap: 12px;
+    height: 34px;
 
-    width: 100%;
+    border-bottom: 2px solid var(--helio-color-primaryBorder);
+    background-color: transparent;
+    transition: 0.3s;
 
-    position: relative;
-    z-index: 2;
-    .input {
+    .font {
+      font-size: 16px;
+      font-weight: 300;
+    }
+
+    &__content {
+      display: flex;
+      align-items: center;
+
       width: 100%;
-      background-color: transparent;
 
-      transition: 0.4s;
+      position: relative;
+      z-index: 2;
+      .input {
+        width: 100%;
+        background-color: transparent;
 
-      overflow: visible;
+        transition: 0.4s;
 
-      &::-webkit-search-cancel-button {
-        appearance: none;
+        overflow: visible;
+
+        // &:not(:focus) ~ .button-cleaner {
+        //   visibility: visible;
+        // }
+
+        &:not(:placeholder-shown) ~ .button-cleaner {
+          visibility: visible;
+        }
+
+        &:focus ~ .input-placeholder,
+        &:not(:placeholder-shown) ~ .input-placeholder {
+          color: var(--helio-color-secondaryText);
+          font-size: 12px;
+          top: -1rem;
+        }
+      }
+      .input-placeholder {
+        color: var(--helio-color-disabledText);
+
+        transition: 0.4s;
+
         position: absolute;
-
+        z-index: -1;
+        left: 0;
+        top: 0;
+      }
+      .button-cleaner {
+        position: absolute;
         right: 0;
 
-        width: 25px;
-        height: 25px;
+        width: 24px;
+        height: 24px;
+
+        visibility: hidden;
 
         background-size: cover;
         background-image: url("/src/assets/icons/input/input-clear-button.svg");
         background-repeat: no-repeat;
-
-        cursor: pointer;
       }
-
-      &:not(:focus)::-webkit-search-cancel-button {
-        opacity: 1;
-      }
-      &:focus ~ .input-placeholder,
-      &:not(:placeholder-shown) ~ .input-placeholder {
-        top: -1rem;
-        font-size: 12px;
-      }
-    }
-    .input-placeholder {
-      position: absolute;
-      z-index: -1;
-      transition: 0.4s;
-
-      left: 0;
-      top: 0;
     }
   }
-}
 
-.error {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 16px;
-  margin-top: 6px;
+  .error {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    margin-top: 6px;
 
-  color: var(--helio-color-alert);
+    color: var(--helio-color-alert);
+    visibility: hidden;
+  }
+
+  .error-show {
+    visibility: visible;
+  }
 }

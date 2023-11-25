@@ -29,7 +29,12 @@ const ConfirmLocation: FC<ConfirmLocationI> = memo(
             <div className={style["icon"]}>
               <MapMarker_small />
             </div>
-            <p className={style["font"]}>{userConfirmedLocation.address}</p>
+            <div>
+              <p className={style["font"]}>{userConfirmedLocation.address}</p>
+              <p className={style["font"]} style={{ color: "red" }}>
+                {userConfirmedLocation.description}
+              </p>
+            </div>
           </li>
           <Button
             className={STYLE_MW_LOCATION_BUTTON}

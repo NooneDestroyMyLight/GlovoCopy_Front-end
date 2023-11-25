@@ -18,7 +18,7 @@ interface MapI {
   //
   setState?: React.Dispatch<React.SetStateAction<string>>;
   setLocation?: UseFormSetValue<UserLocationI>;
-  reset: UseFormReset<UserLocationI>;
+  reset?: UseFormReset<UserLocationI>;
 }
 
 const Map: FC<MapI> = memo(
@@ -46,7 +46,7 @@ const Map: FC<MapI> = memo(
       if (mapRef.current) {
         const center = mapRef.current.getCenter();
         if (center) {
-          reset();
+          reset?.();
           const latlngResponse = await geocode(
             RequestType.LATLNG,
             `${center.lat()},${center.lng()}`,

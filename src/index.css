@@ -15,6 +15,7 @@
   --helio-color-secondaryBackground: #f5f5f5;
   --helio-color-secondaryBorder: #d8d8d8;
   --helio-color-buttonText: #ffffff;
+  --helio-color-disabledText: var(--helio-primitiveColor-grey300);
   --helio-color-disabled: var(--helio-primitiveColor-grey300);
   --helio-color-secondaryText: var(--helio-primitiveColor-grey600);
   --helio-color-warning: #8b620e;
