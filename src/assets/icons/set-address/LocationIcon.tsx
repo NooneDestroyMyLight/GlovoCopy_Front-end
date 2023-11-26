@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
-const LocationIcon: FC = ({}) => {
+const LocationIcon: FC = memo(({}) => {
   return (
     <svg
       width="33"
@@ -28,6 +28,6 @@ const LocationIcon: FC = ({}) => {
       </defs>
     </svg>
   );
-};
+});
 
 export default LocationIcon;

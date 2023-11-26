@@ -2,14 +2,14 @@ import { FC, memo, useCallback, useMemo } from "react";
 import style from "./Map.module.scss";
 //
 import { GoogleMap } from "@react-google-maps/api";
-import { GEOCODE_REQ_PARAMS, MAP_DATA, STYLE_MAP } from "./google-map.data";
+import { MAP_DATA, STYLE_MAP } from "./google-map.data";
 import MapMarker from "../../../assets/icons/map-marker/MapMarker";
-import { useMapInit } from "../../../hooks/useMapInit";
+import { useMapInit } from "../../../hooks/useGoogleMapInit";
 //
-import { RequestType, geocode } from "react-geocode";
 import { debounce } from "../../../utils/debounce";
 import { UseFormReset, UseFormSetValue } from "react-hook-form";
 import { UserLocationI } from "../../../types/UserLocation";
+import { handleCenterChanged } from "../../../services/getAddressByMap";
 
 interface MapI {
   className?: string;
@@ -23,10 +23,10 @@ interface MapI {
 
 const Map: FC<MapI> = memo(
   ({ className, isMute, setState, setLocation, reset, coordinate }) => {
-    const [isLoaded, mapRef, onLoad] = useMapInit();
-
     console.log("Map RERENDER");
-
+    //
+    const [isLoaded, mapRef, onLoad] = useMapInit();
+    //
     const MAP_OPTIONS = useMemo(
       () => ({
         zoomControl: isMute ? false : true,
@@ -41,41 +41,20 @@ const Map: FC<MapI> = memo(
       }),
       [isMute]
     );
-
-    const onCenterChangedWrapper = async () => {
-      if (mapRef.current) {
-        const center = mapRef.current.getCenter();
-        if (center) {
-          reset?.();
-          const latlngResponse = await geocode(
-            RequestType.LATLNG,
-            `${center.lat()},${center.lng()}`,
-            GEOCODE_REQ_PARAMS
-          );
-          setState?.(latlngResponse.results[0].formatted_address);
-          //
-          const addressArr = latlngResponse.results[0].address_components;
-          if (addressArr.some((item: any) => item.types.includes("route"))) {
-            //refactor it into watch
-            addressArr.map((item: any) => {
-              item.types.includes("route") &&
-                setLocation?.("street", item.long_name);
-              item.types.includes("street_number") &&
-                setLocation?.("streetNumber", item.long_name);
-            });
-
-            setLocation?.("coordinate", {
-              lat: center.lat(),
-              lng: center.lng(),
-            });
-          } else setLocation?.("street", ""), setLocation?.("streetNumber", "");
-        }
-      }
-    };
-
+    //
+    //
     const onCenterChanged = useCallback(
-      debounce(onCenterChangedWrapper, 700),
-      []
+      debounce(
+        () =>
+          handleCenterChanged(
+            mapRef,
+            reset as UseFormReset<UserLocationI>,
+            setState as React.Dispatch<React.SetStateAction<string>>,
+            setLocation as UseFormSetValue<UserLocationI>
+          ),
+        700
+      ),
+      [mapRef, reset, setState, setLocation]
     ); //Use Callback there
 
     return (
@@ -93,7 +72,6 @@ const Map: FC<MapI> = memo(
             onCenterChanged={onCenterChanged}
             // onLoad={onLoad}
             // onUnmount={onUnmount}
-            // onCenterChanged={handleCenterChanged}
           />
         ) : (
           <div>Google maps loading...</div>

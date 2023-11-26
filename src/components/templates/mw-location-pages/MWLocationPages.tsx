@@ -1,4 +1,4 @@
-import { FC, ReactNode, useCallback } from "react";
+import { FC, useCallback } from "react";
 import style from "./MWLocationPages.module.scss";
 //
 import MWTemplate from "../mw-template/MWTemplate";
@@ -16,12 +16,12 @@ import {
   UserConfirmedLocationI,
   UserLocationEntries,
   UserLocationI,
-  UserLocationKeys,
 } from "../../../types/UserLocation";
 import { useMWLocationSlides } from "../../../hooks/useMWLocationSlides";
 
 interface MWLocationPagesI {
   onCloseClick?: () => void;
+  setCurrentUserAddress?: React.Dispatch<React.SetStateAction<string>>;
 }
 
 let userConfirmedLocation: UserConfirmedLocationI;
@@ -33,7 +33,10 @@ interface MWLocationSlides {}
 //set-location-info
 //confirm-location
 
-const MWLocationPages: FC<MWLocationPagesI> = ({ onCloseClick }) => {
+const MWLocationPages: FC<MWLocationPagesI> = ({
+  onCloseClick,
+  setCurrentUserAddress,
+}) => {
   const [currentPage, setCurrentPage, onPrevPage] = useMWLocationSlides();
   const prevButton: FC = useCallback(
     () => <MwLocationPrevButton onIconClick={onPrevPage} />,
@@ -52,7 +55,7 @@ const MWLocationPages: FC<MWLocationPagesI> = ({ onCloseClick }) => {
     formState: { errors, isValid },
   } = useForm<UserLocationI>({ mode: "onChange" });
   const onSubmit: SubmitHandler<UserLocationI> = (data) => {
-    //
+    //REFACTOR INTO OBJECT
     let userLocationEntr = Object.entries(data) as UserLocationEntries;
     const deletedProp: (keyof UserLocationI)[] = ["description", "coordinate"];
     const userStringAddress = userLocationEntr
@@ -82,20 +85,27 @@ const MWLocationPages: FC<MWLocationPagesI> = ({ onCloseClick }) => {
   const moveToAddNewLocation = useCallback(() => {
     setCurrentPage(1);
   }, []);
-
   const moveToPinMapLocation = useCallback(() => {
     setCurrentPage(2);
   }, []);
-
   const moveToSetLocationInfo = useCallback(() => {
     //add postal index
     if (getValues("street") && getValues("streetNumber")) setCurrentPage(3);
   }, []);
 
   const onConfirmClick = useCallback(() => {
-    console.log("Confirm!!!");
+    setCurrentUserAddress?.(userConfirmedLocation.address);
     onCloseClick?.();
-  }, []);
+  }, [setCurrentUserAddress]);
+
+  const handlerConfirmClickSearchLocation = useCallback(
+    (address: string) => {
+      setCurrentUserAddress?.(address);
+      onCloseClick?.();
+    },
+    [setCurrentUserAddress]
+  );
+  
 
   return (
     <>
@@ -111,8 +121,10 @@ const MWLocationPages: FC<MWLocationPagesI> = ({ onCloseClick }) => {
           )}
           {currentPage === 1 && (
             <SearchLocation
+              setValue={setValue}
               onNextButtonClick={moveToPinMapLocation}
               register={register}
+              handlerConfirm={handlerConfirmClickSearchLocation}
             />
           )}
           {currentPage === 2 && (
@@ -124,9 +136,9 @@ const MWLocationPages: FC<MWLocationPagesI> = ({ onCloseClick }) => {
           )}
           {currentPage === 3 && (
             <SetLocationInfo
-              register={register}
               errors={errors}
               isValid={isValid}
+              register={register}
               trigger={trigger}
               resetField={resetField}
             />
