@@ -14,7 +14,6 @@ import { UserLocationI } from "../../../../../types/UserLocation";
 //
 import Button from "../../../../atoms/button/Button";
 import { STYLE_MW_LOCATION_BUTTON } from "../../../../../constant/styles";
-import { useMapInit } from "../../../../../hooks/useGoogleMapInit";
 
 interface SetLocationInfoI {
   onNextButtonClick?: () => void;
@@ -40,6 +39,7 @@ const SetLocationInfo: FC<SetLocationInfoI> = ({
     trigger();
   }, []);
   //
+
   return (
     <ul className={style["set-location-info"]}>
       <h2 className={`${style["mw-location-title"]} ${style["title"]}`}>

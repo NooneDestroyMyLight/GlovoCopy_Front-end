@@ -37,7 +37,8 @@ const MWLocationPages: FC<MWLocationPagesI> = ({
   onCloseClick,
   setCurrentUserAddress,
 }) => {
-  const [currentPage, setCurrentPage, onPrevPage] = useMWLocationSlides();
+  const [currentPage, onPrevPage, moveToNextPage] = useMWLocationSlides();
+
   const prevButton: FC = useCallback(
     () => <MwLocationPrevButton onIconClick={onPrevPage} />,
     [currentPage]
@@ -55,57 +56,71 @@ const MWLocationPages: FC<MWLocationPagesI> = ({
     formState: { errors, isValid },
   } = useForm<UserLocationI>({ mode: "onChange" });
   const onSubmit: SubmitHandler<UserLocationI> = (data) => {
-    //REFACTOR INTO OBJECT
-    let userLocationEntr = Object.entries(data) as UserLocationEntries;
-    const deletedProp: (keyof UserLocationI)[] = ["description", "coordinate"];
-    const userStringAddress = userLocationEntr
-      .reduce((total: string[], item) => {
-        if (
-          !deletedProp.includes(item[0] as keyof UserLocationI) &&
-          item[1] &&
-          typeof item[1] === "string"
-        )
-          total.push(item[1]);
-        return total;
-      }, [] as string[])
-      .join(", ");
+    if (currentPage === 1) {
+      userConfirmedLocation = {
+        address: data.address,
+        description: data.description,
+        coordinate: data.coordinate,
+      };
+      setCurrentUserAddress?.(data.address);
+      reset();
+      onCloseClick?.();
+    }
 
-    console.log("USER_TOTAL_ADDRESS", userConfirmedLocation);
+    if (currentPage === 3) {
+      let userLocationEntr = Object.entries(data) as UserLocationEntries;
+      const deletedProp: (keyof UserLocationI)[] = [
+        "description",
+        "coordinate",
+      ];
+      const userStringAddress = userLocationEntr
+        .reduce((total: string[], item) => {
+          if (
+            !deletedProp.includes(item[0] as keyof UserLocationI) &&
+            item[1] &&
+            typeof item[1] === "string"
+          )
+            total.push(item[1]);
+          return total;
+        }, [] as string[])
+        .join(", ");
 
-    userConfirmedLocation = {
-      address: userStringAddress,
-      description: data.description,
-      coordinate: data.coordinate,
-    };
+      userConfirmedLocation = {
+        address: userStringAddress,
+        description: data.description,
+        coordinate: data.coordinate,
+      };
 
-    if (currentPage === 3) setCurrentPage(4);
-    else onCloseClick?.();
+      moveToNextPage[4]();
+    }
+    //
+    if (currentPage === 4) {
+      setCurrentUserAddress?.(userConfirmedLocation.address);
+      reset();
+      onCloseClick?.();
+    }
   };
 
-  const moveToAddNewLocation = useCallback(() => {
-    setCurrentPage(1);
-  }, []);
-  const moveToPinMapLocation = useCallback(() => {
-    setCurrentPage(2);
-  }, []);
   const moveToSetLocationInfo = useCallback(() => {
     //add postal index
-    if (getValues("street") && getValues("streetNumber")) setCurrentPage(3);
+    if (getValues("street") && getValues("streetNumber")) moveToNextPage[3]();
   }, []);
 
-  const onConfirmClick = useCallback(() => {
-    setCurrentUserAddress?.(userConfirmedLocation.address);
-    onCloseClick?.();
-  }, [setCurrentUserAddress]);
-
-  const handlerConfirmClickSearchLocation = useCallback(
+  const handleGeolocationConfirm = useCallback(
     (address: string) => {
       setCurrentUserAddress?.(address);
       onCloseClick?.();
     },
     [setCurrentUserAddress]
   );
-  
+
+  const handleAutocompleteConfirm = useCallback(
+    (address: string, coordinate: google.maps.LatLngLiteral) => {
+      setValue("address", address);
+      setValue("coordinate", coordinate);
+    },
+    []
+  );
 
   return (
     <>
@@ -117,14 +132,15 @@ const MWLocationPages: FC<MWLocationPagesI> = ({
       >
         <form onSubmit={handleSubmit(onSubmit)}>
           {currentPage === 0 && (
-            <ChooseAddress onNextButtonClick={moveToAddNewLocation} />
+            <ChooseAddress onNextButtonClick={moveToNextPage[1]} />
           )}
           {currentPage === 1 && (
             <SearchLocation
-              setValue={setValue}
-              onNextButtonClick={moveToPinMapLocation}
+              // setValue={setValue}
+              onNextButtonClick={moveToNextPage[2]}
+              handleGeolocationConfirm={handleGeolocationConfirm}
+              handleAutocompleteConfirm={handleAutocompleteConfirm}
               register={register}
-              handlerConfirm={handlerConfirmClickSearchLocation}
             />
           )}
           {currentPage === 2 && (
@@ -145,7 +161,7 @@ const MWLocationPages: FC<MWLocationPagesI> = ({
           )}
           {currentPage === 4 && (
             <ConfirmLocation
-              onNextButtonClick={onConfirmClick}
+              // onNextButtonClick={onConfirmClick}
               userConfirmedLocation={userConfirmedLocation}
             />
           )}

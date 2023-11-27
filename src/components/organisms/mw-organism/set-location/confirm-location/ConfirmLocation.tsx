@@ -12,12 +12,12 @@ import MapMarker_small from "../../../../../assets/icons/map-marker-small/MapMar
 
 interface ConfirmLocationI {
   // onCloseClick?: () => void;
-  onNextButtonClick?: () => void;
+  // onNextButtonClick?: () => void;
   userConfirmedLocation: UserConfirmedLocationI;
 }
 
 const ConfirmLocation: FC<ConfirmLocationI> = memo(
-  ({ onNextButtonClick, userConfirmedLocation }) => {
+  ({ userConfirmedLocation }) => {
     return (
       <ul className={style["confirm-location"]}>
         <h2 className={`${style["mw-location-title"]} ${style["title"]}`}>
@@ -39,7 +39,9 @@ const ConfirmLocation: FC<ConfirmLocationI> = memo(
           <Button
             className={STYLE_MW_LOCATION_BUTTON}
             text={SET_LOCATION_INFO_TEMPLATE.button}
-            onButtonClick={onNextButtonClick}
+            // onButtonClick={onNextButtonClick}
+            //
+            type="submit"
           />
         </ul>
       </ul>

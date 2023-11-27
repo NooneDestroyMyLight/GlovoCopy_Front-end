@@ -2,6 +2,8 @@ import { RequestType, geocode } from "react-geocode";
 import { GEOCODE_REQ_PARAMS } from "../components/atoms/map/google-map.data";
 import { toast } from "react-toastify";
 import { SEARCH_LOCATION_TEMPLATE } from "../components/organisms/mw-organism/set-location/search-location/searchLocation.data";
+import { UseFormSetValue } from "react-hook-form";
+import { UserLocationI } from "../types/UserLocation";
 
 const transformIntoString = (address: any) => {
   try {
@@ -15,7 +17,7 @@ const transformIntoString = (address: any) => {
   }
 };
 
-export const getUserLocation = (setLocation: (address: string) => void) => {
+export const getGeoLocation = (handleConfirm: (address: string) => void) => {
   if (!navigator.geolocation)
     return alert("Geolocation is not supported by this browser.");
 
@@ -37,7 +39,7 @@ export const getUserLocation = (setLocation: (address: string) => void) => {
         transformIntoString(address_components);
 
       if (streetNumber && streetName)
-        setLocation(`${streetName}, ${streetNumber}`);
+        handleConfirm(`${streetName}, ${streetNumber}`);
     },
     (error) => {
       toast(SEARCH_LOCATION_TEMPLATE.error, {

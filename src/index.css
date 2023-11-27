@@ -22,6 +22,8 @@
   --helio-color-floatingElementBackground: var(--helio-primitiveColor-white);
   --helio-color-warning: #8b620e;
   --helio-color-alert: var(--helio-primitiveColor-red300);
+  --loader-color: var(--helio-color-defaultLoader);
+  --helio-color-defaultLoader: var(--helio-primitiveColor-grey300);
   /*<---| |---> */
   --helio-space-5XL: 100px;
   --helio-space-3XL: 64px;

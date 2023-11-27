@@ -1,87 +1,63 @@
-import { FC, useCallback, useEffect, useMemo } from "react";
+import { FC, useMemo } from "react";
 import style from "./SeatchLocation.module.scss";
 //
 import { motion } from "framer-motion";
 //Data
-import {
-  BUTTON_ANI_OPTIONS,
-  SEARCH_LOCATION_TEMPLATE,
-} from "./searchLocation.data";
+import { SEARCH_LOCATION_TEMPLATE } from "./searchLocation.data";
 //
 import LocationIcon from "../../../../../assets/icons/set-address/LocationIcon";
 import FlagMedium from "../../../../../assets/icons/set-address/FlagMedium";
 //Type
-import { UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { UseFormRegister } from "react-hook-form";
 import { UserLocationI } from "../../../../../types/UserLocation";
 //Component
 import MWInput from "../../../../molecules/mw-input/MWInput";
 //Query
-import { getUserLocation } from "../../../../../services/getUserCoordinate";
+import { getGeoLocation } from "../../../../../services/getUserCoordinate";
 import { useQuery } from "react-query";
-import { useAutocompleteInit } from "../../../../../hooks/useAutocompleteInit";
-import { Suggestion, Suggestions } from "use-places-autocomplete";
-import { useMapInit } from "../../../../../hooks/useGoogleMapInit";
 //
+import { useAutocompleteInit } from "../../../../../hooks/useAutocompleteInit";
+import LocationSuggestions from "../../../../molecules/suggestions-list/Suggestions";
+//
+import LoaderTwoDots from "../../../../atoms/loader-two-dots/LoaderTwoDrots";
 
 interface SearchLocationI {
   onNextButtonClick: () => void;
-  handlerConfirm: (address: string) => void;
+  handleGeolocationConfirm: (address: string) => void;
   register: UseFormRegister<UserLocationI>;
-  setValue: UseFormSetValue<UserLocationI>;
+  handleAutocompleteConfirm: (
+    address: string,
+    coordinate: google.maps.LatLngLiteral
+  ) => void;
+  // setValue?: UseFormSetValue<UserLocationI>;
 }
 
 const SearchLocation: FC<SearchLocationI> = ({
   onNextButtonClick,
-  handlerConfirm,
   register,
-  setValue,
+  handleGeolocationConfirm,
+  handleAutocompleteConfirm,
+  // setValue,
 }) => {
+  const [ref, value, handleInput, ready, suggestions, handleSelect] =
+    useAutocompleteInit(handleAutocompleteConfirm);
+
+  const reg = useMemo(
+    () => register("address", { onChange: handleInput }),
+    [register]
+  );
+
   const { error, isLoading, refetch } = useQuery(
     "geolocation",
-    () => getUserLocation(handlerConfirm),
+    () => getGeoLocation(handleGeolocationConfirm),
     {
       enabled: false,
     }
   );
+
   const getLocation = () => {
     refetch();
   };
-
-  const [ref, value, handleInput, ready, suggestions, handleSelect] =
-    useAutocompleteInit();
-
-  const reg = useMemo(
-    () => register("street", { onChange: handleInput }),
-    [register]
-  );
-
-  interface RenderSuggestionsI {
-    suggestions: Suggestion[];
-  }
-
-  const RenderSuggestions: FC<RenderSuggestionsI> = ({ suggestions }) => (
-    //
-    <ul className={style["Suggestions-list"]}>
-      {suggestions.map((suggestion) => (
-        <button
-          className={style["Suggestions-list-item"]}
-          key={suggestion.place_id}
-          // onMouseEnter={handleSelect(suggestion)}
-          onSelect={handleSelect(suggestion)}
-
-          // onClick={handleSelect(suggestion)}
-        >
-          <strong className={style["text"]}>
-            {suggestion.structured_formatting.main_text}
-          </strong>
-          <small className={style["sub-text"]}>
-            {suggestion.structured_formatting.secondary_text}
-          </small>
-        </button>
-      ))}
-      ;
-    </ul>
-  );
 
   return (
     <div className={style["search-location__wrapper"]}>
@@ -103,16 +79,31 @@ const SearchLocation: FC<SearchLocationI> = ({
               isDisabled={!ready}
               //
             />
-            {suggestions.status === "OK" && (
-              <RenderSuggestions suggestions={suggestions.data} />
+            {suggestions.status === "OK" ? (
+              <ul ref={ref} className={style["suggestions-list"]}>
+                <LocationSuggestions
+                  suggestions={suggestions.data}
+                  handleSelect={handleSelect}
+                />
+              </ul>
+            ) : (
+              suggestions.loading && (
+                <ul ref={ref} className={style["suggestions-list"]}>
+                  <LoaderTwoDots />
+                </ul>
+              )
             )}
+            {/* {(isLoading || suggestions.loading) && (
+              <ul ref={ref} className={style["suggestions-list"]}>
+                <LoaderTwoDots />
+              </ul>
+            )} */}
           </div>
-          {(isLoading || suggestions.loading) && <div>LOADING</div>}
           <button
             // transition={{ duration: 0.7 }}
             //
             className={`${style["get-current-location__button"]} ${style["font"]}`}
-            // type="button"
+            type="button"
             onClick={getLocation}
           >
             <LocationIcon />

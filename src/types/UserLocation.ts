@@ -1,13 +1,14 @@
 export interface UserLocationI {
+  address: string;
+  //
   street: string;
   streetNumber: string;
-  //
   building: string;
   floor: string;
   disctrict: string;
   index: string;
-  description: string;
   //
+  description: string;
   coordinate: google.maps.LatLngLiteral;
 }
 

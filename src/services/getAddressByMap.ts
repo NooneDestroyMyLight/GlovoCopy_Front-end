@@ -23,7 +23,6 @@ export const handleCenterChanged = async (
   setState?.(latlngResponse.results[0].formatted_address);
   //
   const addressArr = latlngResponse.results[0].address_components;
-  //
   if (addressArr.some((item: any) => item.types.includes("route"))) {
     //refactor it into watch
     addressArr.map((item: any) => {

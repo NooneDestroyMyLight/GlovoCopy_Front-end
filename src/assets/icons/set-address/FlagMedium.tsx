@@ -1,7 +1,7 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import style from "./Flag.module.scss";
 
-const FlagMedium: FC = ({}) => {
+const FlagMedium: FC = memo(({}) => {
   return (
     <svg
       width="25"
@@ -20,6 +20,6 @@ const FlagMedium: FC = ({}) => {
       ></path>
     </svg>
   );
-};
+});
 
 export default FlagMedium;

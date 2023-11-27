@@ -10,7 +10,7 @@ import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 const Label: FC<{
   label: string;
   placeholder: string;
-}> = ({ label, placeholder }) => (
+}> = memo(({ label, placeholder }) => (
   <>
     <label
       className={`${style["input-placeholder"]} ${
@@ -27,7 +27,7 @@ const Label: FC<{
       {label}
     </label>
   </>
-);
+));
 
 interface MWInputI {
   Icon?: FC;
@@ -49,7 +49,7 @@ const MWInput: FC<MWInputI> = memo(
     value,
     placeholder,
     secondPlaceholder,
-    isAutoFocus = false,
+    isAutoFocus,
     //
     register,
     error,

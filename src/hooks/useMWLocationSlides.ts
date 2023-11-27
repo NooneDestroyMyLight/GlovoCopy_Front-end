@@ -1,11 +1,8 @@
-import { FC, useCallback, useEffect, useState } from "react";
-import MwLocationPrevButton from "../assets/icons/mw-location-prev-button/MwLocationPrevButton";
+import { useCallback, useEffect, useState } from "react";
 
-export const useMWLocationSlides = (): [
-  number,
-  React.Dispatch<React.SetStateAction<number>>,
-  () => void
-] => {
+const pages = Array.from({ length: 5 }, (_, i) => i);
+
+export const useMWLocationSlides = (): [number, () => void, (() => void)[]] => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   useEffect(() => {
     currentPage !== 0 && setCurrentPage(0);
@@ -15,5 +12,11 @@ export const useMWLocationSlides = (): [
     setCurrentPage(currentPage > 0 ? currentPage - 1 : currentPage);
   }, [currentPage, setCurrentPage]);
 
-  return [currentPage, setCurrentPage, onPrevPage];
+  const moveToNextPage = pages.map((item) =>
+    useCallback(() => {
+      setCurrentPage(item);
+    }, [pages])
+  );
+
+  return [currentPage, onPrevPage, moveToNextPage];
 };
