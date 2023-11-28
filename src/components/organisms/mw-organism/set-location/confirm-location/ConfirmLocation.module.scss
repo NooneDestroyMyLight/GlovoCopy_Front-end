@@ -32,3 +32,11 @@
     }
   }
 }
+@media (max-width: 740px) {
+  .confirm-location {
+    padding: 0;
+    &__content {
+      gap: var(--helio-space-2XL);
+    }
+  }
+}

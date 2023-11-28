@@ -1,7 +1,8 @@
 @import "/src/styles/globalStyles.module.scss";
 
 .set-location-info {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   //   grid-template-rows: auto  auto;
   //   justify-content: center;
   padding: 0 var(--helio-space-5XL);
@@ -16,7 +17,17 @@
     gap: var(--helio-space-2XL);
   }
   &__button {
-    justify-self: center;
+    // justify-self: center;
+    align-self: center;
     margin: var(--helio-space-2XL) 0 var(--helio-space-2XL) 0;
+  }
+}
+
+@media (max-width: 740px) {
+  .set-location-info {
+    padding: 0;
+    &__fieldset {
+      gap: var(--helio-space-L);
+    }
   }
 }

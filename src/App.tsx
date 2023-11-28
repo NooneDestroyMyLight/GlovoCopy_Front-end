@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-    <main>
+    <main className="main">
       <Routes>
         <Route path="/" element={<MainPage />} />
       </Routes>

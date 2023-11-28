@@ -1,5 +1,5 @@
 import { FC, memo } from "react";
-import style from "./LoaderTwoDrots.module.scss";
+import style from "./LoaderTwoDots.module.scss";
 
 const LoaderTwoDots: FC = memo(() => (
   <div className={style["loading-two-dots"]}>

@@ -141,6 +141,7 @@ const MWLocationPages: FC<MWLocationPagesI> = ({
               handleGeolocationConfirm={handleGeolocationConfirm}
               handleAutocompleteConfirm={handleAutocompleteConfirm}
               register={register}
+              resetField={resetField}
             />
           )}
           {currentPage === 2 && (

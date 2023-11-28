@@ -21,7 +21,7 @@ export const useMapInit = (): [
     mapRef.current = map;
   }, []);
 
-  console.log("Google map Initialization");
+  // console.log("Google map Initialization");
 
   return [isLoaded, mapRef, onLoad];
 };

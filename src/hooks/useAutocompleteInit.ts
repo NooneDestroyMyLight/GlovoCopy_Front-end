@@ -2,11 +2,13 @@ import { ChangeEvent, useCallback, useEffect } from "react";
 import useOnclickOutside, { Return } from "react-cool-onclickoutside";
 import usePlacesAutocomplete, {
   ClearSuggestions,
+  SetValue,
   Suggestions,
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
 import { useMapInit } from "./useGoogleMapInit";
+import { useLoading } from "./useLading";
 
 const coordinates: google.maps.CircleLiteral = {
   center: { lat: 49.9935, lng: 36.230383 }, //Kharkiv District restrict
@@ -24,11 +26,15 @@ export const useAutocompleteInit = (
   (e: ChangeEvent<HTMLInputElement>) => void,
   boolean,
   Suggestions,
-  ({ description }: google.maps.places.AutocompletePrediction) => void
+  ({ description }: google.maps.places.AutocompletePrediction) => void,
+  ClearSuggestions,
+  SetValue
   // boolean
 ] => {
   //
   const [isLoaded] = useMapInit();
+  const [isLoading, toggle] = useLoading();
+  //
   const {
     ready,
     suggestions, // suggestions: { status, data }
@@ -44,7 +50,7 @@ export const useAutocompleteInit = (
     },
     callbackName: "myUniqueCallbackFunction",
     initOnMount: false,
-    debounce: 1100,
+    debounce: 500,
   });
 
   useEffect(() => {
@@ -55,8 +61,9 @@ export const useAutocompleteInit = (
     clearSuggestions();
   });
 
-  const handleInput = (e: ChangeEvent<HTMLInputElement>): void =>
+  const handleInput = (e: ChangeEvent<HTMLInputElement>): void => {
     setValue(e.target.value);
+  };
 
   const handleSelect = useCallback(
     ({
@@ -73,7 +80,17 @@ export const useAutocompleteInit = (
     []
   );
 
-  console.log(suggestions.status);
+  // console.log(suggestions.status);
+  console.log(suggestions.loading);
 
-  return [ref, value, handleInput, ready, suggestions, handleSelect];
+  return [
+    ref,
+    value,
+    handleInput,
+    ready,
+    suggestions,
+    handleSelect,
+    clearSuggestions,
+    setValue,
+  ];
 };

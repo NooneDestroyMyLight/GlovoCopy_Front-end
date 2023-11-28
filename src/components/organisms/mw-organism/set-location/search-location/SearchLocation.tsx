@@ -1,14 +1,13 @@
-import { FC, useMemo } from "react";
+import { FC, useMemo, useCallback, memo } from "react";
 import style from "./SeatchLocation.module.scss";
-//
-import { motion } from "framer-motion";
+
 //Data
 import { SEARCH_LOCATION_TEMPLATE } from "./searchLocation.data";
 //
 import LocationIcon from "../../../../../assets/icons/set-address/LocationIcon";
 import FlagMedium from "../../../../../assets/icons/set-address/FlagMedium";
 //Type
-import { UseFormRegister } from "react-hook-form";
+import { UseFormRegister, UseFormResetField } from "react-hook-form";
 import { UserLocationI } from "../../../../../types/UserLocation";
 //Component
 import MWInput from "../../../../molecules/mw-input/MWInput";
@@ -19,7 +18,21 @@ import { useQuery } from "react-query";
 import { useAutocompleteInit } from "../../../../../hooks/useAutocompleteInit";
 import LocationSuggestions from "../../../../molecules/suggestions-list/Suggestions";
 //
-import LoaderTwoDots from "../../../../atoms/loader-two-dots/LoaderTwoDrots";
+import LoaderTwoDots from "../../../../atoms/loader-two-dots/LoaderTwoDots";
+
+interface ButtonSearchLocationI {
+  handle: () => void;
+}
+
+const ButtonSearchLocation: FC<ButtonSearchLocationI> = memo(({ handle }) => (
+  <button
+    onClick={handle}
+    className={`${style["move-to-next"]} ${style["font"]}`}
+    type="button"
+  >
+    {SEARCH_LOCATION_TEMPLATE.moveToNextPage}
+  </button>
+));
 
 interface SearchLocationI {
   onNextButtonClick: () => void;
@@ -29,7 +42,7 @@ interface SearchLocationI {
     address: string,
     coordinate: google.maps.LatLngLiteral
   ) => void;
-  // setValue?: UseFormSetValue<UserLocationI>;
+  resetField: UseFormResetField<UserLocationI>;
 }
 
 const SearchLocation: FC<SearchLocationI> = ({
@@ -37,10 +50,19 @@ const SearchLocation: FC<SearchLocationI> = ({
   register,
   handleGeolocationConfirm,
   handleAutocompleteConfirm,
+  resetField,
   // setValue,
 }) => {
-  const [ref, value, handleInput, ready, suggestions, handleSelect] =
-    useAutocompleteInit(handleAutocompleteConfirm);
+  const [
+    ref,
+    value,
+    handleInput,
+    ready,
+    suggestions,
+    handleSelect,
+    clearSuggestions,
+    setValue,
+  ] = useAutocompleteInit(handleAutocompleteConfirm);
 
   const reg = useMemo(
     () => register("address", { onChange: handleInput }),
@@ -55,9 +77,15 @@ const SearchLocation: FC<SearchLocationI> = ({
     }
   );
 
-  const getLocation = () => {
+  const getLocation = useCallback(() => {
     refetch();
-  };
+  }, []);
+
+  const resetAddressField = useCallback(() => {
+    setValue("");
+    resetField("address");
+    clearSuggestions();
+  }, []);
 
   return (
     <div className={style["search-location__wrapper"]}>
@@ -77,6 +105,7 @@ const SearchLocation: FC<SearchLocationI> = ({
               }
               register={reg}
               isDisabled={!ready}
+              resetField={resetAddressField}
               //
             />
             {suggestions.status === "OK" ? (
@@ -100,8 +129,6 @@ const SearchLocation: FC<SearchLocationI> = ({
             )} */}
           </div>
           <button
-            // transition={{ duration: 0.7 }}
-            //
             className={`${style["get-current-location__button"]} ${style["font"]}`}
             type="button"
             onClick={getLocation}
@@ -111,19 +138,18 @@ const SearchLocation: FC<SearchLocationI> = ({
               {SEARCH_LOCATION_TEMPLATE.getCurrentLocation}
             </span>
           </button>
-          <button
-            onClick={onNextButtonClick}
-            className={`${style["move-to-next"]} ${style["font"]}`}
-          >
-            {SEARCH_LOCATION_TEMPLATE.moveToNextPage}
-          </button>
+          <div className={style["button__move-to-next__desktop"]}>
+            <ButtonSearchLocation handle={onNextButtonClick} />
+          </div>
         </li>
-        <li className={style["search-location__map"]}>
-          <img
-            src={SEARCH_LOCATION_TEMPLATE.mapPlaceHolderSrc}
-            alt={SEARCH_LOCATION_TEMPLATE.mapPlaceHolderAlt}
-          />
-        </li>
+        <img
+          className={style["search-location__map"]}
+          src={SEARCH_LOCATION_TEMPLATE.mapPlaceHolderSrc}
+          alt={SEARCH_LOCATION_TEMPLATE.mapPlaceHolderAlt}
+        />
+        <div className={style["button__move-to-next__mobile"]}>
+          <ButtonSearchLocation handle={onNextButtonClick} />
+        </div>
       </ul>
     </div>
   );

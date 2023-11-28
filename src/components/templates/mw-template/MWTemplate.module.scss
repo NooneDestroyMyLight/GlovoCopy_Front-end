@@ -53,3 +53,9 @@
   padding-right: var(--helio-space-2XL);
   padding-bottom: var(--helio-space-M);
 }
+@media (max-width: 600px) {
+  .content {
+    padding-left: var(--helio-space-M);
+    padding-right: var(--helio-space-M);
+  }
+}
