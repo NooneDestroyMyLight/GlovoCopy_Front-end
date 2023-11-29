@@ -1,4 +1,5 @@
 @import "./mixins.scss";
+@import "./animation.scss";
 
 h3 {
   font-size: 58px;
@@ -44,6 +45,11 @@ h3 {
 
   margin-bottom: var(--helio-space-2XL);
 }
+@media (max-width: 600px) {
+  .mw-location-title {
+    font-size: 21px;
+  }
+}
 //MW-TEMPLATE======>END
 //
 //MW-POSITION======>START
@@ -64,7 +70,7 @@ h3 {
 
   @media (max-width: 600px) {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
   }
 }
 //MW-POSITION======>END

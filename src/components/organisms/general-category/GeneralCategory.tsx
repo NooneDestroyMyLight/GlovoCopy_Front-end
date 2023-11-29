@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useToggle } from "../../../hooks/useToggle";
 import style from "./GeneralCategory.module.scss";
 import DropdownBlack, {
@@ -8,7 +8,6 @@ import { GENERAL_CATEGORY_DATA } from "./general-category.data";
 import { HEADER_USER_ADDRESS_DATA } from "../../molecules/header-user-adress/HeaderUserAddress";
 import GeneralCategoryItem from "../../molecules/general-category-item/GeneralCategoryItem";
 import ModelWindow from "../../../HOC/model-window/ModelWindow";
-import ChooseAddress from "../mw-organism/set-location/choose-address/ChooseAddress";
 import { STYLE_MW_SET_ADDRESS_SIZE } from "../../../constant/styles";
 import MWLocationPages from "../../templates/mw-location-pages/MWLocationPages";
 
@@ -20,6 +19,9 @@ interface GeneralCategoryI {
 
 const GeneralCategory: FC<GeneralCategoryI> = ({}) => {
   const [isOpen, toggleMW] = useToggle(false);
+  const [userCurrentAddress, setUserCurrentAddress] = useState(
+    HEADER_USER_ADDRESS_DATA
+  );
 
   return (
     <>
@@ -27,7 +29,7 @@ const GeneralCategory: FC<GeneralCategoryI> = ({}) => {
         <div className={style["general-category__address"]}>
           <p>{ADDRESS}</p>
           <button onClick={toggleMW} className={style["current-address"]}>
-            <p>{HEADER_USER_ADDRESS_DATA}</p>
+            <p>{userCurrentAddress}</p>
             <DropdownBlack className={DD_ICON_MEDIUM} />
           </button>
         </div>
@@ -58,7 +60,10 @@ const GeneralCategory: FC<GeneralCategoryI> = ({}) => {
         toggleMW={toggleMW}
         position={STYLE_MW_SET_ADDRESS_SIZE}
       >
-        <MWLocationPages onCloseClick={toggleMW} />
+        <MWLocationPages
+          setCurrentUserAddress={setUserCurrentAddress}
+          onCloseClick={toggleMW}
+        />
       </ModelWindow>
     </>
   );

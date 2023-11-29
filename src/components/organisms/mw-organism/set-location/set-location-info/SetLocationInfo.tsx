@@ -34,9 +34,11 @@ const SetLocationInfo: FC<SetLocationInfoI> = ({
   errors,
   isValid,
 }) => {
+  //
   useEffect(() => {
     trigger();
   }, []);
+  //
 
   return (
     <ul className={style["set-location-info"]}>

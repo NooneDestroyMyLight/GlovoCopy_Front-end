@@ -10,6 +10,7 @@
   align-items: center;
 
   width: 100%;
+  height: 100%;
   padding: 0 72px;
 
   .title {
@@ -49,6 +50,17 @@
     .button {
       justify-self: center;
       // width: fit-content;
+    }
+  }
+}
+
+@media (max-width: 740px) {
+  .pin-map-location {
+    padding: 0;
+    &__content {
+      .current-address {
+        padding: calc(40px / 2);
+      }
     }
   }
 }

@@ -1,3 +1,6 @@
 .logo {
   max-width: 119px;
 }
+.main {
+  min-width: 350px;
+}

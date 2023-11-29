@@ -1,6 +1,6 @@
 @import "/src/styles/globalStyles.module.scss";
 
-.text {
+.font {
   font-size: 14px;
   font-weight: 400;
   line-height: 1.6;
@@ -18,6 +18,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding-bottom: 122px;
+    position: relative;
 
     &__input-wrapper {
       // display: grid;
@@ -27,9 +28,9 @@
       gap: 10px;
       margin: 1.25%;
       position: relative;
-
       .input {
         height: fit-content;
+        position: relative;
       }
 
       .get-current-location__button {
@@ -41,27 +42,91 @@
         height: fit-content;
       }
 
-      .move-to-next {
-        align-self: self-end;
-        justify-self: self-end;
-
+      .button__move-to-next {
         text-overflow: ellipsis;
-        position: absolute;
-        bottom: 0;
+        white-space: nowrap;
+        overflow: hidden;
       }
     }
     &__map {
       height: 308px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      justify-self: end;
 
       margin: 1.25%;
-      img {
-        height: 100%;
-        // width: 100%;
+      object-fit: cover;
+    }
+    .button__move-to-next__mobile {
+      display: none;
+    }
+    .button__move-to-next__desktop {
+      display: block;
 
-        object-fit: cover;
+      align-self: self-end;
+      justify-self: self-end;
+
+      position: absolute;
+      bottom: 0;
+    }
+  }
+}
+
+.suggestions-list {
+  display: grid;
+
+  width: 100%;
+  max-height: 300px;
+
+  background-color: var(--helio-color-floatingElementBackground);
+  border-radius: var(--helio-space-2XS);
+  border: 1px solid var(--helio-color-primaryBorder);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  overflow: auto;
+  position: absolute;
+
+  z-index: 2;
+}
+
+@media (max-width: 740px) {
+  .search-location__wrapper {
+    .search-location {
+      &__map {
+        width: 240px;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .font {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .search-location__wrapper {
+    .search-location {
+      grid-template-columns: repeat(1, 1fr);
+      padding-bottom: 178px;
+      &__input-wrapper {
+        margin: 0;
+        .move-to-next {
+          display: none;
+          // position: relative;
+        }
+      }
+      &__map {
+        display: none;
+      }
+      .button__move-to-next__mobile {
+        display: block;
+
+        justify-self: center;
+
+        position: absolute;
+        bottom: calc((178px - 1em) / 2);
+      }
+      .button__move-to-next__desktop {
+        display: none;
       }
     }
   }
