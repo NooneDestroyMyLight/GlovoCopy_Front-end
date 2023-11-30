@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo } from "react";
+import { FC, memo, useCallback, useEffect, useMemo } from "react";
 import style from "./SetLocationInfo.module.scss";
 import { SET_LOCATION_INFO_TEMPLATE } from "./setLocationInfo.data";
 //
@@ -26,7 +26,7 @@ interface SetLocationInfoI {
 }
 
 const SetLocationInfo: FC<SetLocationInfoI> = ({
-  onNextButtonClick,
+  // onNextButtonClick,
   register,
   trigger,
   resetField,
@@ -42,9 +42,6 @@ const SetLocationInfo: FC<SetLocationInfoI> = ({
 
   return (
     <ul className={style["set-location-info"]}>
-      <h2 className={`${style["mw-location-title"]} ${style["title"]}`}>
-        {SET_LOCATION_INFO_TEMPLATE.title}
-      </h2>
       <li className={style["set-location-info__fieldset"]}>
         {SET_LOCATION_INFO_TEMPLATE.fieldsPlaceholder.map(
           ({ name, fieldName, fieldOptions }, index) => {
@@ -71,14 +68,6 @@ const SetLocationInfo: FC<SetLocationInfoI> = ({
             );
           }
         )}
-      </li>
-      <li className={style["set-location-info__button"]}>
-        <Button
-          className={STYLE_MW_LOCATION_BUTTON}
-          text={SET_LOCATION_INFO_TEMPLATE.button}
-          type={"submit"}
-          isDisabled={!isValid}
-        />
       </li>
     </ul>
   );

@@ -20,15 +20,7 @@ interface ChooseAddressI {
 const ChooseAddress: FC<ChooseAddressI> = ({ onNextButtonClick }) => {
   //Add hover effect and adaptive
   return (
-    // <MWTemplate
-    //   onIconClick={onCloseClick}
-    //   className={STYLE_MW_TEMPLATE_SET_ADDRESS}
-    //   AdditionIcon={MwLocationPrevButton}
-    // >
     <div className={style["choose-address"]}>
-      <h2 className={style["mw-location-title"]}>
-        {CHOOSE_ADDRESS_TEMPLATE.title}
-      </h2>
       <ul className={style["choose-address__current"]}>
         <Flag />
         <span>{HEADER_USER_ADDRESS_DATA}</span>
@@ -40,7 +32,6 @@ const ChooseAddress: FC<ChooseAddressI> = ({ onNextButtonClick }) => {
         </button>
       </ul>
     </div>
-    // </MWTemplate>
   );
 };
 export default ChooseAddress;

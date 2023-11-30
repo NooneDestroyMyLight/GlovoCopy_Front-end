@@ -67,9 +67,9 @@ const MWInput: FC<MWInputI> = memo(
               value={value}
               type="text"
               placeholder=""
-              autoFocus={isAutoFocus}
               //
               {...(register as UseFormRegisterReturn<any>)}
+              autoFocus={isAutoFocus}
               //
               className={style["input"]}
             />

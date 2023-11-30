@@ -20,9 +20,6 @@ const ConfirmLocation: FC<ConfirmLocationI> = memo(
   ({ userConfirmedLocation }) => {
     return (
       <ul className={style["confirm-location"]}>
-        <h2 className={`${style["mw-location-title"]} ${style["title"]}`}>
-          {SET_LOCATION_INFO_TEMPLATE.title}
-        </h2>
         <ul className={style["confirm-location__content"]}>
           <Map isMute coordinate={userConfirmedLocation.coordinate} />
           <li className={style["current-address"]}>
@@ -36,13 +33,6 @@ const ConfirmLocation: FC<ConfirmLocationI> = memo(
               </p>
             </div>
           </li>
-          <Button
-            className={STYLE_MW_LOCATION_BUTTON}
-            text={SET_LOCATION_INFO_TEMPLATE.button}
-            // onButtonClick={onNextButtonClick}
-            //
-            type="submit"
-          />
         </ul>
       </ul>
     );

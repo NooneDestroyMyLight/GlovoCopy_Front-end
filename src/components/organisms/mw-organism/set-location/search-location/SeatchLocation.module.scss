@@ -8,8 +8,8 @@
 }
 
 .search-location__wrapper {
+  padding-bottom: 122px;
   display: grid;
-
   .title {
     justify-self: center;
   }
@@ -17,7 +17,6 @@
   .search-location {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    padding-bottom: 122px;
     position: relative;
 
     &__input-wrapper {
@@ -70,6 +69,18 @@
   }
 }
 
+@media (max-width: 740px) {
+  .search-location__wrapper {
+    height: 100%;
+    padding-bottom: 0;
+    .search-location {
+      &__map {
+        width: 240px;
+      }
+    }
+  }
+}
+
 .suggestions-list {
   display: grid;
 
@@ -87,16 +98,6 @@
   z-index: 2;
 }
 
-@media (max-width: 740px) {
-  .search-location__wrapper {
-    .search-location {
-      &__map {
-        width: 240px;
-      }
-    }
-  }
-}
-
 @media (max-width: 600px) {
   .font {
     font-size: 16px;
@@ -111,7 +112,6 @@
         margin: 0;
         .move-to-next {
           display: none;
-          // position: relative;
         }
       }
       &__map {
