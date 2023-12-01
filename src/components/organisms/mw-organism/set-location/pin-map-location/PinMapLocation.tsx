@@ -7,9 +7,6 @@ import Map from "../../../../atoms/map/Map";
 import { UseFormReset, UseFormSetValue } from "react-hook-form";
 import { UserLocationI } from "../../../../../types/UserLocation";
 //
-import Button from "../../../../atoms/button/Button";
-import { STYLE_MW_LOCATION_BUTTON } from "../../../../../constant/styles";
-//
 
 interface PinMapLocationI {
   setLocation?: UseFormSetValue<UserLocationI>;

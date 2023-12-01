@@ -22,7 +22,7 @@ interface SetLocationInfoI {
   trigger: UseFormTrigger<UserLocationI>;
   resetField: UseFormResetField<UserLocationI>;
   errors: FieldErrors<UserLocationI>;
-  isValid: boolean;
+  isValid?: boolean;
 }
 
 const SetLocationInfo: FC<SetLocationInfoI> = ({

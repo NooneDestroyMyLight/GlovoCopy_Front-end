@@ -11,9 +11,9 @@ import PinMapLocation from "../../organisms/mw-organism/set-location/pin-map-loc
 import ConfirmLocation from "../../organisms/mw-organism/set-location/confirm-location/ConfirmLocation";
 import SetLocationInfo from "../../organisms/mw-organism/set-location/set-location-info/SetLocationInfo";
 //
-import { useMWLocationSlides } from "../../../hooks/useMWLocationSlides";
+import { useMWLocationSlidesRoutes } from "../../../hooks/useMWLocationSlides-Routes";
 import { MW_LOCATION_SLIDES_TEMPLATE } from "./MWLocationSlides.data";
-import { useMWLocationSlidesForm } from "../../../hooks/useMWLocationSlidesForm";
+import { useMWLocationSlidesForm } from "../../../hooks/useMWLocationSlides-Form";
 
 interface MWLocationSlides {
   onCloseClick: () => void;
@@ -24,10 +24,11 @@ const MWLocationPages: FC<MWLocationSlides> = ({
   onCloseClick,
   setCurrentUserAddress,
 }) => {
-  const [currentPage, onPrevPage, moveToNextPage] = useMWLocationSlides();
+  const [currentPage, handlePrevPage, moveToNextPage] =
+    useMWLocationSlidesRoutes();
   const prevButton: FC = useCallback(
-    () => <MwLocationPrevButton onIconClick={onPrevPage} />,
-    [currentPage]
+    () => <MwLocationPrevButton onIconClick={handlePrevPage} />,
+    []
   );
   //
   const {

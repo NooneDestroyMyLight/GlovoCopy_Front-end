@@ -2,8 +2,6 @@ import { RequestType, geocode } from "react-geocode";
 import { GEOCODE_REQ_PARAMS } from "../components/atoms/map/google-map.data";
 import { toast } from "react-toastify";
 import { SEARCH_LOCATION_TEMPLATE } from "../components/organisms/mw-organism/set-location/search-location/searchLocation.data";
-import { UseFormSetValue } from "react-hook-form";
-import { UserLocationI } from "../types/UserLocation";
 
 const transformIntoString = (address: any) => {
   try {
@@ -35,11 +33,19 @@ export const getGeoLocation = (handleConfirm: (address: string) => void) => {
         results: [{ address_components }],
       } = latlngResponse;
 
-      const [{ long_name: streetNumber }, { long_name: streetName }] =
-        transformIntoString(address_components);
+      // const [{ long_name: streetNumber }, { long_name: streetName }] =
+      const UserLocation = transformIntoString(address_components);
 
-      if (streetNumber && streetName)
-        handleConfirm(`${streetName}, ${streetNumber}`);
+      if (!UserLocation) handleConfirm(address_components[0].long_name);
+      if (UserLocation) {
+        const [{ long_name: streetNumber }, { long_name: streetName }] =
+          UserLocation;
+        if (streetNumber && streetName)
+          handleConfirm(`${streetName}, ${streetNumber}`);
+      }
+
+      // if (streetNumber && streetName)
+      //   handleConfirm(`${streetName}, ${streetNumber}`);
     },
     (error) => {
       toast(SEARCH_LOCATION_TEMPLATE.error, {

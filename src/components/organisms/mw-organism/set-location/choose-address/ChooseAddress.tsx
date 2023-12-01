@@ -10,15 +10,7 @@ interface ChooseAddressI {
   onNextButtonClick?: () => void;
 }
 
-//<<<---Road Map--->>>
-//choose-address
-//search-location
-//pin-map-location
-//set-location-info
-//confirm-location
-
 const ChooseAddress: FC<ChooseAddressI> = ({ onNextButtonClick }) => {
-  //Add hover effect and adaptive
   return (
     <div className={style["choose-address"]}>
       <ul className={style["choose-address__current"]}>
