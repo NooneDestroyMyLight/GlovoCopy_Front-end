@@ -32,6 +32,7 @@
         background-color: transparent;
         overflow: visible;
         transition: 0.4s;
+        padding-right: var(--helio-space-L);
 
         &:not(:placeholder-shown) ~ .button-cleaner {
           visibility: visible;

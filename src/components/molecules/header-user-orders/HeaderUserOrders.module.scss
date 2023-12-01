@@ -1,0 +1,23 @@
+.header-user-orders {
+  position: relative;
+
+  .font {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  &__dropdown-title {
+    opacity: 0.4;
+    text-align: left;
+    border-bottom: 1px solid var(--helio-color-primaryBorder);
+  }
+  &__dropdown__content--empty {
+    margin: 20px auto;
+
+    color: var(--helio-color-secondaryText);
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+  }
+}

@@ -1,11 +1,12 @@
 @import "/src/styles/globalStyles.module.scss";
+
 .confirm-location {
   display: flex;
   flex-direction: column;
   align-items: center;
 
   padding: 0 72px;
-  padding-bottom: var(--helio-space-2XL);
+  // padding-bottom: var(--helio-space-2XL);
 
   &__content {
     display: flex;
@@ -20,12 +21,14 @@
       align-items: start;
 
       width: 100%;
+
       .font {
         font-size: 16px;
         line-height: 1.25;
         margin-bottom: 4px;
         word-break: break-word;
       }
+
       .icon {
         margin: 0 var(--helio-space-XS);
       }
@@ -34,7 +37,6 @@
 }
 @media (max-width: 740px) {
   .confirm-location {
-    padding: 0;
     &__content {
       gap: var(--helio-space-2XL);
     }

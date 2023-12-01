@@ -1,8 +1,8 @@
 import style from "./Suggestions.module.scss";
 //
 import { FC, memo } from "react";
-import { Return } from "react-cool-onclickoutside";
-import { ClearSuggestions, Status, Suggestion } from "use-places-autocomplete";
+
+import { Suggestion } from "use-places-autocomplete";
 
 interface RenderSuggestionsI {
   suggestions: Suggestion[];

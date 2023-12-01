@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { useToggle } from "./useToggle";
 
-export const useMoreMWToggle = (
+export const useExclusiveMWToggle = (
   mWArrayName: string[]
 ): [boolean, string, () => void, (() => void)[]] => {
   const [currentMW, setCurrentMW] = useState<string>("");
@@ -15,3 +15,4 @@ export const useMoreMWToggle = (
 
   return [isOpen, currentMW, toggleMW, funArray];
 };
+//useMoreMWToggle

@@ -80,9 +80,6 @@ export const useAutocompleteInit = (
     []
   );
 
-  // console.log(suggestions.status);
-  console.log(suggestions.loading);
-
   return [
     ref,
     value,

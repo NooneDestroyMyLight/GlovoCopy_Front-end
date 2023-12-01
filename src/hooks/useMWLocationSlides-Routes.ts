@@ -2,13 +2,17 @@ import { useCallback, useEffect, useState } from "react";
 
 const pages = Array.from({ length: 5 }, (_, i) => i);
 
-export const useMWLocationSlides = (): [number, () => void, (() => void)[]] => {
+export const useMWLocationSlidesRoutes = (): [
+  number,
+  () => void,
+  (() => void)[]
+] => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   useEffect(() => {
     currentPage !== 0 && setCurrentPage(0);
   }, []);
 
-  const onPrevPage = useCallback(() => {
+  const handlePrevPage = useCallback(() => {
     setCurrentPage(currentPage > 0 ? currentPage - 1 : currentPage);
   }, [currentPage, setCurrentPage]);
 
@@ -18,5 +22,5 @@ export const useMWLocationSlides = (): [number, () => void, (() => void)[]] => {
     }, [pages])
   );
 
-  return [currentPage, onPrevPage, moveToNextPage];
+  return [currentPage, handlePrevPage, moveToNextPage];
 };

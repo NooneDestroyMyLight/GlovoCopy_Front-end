@@ -36,22 +36,26 @@ const ButtonSearchLocation: FC<ButtonSearchLocationI> = memo(({ handle }) => (
 
 interface SearchLocationI {
   onNextButtonClick: () => void;
+  //
   handleGeolocationConfirm: (address: string) => void;
-  register: UseFormRegister<UserLocationI>;
   handleAutocompleteConfirm: (
     address: string,
     coordinate: google.maps.LatLngLiteral
   ) => void;
+  //
+  register: UseFormRegister<UserLocationI>;
   resetField: UseFormResetField<UserLocationI>;
 }
 
 const SearchLocation: FC<SearchLocationI> = ({
+  // ADD ERROR
   onNextButtonClick,
-  register,
+  //
   handleGeolocationConfirm,
   handleAutocompleteConfirm,
+  //
   resetField,
-  // setValue,
+  register,
 }) => {
   const [
     ref,
@@ -77,9 +81,7 @@ const SearchLocation: FC<SearchLocationI> = ({
     }
   );
 
-  const getLocation = useCallback(() => {
-    refetch();
-  }, []);
+  const getLocation = () => refetch();
 
   const resetAddressField = useCallback(() => {
     setValue("");
@@ -89,9 +91,6 @@ const SearchLocation: FC<SearchLocationI> = ({
 
   return (
     <div className={style["search-location__wrapper"]}>
-      <h2 className={`${style["mw-location-title"]} ${style["title"]}`}>
-        {SEARCH_LOCATION_TEMPLATE.title}
-      </h2>
       <ul className={style["search-location"]}>
         <li className={style["search-location__input-wrapper"]}>
           <div className={style["input"]}>

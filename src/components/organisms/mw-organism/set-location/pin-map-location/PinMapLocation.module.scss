@@ -13,10 +13,6 @@
   height: 100%;
   padding: 0 72px;
 
-  .title {
-    justify-self: center;
-  }
-
   &__content {
     display: flex;
     flex-direction: column;
@@ -25,7 +21,6 @@
     width: 100%;
 
     gap: var(--helio-space-2XL);
-    padding-bottom: var(--helio-space-2XL);
 
     .map-container {
       height: 308px;

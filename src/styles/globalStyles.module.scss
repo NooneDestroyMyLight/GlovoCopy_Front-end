@@ -34,22 +34,32 @@ h3 {
   border-radius: var(--helio-space-S);
   background-color: white;
 
+  .content {
+    .title {
+      font-size: 28px;
+      font-weight: 700;
+
+      margin-bottom: var(--helio-space-2XL);
+    }
+  }
+
   @media (max-width: 600px) {
     border-radius: 0;
   }
 }
 
-.mw-location-title {
-  font-size: 28px;
-  font-weight: 700;
+// .mw-location-title {
+//   font-size: 28px;
+//   font-weight: 700;
 
-  margin-bottom: var(--helio-space-2XL);
-}
-@media (max-width: 600px) {
-  .mw-location-title {
-    font-size: 21px;
-  }
-}
+//   margin-bottom: var(--helio-space-2XL);
+// }
+
+// @media (max-width: 600px) {
+//   .mw-location-title {
+//     font-size: 21px;
+//   }
+// }
 //MW-TEMPLATE======>END
 //
 //MW-POSITION======>START
