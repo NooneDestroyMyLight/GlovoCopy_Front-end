@@ -1,0 +1,24 @@
+.privacyPolicy__font {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 16px;
+}
+
+.privacyPolicy__disclaimer {
+  border-radius: 8px;
+  background-color: var(--helio-color-secondaryBackground);
+
+  padding: var(--helio-space-S);
+  margin: 15px 0;
+}
+
+.privacyPolicy__push-notifi {
+  display: flex;
+  margin-bottom: 15px;
+  &__title {
+    text-align: left;
+  }
+  &__toggle {
+    margin-left: 40px;
+  }
+}

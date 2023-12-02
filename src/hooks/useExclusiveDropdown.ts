@@ -16,7 +16,6 @@ export const useExclusiveDropdown = (
   );
   const ref = useOnclickOutside((): void => {
     setCurrent(null);
-    console.log("WORK");
   });
 
   return [isCurrent, handleOpenCurrent, ref];

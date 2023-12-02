@@ -3,7 +3,7 @@ import style from "./HeaderInput.module.scss";
 //
 import cn from "classnames";
 import InputHolder from "../../../assets/icons/input-holder/InputHolder";
-import { HEADER_TEMPLATE } from "../../organisms/header/header.data";
+import { HEADER_TEMPLATE } from "../../templates/header/header.data";
 //
 
 interface HeaderInputI {}

@@ -1,0 +1,20 @@
+.payment-options {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 10px;
+
+  padding: 10px;
+
+  border-radius: 8px;
+  border: 1px solid var(--helio-color-secondaryBorder);
+
+  transition: 0.3s;
+  &:hover {
+    border: 1px solid var(--helio-color-secondaryText);
+  }
+
+  &_divide {
+    margin-bottom: 40px;
+  }
+}
