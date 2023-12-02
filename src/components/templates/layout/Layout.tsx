@@ -1,8 +1,8 @@
 import { FC, ReactNode, memo } from "react";
 import style from "./Layout.module.scss";
 
-import Header from "../../organisms/header/Header";
-import Footer from "../../organisms/footer/Footer";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
 
 interface LayoutI {
   children: ReactNode;

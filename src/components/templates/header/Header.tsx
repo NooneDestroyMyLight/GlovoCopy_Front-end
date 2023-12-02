@@ -23,10 +23,10 @@ import {
 } from "../../../constant/styles";
 import { HEADER_TEMPLATE } from "./header.data";
 
-import HeaderUserInfo from "../header-user-info/HeaderUserInfo";
+import HeaderDDProfile from "../header-dd-profile/HeaderDDProfile";
 import HeaderUserOrders from "../../molecules/header-user-orders/HeaderUserOrders";
 import { useExclusiveDropdown } from "../../../hooks/useExclusiveDropdown";
-import MWLocationPages from "../../templates/mw-location-pages/MWLocationPages";
+import MWLocationPages from "../mw-location-pages/MWLocationPages";
 
 //
 
@@ -47,12 +47,12 @@ const Header: FC<HeaderI> = memo(
     const [isOpen, currentMW, toggleMW, funArray] =
       useExclusiveMWToggle(mWName);
     const [isSticky, elRef] = useSticky(false);
-    const [isCurrent, handleOpenCurrent, ref] = useExclusiveDropdown(dDList);
-    const [userAddress, setUserCurrentAddress] = useState<string>("");
+    const [isCurrent, handleOpenCurrent, handleClickOutside] =
+      useExclusiveDropdown(dDList);
+    const [userAddress, setUserCurrentAddress] = useState<string>(""); // ITS JUST PLACEHOLDER CHANGE IT INTO STATE-MANAGER
     //
-    const isAuth: boolean = true;
 
-    // console.log("Header RERENDER");
+    const isAuth: boolean = true;
     return (
       <>
         <div ref={elRef} className={style.stickyScreen} />
@@ -71,15 +71,15 @@ const Header: FC<HeaderI> = memo(
               {isAuth ? (
                 <>
                   <div className={style["profile--desktop"]}>
-                    <HeaderUserInfo
+                    <HeaderDDProfile
                       isOpen={isCurrent === dDList[0]}
                       handleToggle={handleOpenCurrent[0]}
-                      ref={ref}
+                      handleClickOutside={handleClickOutside}
                     />
                     <HeaderUserOrders
                       isOpen={isCurrent === dDList[1]}
                       handleToggle={handleOpenCurrent[1]}
-                      ref={ref}
+                      handleClickOutside={handleClickOutside}
                     />
                   </div>
                   <div className={style["profile--mobile"]}></div>
