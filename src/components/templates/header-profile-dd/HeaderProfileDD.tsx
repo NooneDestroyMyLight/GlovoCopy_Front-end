@@ -1,5 +1,5 @@
 import { FC, memo } from "react";
-import style from "./HeaderDDProfile.module.scss";
+import style from "./HeaderProfileDD.module.scss";
 //Icon
 import Profile from "../../../assets/icons/header-auth/Profile";
 //
@@ -8,13 +8,13 @@ import { Return } from "react-cool-onclickoutside";
 import ProfileInfo from "../../organisms/profile-info/ProfileInfo";
 //
 
-interface HeaderDDProfileProps {
+interface HeaderProfileDDProps {
   isOpen?: boolean;
   handleToggle: () => void;
   handleClickOutside: Return;
 }
 
-const HeaderDDProfile: FC<HeaderDDProfileProps> = memo(
+const HeaderProfileDD: FC<HeaderProfileDDProps> = memo(
   ({ isOpen, handleToggle, handleClickOutside }) => {
     return (
       <div ref={handleClickOutside} className={style["header-profile"]}>
@@ -31,4 +31,4 @@ const HeaderDDProfile: FC<HeaderDDProfileProps> = memo(
   }
 );
 
-export default HeaderDDProfile;
+export default HeaderProfileDD;

@@ -1,17 +1,17 @@
-.mw-login__mobile {
+.mw-login--mobile {
   width: fit-content;
   height: fit-content;
   display: none;
   overflow: hidden;
 }
-.mw-login__desktop {
+.mw-login--desktop {
 }
 
 @media (max-width: 650px) {
-  .mw-login__mobile {
+  .mw-login--mobile {
     display: block;
   }
-  .mw-login__desktop {
+  .mw-login--desktop {
     display: none;
   }
 }

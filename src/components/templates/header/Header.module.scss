@@ -12,7 +12,7 @@
   .header-container {
     display: grid;
     align-items: center;
-    gap: var(--helio-space-M);
+    // gap: var(--helio-space-M);
     grid-template-columns:
       minmax(max-content, 1fr)
       minmax(0, 406px)
@@ -36,7 +36,7 @@
         visibility: visible;
         transition: 0.3 ease-in-out;
       }
-      .address-hide {
+      .address_hide {
         visibility: hidden;
         transition: 0.3 ease-in-out;
       }
@@ -44,9 +44,12 @@
         display: flex;
         gap: var(--helio-space-L);
       }
+      .profile--mobile {
+        display: none;
+      }
     }
   }
-  .mobile-address {
+  .address--mobile {
     display: none;
   }
 }
@@ -62,7 +65,7 @@
     .header-container {
       gap: var(--helio-space-S);
     }
-    .mobile-address {
+    .address--mobile {
       margin-top: var(--helio-space-S);
       display: flex;
       justify-content: center;
@@ -70,6 +73,12 @@
     }
     .header-container {
       &__right-bar {
+        .profile--desktop {
+          display: none;
+        }
+        .profile--mobile {
+          display: block;
+        }
         &__address {
           display: none;
         }
