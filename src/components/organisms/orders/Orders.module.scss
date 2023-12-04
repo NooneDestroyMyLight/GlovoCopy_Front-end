@@ -1,0 +1,38 @@
+.font {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.orders-title {
+  opacity: 0.4;
+  text-align: left;
+  border-bottom: 1px solid var(--helio-color-primaryBorder);
+}
+.orders--empty {
+  margin: 20px auto;
+
+  color: var(--helio-color-secondaryText);
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .placeholder {
+    color: var(--helio-color-secondaryText);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .descr {
+    color: var(--helio-color-primaryText);
+
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.4;
+
+    opacity: 0.6;
+    margin-top: 10px;
+  }
+}

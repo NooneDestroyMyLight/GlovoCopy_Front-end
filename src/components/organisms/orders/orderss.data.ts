@@ -1,4 +1,4 @@
-export const HEADER_USER_ORDERS_TEMPLATE = {
+export const ORDERS_TEMPLATE = {
   title: "Замовлення",
   empty: "Ой! Здається, ви не ще не зробили жодного замовлення.",
   descr:

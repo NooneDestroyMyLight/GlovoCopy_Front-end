@@ -5,8 +5,8 @@ import style from "./LoginWrapper.module.scss";
 import MWLogin, { MWLoginI } from "../../organisms/mw-organism/login/MWLogin";
 
 const initial = {
-  open: { y: 0, opacity: 1 },
-  closed: { y: "100%", opacity: 0 },
+  open: { y: 0 },
+  closed: { y: "100%" },
 };
 
 const LoginWrapper: FC<MWLoginI> = ({
@@ -17,7 +17,7 @@ const LoginWrapper: FC<MWLoginI> = ({
   return (
     <>
       <motion.div
-        className={style["mw-login__mobile"]}
+        className={style["mw-login--mobile"]}
         variants={initial}
         //drag
         drag="y"
@@ -26,14 +26,14 @@ const LoginWrapper: FC<MWLoginI> = ({
         dragMomentum={false}
         onDragEnd={onIconClick}
         initial="closed"
-        exit={{ y: "100%" }}
+        exit="closed"
         //
-        animate={isOpen ? "open" : "closed"}
+        animate={"open"}
         transition={{ duration: 0.25 }}
       >
         <MWLogin onIconClick={onIconClick} isOpen={isOpen} />
       </motion.div>
-      <div className={style["mw-login__desktop"]}>
+      <div className={style["mw-login--desktop"]}>
         <MWLogin onIconClick={onIconClick} isOpen={isOpen} />
       </div>
     </>

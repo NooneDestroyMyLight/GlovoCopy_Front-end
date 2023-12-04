@@ -1,0 +1,31 @@
+.close-window {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  width: 32px;
+
+  cursor: pointer;
+  &:after {
+    content: "";
+    height: 21px;
+    width: 3px;
+
+    background-color: rgb(100, 99, 99);
+    border-radius: 2px;
+
+    transform: rotateZ(135deg);
+    position: absolute;
+  }
+  &:before {
+    content: "";
+    height: 21px;
+    width: 3px;
+
+    background-color: rgb(100, 99, 99);
+    border-radius: 2px;
+
+    transform: rotateZ(45deg);
+    position: absolute;
+  }
+}

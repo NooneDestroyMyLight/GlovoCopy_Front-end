@@ -1,10 +1,12 @@
 import { useCallback, useState } from "react";
 import useOnclickOutside, { Return } from "react-cool-onclickoutside";
 
-export const useExclusiveDropdown = (
-  idList: string[]
+export const useExclusiveItem = (
+  idList: string[],
+  initial: string | null = null
 ): [string | null, (() => void)[], Return] => {
-  const [isCurrent, setCurrent] = useState<string | null>(null);
+  const [isCurrent, setCurrent] = useState<string | null>(initial);
+
   const handleOpenCurrent = idList.map((item) =>
     useCallback(
       (arg = undefined) => {
@@ -14,6 +16,7 @@ export const useExclusiveDropdown = (
       [isCurrent]
     )
   );
+
   const ref = useOnclickOutside((): void => {
     setCurrent(null);
   });

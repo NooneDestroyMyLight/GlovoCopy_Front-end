@@ -2,6 +2,7 @@ import { FC, ReactNode, memo } from "react";
 import style from "./MWTemplate.module.scss";
 import Button from "../../atoms/button/Button";
 import { STYLE_MW_LOCATION_BUTTON } from "../../../constant/styles";
+import CloseWindow from "../../../assets/icons/close-window/CloseWindow";
 
 interface MWTemplateI {
   // className: string;
@@ -33,7 +34,8 @@ const MWTemplate: FC<MWTemplateI> = memo(
         {/* style["mw-template__set-address"]*/}
         <li className={style["close-icon__wrapper"]}>
           {AdditionIcon ? <AdditionIcon /> : <div className="empty" />}
-          <i className={style["close-icon"]} onClick={onIconClick} />
+          {/* <i className={style["close-icon"]} onClick={onIconClick} /> */}
+          <CloseWindow onIconClick={onIconClick as () => void} />
         </li>
         <li className={style["content"]}>
           {h2Text && <h2 className={style["mw-location-title"]}>{h2Text}</h2>}
