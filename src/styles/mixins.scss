@@ -2,3 +2,33 @@
   justify-self: $justify;
   align-self: $align;
 }
+
+@mixin header {
+  width: 100%;
+  min-width: 350px;
+
+  padding: var(--helio-space-XL) 7.5%;
+
+  position: fixed;
+  top: 0;
+  z-index: 10;
+
+  &__container {
+    display: grid;
+    align-items: center;
+    // gap: var(--helio-space-M);
+    grid-template-columns:
+      minmax(max-content, 1fr)
+      minmax(0, 406px)
+      minmax(min-content, 1fr);
+
+    width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    padding: var(--helio-space-XL) 5%;
+  }
+  @media (max-width: 650px) {
+    padding: var(--helio-space-S) var(--helio-space-M);
+  }
+}

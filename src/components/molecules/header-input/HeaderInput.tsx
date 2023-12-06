@@ -13,6 +13,8 @@ const HeaderInput: FC<HeaderInputI> = memo(({}) => {
   return (
     <form className={style.headerInput}>
       <input
+        role="search"
+        //
         type="text"
         placeholder=""
         className={`${style.headerInput__input}`}

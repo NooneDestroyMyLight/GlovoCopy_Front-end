@@ -1,0 +1,24 @@
+@import "/src/styles/globalStyles.module.scss";
+
+.header-store {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  @include header;
+
+  position: static;
+  &__container {
+    max-width: 1428px;
+  }
+
+  &__right-bar {
+    justify-self: end;
+    display: flex;
+    gap: var(--helio-space-XS);
+  }
+  .menu {
+    display: flex;
+    gap: var(--helio-space-L);
+  }
+}

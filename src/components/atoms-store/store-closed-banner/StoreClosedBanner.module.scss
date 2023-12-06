@@ -1,0 +1,30 @@
+.store-closed-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--helio-space-S);
+
+  font-size: 16px;
+  font-weight: 300;
+  line-height: var(--helio-space-L);
+
+  height: var(--helio-space-2XL);
+  color: var(--helio-color-primaryText);
+
+  border-radius: var(--helio-space-XS);
+  background-color: var(--helio-color-softGlobalBackground);
+
+  padding: var(--helio-space-M);
+  margin: var(--helio-space-M) 0;
+
+  &__text {
+  }
+
+  &__button {
+    color: var(--color-accent);
+    font-size: 16px;
+    font-weight: 700;
+    &:hover {
+      color: var(--color-accentHover);
+    }
+  }
+}

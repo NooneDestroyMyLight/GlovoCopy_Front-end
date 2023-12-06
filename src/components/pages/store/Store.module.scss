@@ -1,0 +1,77 @@
+@import "/src/styles/globalStyles.module.scss";
+
+.store {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  &__body {
+    padding: 0 var(--helio-space-XL);
+
+    max-width: 1500px;
+    width: 100%;
+
+    box-sizing: border-box;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-areas:
+      "topic topic cart"
+      "catalogue list cart";
+    grid-gap: var(--helio-space-M);
+    grid-template-columns: 174px minmax(0, 1fr) 322px;
+
+    width: 100%;
+
+    box-sizing: border-box;
+    position: relative;
+
+    .topic {
+      grid-area: topic;
+    }
+    .cart {
+      grid-area: cart;
+      position: absolute;
+      top: 0;
+    }
+    .catalogue {
+      grid-area: catalogue;
+      position: sticky;
+      top: 0;
+    }
+    .products-list {
+      grid-area: list;
+    }
+  }
+}
+
+.store-image {
+  height: 246px;
+  width: 100%;
+
+  overflow: hidden;
+
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  &__img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    filter: blur(15px);
+
+    position: absolute;
+  }
+
+  &__overlay {
+    height: 100%;
+    width: 100%;
+
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), transparent 61.79%);
+    position: absolute;
+  }
+}
