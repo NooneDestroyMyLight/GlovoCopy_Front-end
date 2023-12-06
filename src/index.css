@@ -4,8 +4,11 @@
   --color-accent: #00a082;
   --color-accentHover: #00846b;
   --helio-color-primaryBorder: var(--helio-primitiveColor-grey100);
+  --helio-color-floatingElementBackground: var(--helio-primitiveColor-white);
+  --helio-color-mediumGlobalBackground: var(--helio-primitiveColor-yellow200);
   --helio-primitiveColor-white: white;
   --helio-primitiveColor-yellow500: #e19f17ff;
+  --helio-primitiveColor-yellow200: #ffde99ff;
   --helio-primitiveColor-yellow50: #fff3da;
   --helio-primitiveColor-grey900: #1d1d1d;
   --helio-primitiveColor-grey600: #6e6e6eff;
@@ -21,6 +24,9 @@
   --helio-color-disabledText: var(--helio-primitiveColor-grey300);
   --helio-color-disabled: var(--helio-primitiveColor-grey300);
   --helio-color-primaryText: var(--helio-primitiveColor-black);
+  --helio-color-primaryInvertedConsistentText: var(
+    --helio-primitiveColor-white
+  );
   --helio-color-secondaryText: var(--helio-primitiveColor-grey600);
   --helio-color-floatingElementBackground: var(--helio-primitiveColor-white);
   --helio-color-warning: #8b620e;
@@ -38,6 +44,7 @@
   --helio-space-S: 12px;
   --helio-space-XS: 8px;
   --helio-space-2XS: 4px;
+  --helio-space-3XS: 2px;
 }
 
 ul {

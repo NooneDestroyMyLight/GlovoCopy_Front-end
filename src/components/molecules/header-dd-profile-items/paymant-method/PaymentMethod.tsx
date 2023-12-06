@@ -6,7 +6,7 @@ import ProfileParagraphTitle from "../../../atoms/profile/profile-paragraph-titl
 import ProfileParagraph from "../../../atoms/profile/profile-paragraph/ProfileParagraph";
 //
 import { PAYMENT_METHOD_TEMPLATE } from "./paymentMethod.data";
-import CreditCard from "../../../../assets/icons/header-auth/CreditCard";
+import CreditCard from "../../../../assets/icons/header-auth/credit-card/CreditCard";
 import CreditCardArrow from "../../../../assets/icons/header-auth/credit-card__arrow/CreditCardArrow";
 
 interface PaymentMethodProps {}

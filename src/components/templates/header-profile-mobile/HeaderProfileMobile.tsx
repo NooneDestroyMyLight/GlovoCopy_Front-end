@@ -1,7 +1,7 @@
 import { FC, memo } from "react";
 import style from "./HeaderProfileMobile.module.scss";
 //ICON
-import ProfileMobile from "../../../assets/icons/header-auth/ProfileMobile";
+import ProfileMobile from "../../../assets/icons/header-auth/profile--mobile/ProfileMobile";
 import CloseWindow from "../../../assets/icons/close-window/CloseWindow";
 //
 import ModelWindow from "../../../HOC/model-window/ModelWindow";

@@ -1,0 +1,16 @@
+.path-to-store {
+  display: flex;
+  align-items: center;
+
+  font-size: 12px;
+  font-weight: 300;
+
+  margin: 1em 0;
+
+  &__link {
+    color: var(--helio-color-primaryInvertedConsistentText);
+  }
+  &__link_active {
+    font-weight: 700;
+  }
+}

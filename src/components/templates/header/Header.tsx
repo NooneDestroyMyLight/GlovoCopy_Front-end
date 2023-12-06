@@ -5,7 +5,7 @@ import { useSticky } from "../../../hooks/useSticky";
 import style from "./Header.module.scss";
 import cn from "classnames";
 //
-import Logo from "../../../assets/icons/logo/Logo";
+import Logo from "../../../assets/icons/logo/logo-text/Logo";
 //
 import HeaderInput from "../../molecules/header-input/HeaderInput";
 //
@@ -28,6 +28,8 @@ import MWLocationPages from "../mw-location-pages/MWLocationPages";
 import HeaderProfileDD from "../header-profile-dd/HeaderProfileDD";
 import HeaderOrdersDD from "../../molecules/header-orders-dd/HeaderOrdersDD";
 import HeaderProfileMobile from "../header-profile-mobile/HeaderProfileMobile";
+import Profile from "../../../assets/icons/header-auth/profile--desktop/Profile";
+import Order from "../../../assets/icons/header-auth/order/Order";
 
 //
 
@@ -35,8 +37,8 @@ interface HeaderI {
   //   className: string;
 }
 
-const mWName = ["mw-login", "mw-sLocation-slides"];
-const dDList = ["header-user-info", "header-user-orders"];
+const mWName: string[] = ["mw-login", "mw-sLocation-slides"];
+const dDList: string[] = ["header-user-info", "header-user-orders"];
 
 const Header: FC<HeaderI> = memo(({}) => {
   const [isOpen, currentMW, toggleMW, funArray] = useExclusiveMWToggle(mWName);
@@ -53,7 +55,7 @@ const Header: FC<HeaderI> = memo(({}) => {
       <div ref={elRef} className={style.stickyScreen} />
       <header className={cn(style.header)}>
         <ul className={style["header-container"]}>
-          <Logo /*className={logoStyle.logo__header}*/ />
+          <Logo />
           <HeaderInput />
           <div className={style["header-container__right-bar"]}>
             <div
@@ -67,11 +69,13 @@ const Header: FC<HeaderI> = memo(({}) => {
               <>
                 <div className={style["profile--desktop"]}>
                   <HeaderProfileDD
+                    Icon={Profile}
                     isOpen={isCurrent === dDList[0]}
                     handleToggle={handleOpenCurrent[0]}
                     handleClickOutside={handleClickOutside}
                   />
                   <HeaderOrdersDD
+                    Icon={Order}
                     isOpen={isCurrent === dDList[1]}
                     handleToggle={handleOpenCurrent[1]}
                     handleClickOutside={handleClickOutside}
