@@ -33,13 +33,19 @@
     }
     .cart {
       grid-area: cart;
-      position: absolute;
-      top: 0;
+      position: relative;
+      &__container {
+        position: sticky;
+        top: 0;
+      }
     }
     .catalogue {
       grid-area: catalogue;
-      position: sticky;
-      top: 0;
+      position: relative;
+      &__container {
+        position: sticky;
+        top: 0;
+      }
     }
     .products-list {
       grid-area: list;

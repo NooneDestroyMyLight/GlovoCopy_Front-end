@@ -22,14 +22,16 @@ const StoreCatalogue: FC<StoreCatalogueProps> = ({}) => {
       <ul className={style["store-catalogue__list"]}>
         {STORE_CATALOGUE_DATA.map((item) => (
           <li className={style["store-catalogue__item"]}>
-            <a
-              className={`${style["store-catalogue__link"]} ${style["store-catalogue__link_active"]}`}
-              href={item.link}
-            >
-              {/* Active there*/}
-              {/*add link to that type of product */}
-              {item.name}
-            </a>
+            <span className={style["store-catalogue__link_active"]}>
+              <a
+                className={`${style["store-catalogue__link"]} `}
+                // href={item.link}
+              >
+                {/* Active there*/}
+                {/*add link to that type of product */}
+                {item.name}
+              </a>
+            </span>
           </li>
         ))}
       </ul>

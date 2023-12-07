@@ -1,0 +1,25 @@
+.store-catalogue-item {
+  margin-top: var(--helio-space-XL);
+
+  .icon {
+    height: 35px;
+  }
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: var(--helio-space-S);
+
+    margin-bottom: var(--helio-space-L);
+    h3 {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+  }
+
+  .products-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
