@@ -1,0 +1,30 @@
+.search-form {
+  display: flex;
+  align-items: center;
+
+  height: 44px;
+
+  background-color: var(--helio-color-secondaryBackground);
+  border-radius: 24px;
+
+  overflow: hidden;
+}
+
+.search-input__fieldset {
+  display: flex;
+  align-items: center;
+  gap: var(--helio-space-XS);
+
+  margin-left: var(--helio-space-L);
+  width: 100%;
+}
+.search-input {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.4;
+
+  width: 100%;
+
+  background-color: inherit;
+  padding: var(--helio-space-2XS) 0;
+}

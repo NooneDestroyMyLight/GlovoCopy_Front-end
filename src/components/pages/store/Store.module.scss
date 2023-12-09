@@ -31,6 +31,7 @@
     .topic {
       grid-area: topic;
     }
+
     .cart {
       grid-area: cart;
       position: relative;
@@ -42,14 +43,20 @@
     .catalogue {
       grid-area: catalogue;
       position: relative;
+
       &__container {
         position: sticky;
         top: 0;
       }
     }
+
     .products-list {
       grid-area: list;
     }
+  }
+
+  .store_sticky-el {
+    top: calc(140px + var(--helio-space-M));
   }
 }
 

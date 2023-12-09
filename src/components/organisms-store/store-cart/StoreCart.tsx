@@ -4,6 +4,8 @@ import StoreCartPlaceholder from "../../../assets/icons-store-page/store-cart-pl
 import { STORE_CART_TEMPLATE } from "./storeCart.data";
 
 const StoreCart: FC = ({}) => {
+  const isClosed: boolean = false;
+
   return (
     <div className={style["store-cart"]}>
       <h2 className={style["store-cart__title"]}>

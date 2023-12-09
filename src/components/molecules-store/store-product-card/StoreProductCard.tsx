@@ -10,6 +10,9 @@ interface StoreProductCardProps {
 
 const StoreProductCard: FC<StoreProductCardProps> = ({ product }) => {
   const { imgSmall, name, descr, price } = product;
+
+  const isClosed: boolean = true;
+
   return (
     <li className={style["store-product-card"]}>
       <div className={style["store-product-card__row"]}>
@@ -27,9 +30,11 @@ const StoreProductCard: FC<StoreProductCardProps> = ({ product }) => {
         <span className={style["product-price"]}>
           {new Intl.NumberFormat("uk-UA").format(price)}₴
         </span>
-        <button className={style["butt__add-to-cart"]}>
-          <IconAddToCart />
-        </button>
+        {!isClosed && (
+          <button className={style["butt__add-to-cart"]}>
+            <IconAddToCart />
+          </button>
+        )}
       </div>
     </li>
   );

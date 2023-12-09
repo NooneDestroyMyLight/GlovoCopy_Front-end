@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useMemo, useRef } from "react";
 import style from "./Store.module.scss";
 //
 import { STORE_DATA } from "./Store.data";
@@ -8,10 +8,28 @@ import StoreTopic from "../../molecules-store/store-topic/StoreTopic";
 import StoreCart from "../../organisms-store/store-cart/StoreCart";
 import StoreCatalogue from "../../molecules-store/store-catalogue/StoreCatalogue";
 import StoreBody from "../../organisms-store/store-body/StoreBody";
+import {
+  CatalogueIWithRef,
+  STORE_CATALOGUE_LIST_DATA,
+} from "../../organisms-store/store-body/storeBody.data";
+import StoreHeaderStickyHeader from "../../molecules-store/store-header-sticky/StoreHeaderStickyHeader";
+import { PATH_TO_STORE_DATA } from "../../atoms-store/path-to-store/pathToStore.data";
 
 const Store: FC = ({}) => {
+  const catalogueList = STORE_CATALOGUE_LIST_DATA.map(
+    (item): CatalogueIWithRef => {
+      return {
+        ...item,
+        ref: useRef<HTMLElement>(null),
+      };
+    }
+  );
+
+  const isHeaderSticky: boolean = false;
+
   return (
     <main className={style["store"]}>
+      {/* <StoreHeaderStickyHeader storeName={PATH_TO_STORE_DATA.storeName} /> */}
       <section className={style["store-image"]}>
         <picture>
           <img
@@ -30,17 +48,21 @@ const Store: FC = ({}) => {
             <StoreTopic />
           </div>
           <div className={style["cart"]}>
-            <div className={style["cart__container"]}>
+            <div
+              className={`${style["cart__container"]} ${style["store_sticky-el"]}`}
+            >
               <StoreCart />
             </div>
           </div>
           <div className={style["catalogue"]}>
-            <div className={style["catalogue__container"]}>
-              <StoreCatalogue />
+            <div
+              className={`${style["catalogue__container"]} ${style["store_sticky-el"]}`}
+            >
+              <StoreCatalogue catalogueList={catalogueList} />
             </div>
           </div>
           <div className={style["products-list"]}>
-            <StoreBody />
+            <StoreBody catalogueList={catalogueList} />
           </div>
         </section>
       </section>
