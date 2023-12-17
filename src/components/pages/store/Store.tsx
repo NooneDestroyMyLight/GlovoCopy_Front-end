@@ -1,4 +1,4 @@
-import { FC, useMemo, useRef } from "react";
+import { FC, useEffect, useMemo, useRef, useState } from "react";
 import style from "./Store.module.scss";
 //
 import { STORE_DATA } from "./Store.data";
@@ -14,6 +14,8 @@ import {
 } from "../../organisms-store/store-body/storeBody.data";
 import StoreHeaderStickyHeader from "../../molecules-store/store-header-sticky/StoreHeaderStickyHeader";
 import { PATH_TO_STORE_DATA } from "../../atoms-store/path-to-store/pathToStore.data";
+//
+import { useOverlayHeaderView } from "../../../hooks/useOverlayHeaderView";
 
 const Store: FC = ({}) => {
   const catalogueList = STORE_CATALOGUE_LIST_DATA.map(
@@ -25,15 +27,18 @@ const Store: FC = ({}) => {
     }
   );
 
-  const isHeaderSticky: boolean = false;
+  const [isSticky, divRef] = useOverlayHeaderView(false);
 
   return (
     <main className={style["store"]}>
-      {/* <StoreHeaderStickyHeader storeName={PATH_TO_STORE_DATA.storeName} /> */}
+      <StoreHeaderStickyHeader
+        storeName={PATH_TO_STORE_DATA.storeName}
+        isSticky={isSticky}
+      />
       <section className={style["store-image"]}>
         <picture>
           <img
-            src={STORE_DATA.storeImg}
+            src={STORE_DATA.storeBackgroundImg}
             alt="store-image"
             className={style["store-image__img"]}
           />
@@ -45,24 +50,32 @@ const Store: FC = ({}) => {
         <PathToStore />
         <section className={style["store__container"]}>
           <div className={style["topic"]}>
-            <StoreTopic />
+            <StoreTopic discount={STORE_DATA.storeDiscount} />
           </div>
           <div className={style["cart"]}>
             <div
-              className={`${style["cart__container"]} ${style["store_sticky-el"]}`}
+              className={`${style["cart__container"]} ${
+                isSticky && style["store_sticky-el"]
+              }`}
             >
-              <StoreCart />
+              <StoreCart isClosed={STORE_DATA.isClosed} />
             </div>
           </div>
           <div className={style["catalogue"]}>
             <div
-              className={`${style["catalogue__container"]} ${style["store_sticky-el"]}`}
+              className={`${style["catalogue__container"]} ${
+                isSticky && style["store_sticky-el"]
+              }`}
             >
               <StoreCatalogue catalogueList={catalogueList} />
             </div>
           </div>
           <div className={style["products-list"]}>
-            <StoreBody catalogueList={catalogueList} />
+            <StoreBody
+              catalogueList={catalogueList}
+              isClosed={STORE_DATA.isClosed}
+              catalogueListRef={divRef}
+            />
           </div>
         </section>
       </section>

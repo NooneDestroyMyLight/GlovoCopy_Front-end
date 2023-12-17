@@ -12,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/ESTABLISH_NAME" element={<Store />} />
+        {/* <Route path="/ESTABLISH_NAME" element={<CheckOut />} /> */}
       </Routes>
       <ToastContainer />
     </main>

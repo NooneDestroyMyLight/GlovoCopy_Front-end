@@ -38,6 +38,8 @@
       &__container {
         position: sticky;
         top: 0;
+
+        transition: all 0.4s ease-out;
       }
     }
     .catalogue {
@@ -47,6 +49,8 @@
       &__container {
         position: sticky;
         top: 0;
+
+        transition: all 0.4s ease-out;
       }
     }
 

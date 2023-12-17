@@ -1,20 +1,42 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import style from "./StoreTopic.module.scss";
 import { PATH_TO_STORE_DATA } from "../../atoms-store/path-to-store/pathToStore.data";
-import { STORE_TOPIC_DATA } from "./storeTopic.data";
+import { STORE_TOPIC_DATA, STORE_TOPIC_TEMPLATE } from "./storeTopic.data";
 import StoreRating from "../../../assets/icons-store-page/store-rating/StoreRating";
 import StoreDeliveryFee from "../../../assets/icons-store-page/store-delivery-fee/StoreDeliveryFee";
 import StoreDeliveryTime from "../../../assets/icons-store-page/store-delivery-time/StoreDeliveryTime";
 
-interface StoreTopicProps {}
+interface StoreTopicMarkProps {
+  value: string;
+}
 
-const StoreTopic: FC<StoreTopicProps> = ({}) => {
+const StoreTopicMark: FC<StoreTopicMarkProps> = memo(({ value }) => {
+  const text = `-${value} ${STORE_TOPIC_TEMPLATE.isDiscountTemp}`;
+
+  return (
+    <div className={style["store-topic-mark"]}>
+      <img
+        src="/src/assets/icons-store-page/store-discount-icon/PromoTagIcon.png"
+        alt="store-topic-mark"
+        className={style["store-topic-mark__icon"]}
+      />
+      {text}
+    </div>
+  );
+});
+
+interface StoreTopicProps {
+  discount: string;
+}
+
+const StoreTopic: FC<StoreTopicProps> = memo(({ discount }) => {
   return (
     <div className={style["store-topic"]}>
       <div className={style["store-topic__content"]}>
         <h2 className={style["store-topic__title"]}>
           {PATH_TO_STORE_DATA.storeName}
         </h2>
+        {discount && <StoreTopicMark value={discount} />}
         <div className={style["store-topic__info"]}>
           <div className={style["store-topic__info__item"]}>
             <div className={style["icon"]}>
@@ -40,9 +62,9 @@ const StoreTopic: FC<StoreTopicProps> = ({}) => {
             ₴
           </div>
         </div>
-        <div className={style["store-topic__notes"]}>d</div>
+        <div className={style["store-topic__notes"]}></div>
       </div>
     </div>
   );
-};
+});
 export default StoreTopic;

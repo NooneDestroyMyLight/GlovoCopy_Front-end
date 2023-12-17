@@ -1,8 +1,9 @@
 export interface ProductI {
   name: string;
   imgSmall: string;
-  img: string;
+  imgBig: string;
   descr: string;
   price: number;
-  discont: string;
+  discount: string;
+  discountPrice?: number;
 }

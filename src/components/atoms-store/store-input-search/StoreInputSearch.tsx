@@ -1,11 +1,11 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import style from "./StoreInputSearch.module.scss";
 import InputHolder from "../../../assets/icons/input-holder/InputHolder";
 import { STORE_BODY_TEMPLATE } from "../../organisms-store/store-body/storeBody.data";
 
 interface StoreInputSearchProps {}
 
-const StoreInputSearch: FC<StoreInputSearchProps> = ({}) => {
+const StoreInputSearch: FC<StoreInputSearchProps> = memo(({}) => {
   const placeholder = `${STORE_BODY_TEMPLATE.inputPlaceholder} STORE_NAME`;
 
   return (
@@ -22,5 +22,5 @@ const StoreInputSearch: FC<StoreInputSearchProps> = ({}) => {
       {/**/}
     </form>
   );
-};
+});
 export default StoreInputSearch;

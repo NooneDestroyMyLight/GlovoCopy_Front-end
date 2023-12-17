@@ -35,7 +35,9 @@ const MWTemplate: FC<MWTemplateI> = memo(
         <li className={style["close-icon__wrapper"]}>
           {AdditionIcon ? <AdditionIcon /> : <div className="empty" />}
           {/* <i className={style["close-icon"]} onClick={onIconClick} /> */}
-          <CloseWindow onIconClick={onIconClick as () => void} />
+          <div onClick={onIconClick}>
+            <CloseWindow />
+          </div>
         </li>
         <li className={style["content"]}>
           {h2Text && <h2 className={style["mw-location-title"]}>{h2Text}</h2>}

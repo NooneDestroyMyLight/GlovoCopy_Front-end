@@ -1,21 +1,30 @@
-import { FC, memo, useEffect, useRef } from "react";
+import { FC, memo, useState } from "react";
 import style from "./StoreCatalogueItem.module.scss";
 
 import StoreProductCard from "../../molecules-store/store-product-card/StoreProductCard";
 import { CatalogueI } from "../store-body/storeBody.data";
+import ModelWindow from "../../../HOC/model-window/ModelWindow";
+import { useExclusiveMWToggle } from "../../../hooks/useExclusiveMWToggle";
+import MWWindowBody from "../../tamplates-store/mw-window-body/MWWindowBody";
+import MWStoreProductDetail from "../mw-product-detail/MWStoreProductDetail";
 //
-import { useInView } from "react-intersection-observer";
 
 interface StoreCatalogueItemProps {
   Icon?: FC;
   refEl: React.RefObject<HTMLElement>;
   catalogue: CatalogueI;
+  //
+  isClosed: boolean;
 }
 
 const StoreCatalogueItem: FC<StoreCatalogueItemProps> = memo(
-  ({ refEl, Icon, catalogue }) => {
+  ({ refEl, Icon, catalogue, isClosed }) => {
     const { productList, title } = catalogue;
+    const [isMwOpen, currentProduct, closeMW, funArray] = useExclusiveMWToggle(
+      productList.map((item) => item.name)
+    );
 
+    // const [curentMWProduct, setCurentMWProduct] = useState<string>("");
     return (
       <section ref={refEl} className={style["store-catalogue-item"]}>
         <div className={style["store-catalogue-item__title"]}>
@@ -27,9 +36,28 @@ const StoreCatalogueItem: FC<StoreCatalogueItemProps> = memo(
           <h3>{title}</h3>
         </div>
         <ul className={style["products-list"]}>
-          {productList.map((item, index) => (
-            <StoreProductCard product={item} key={index} />
-          ))}
+          {productList.map((product, index) => {
+            console.log(index);
+            return (
+              <>
+                <div onClick={funArray[index]}>
+                  <StoreProductCard
+                    product={product}
+                    key={index}
+                    isClosed={isClosed}
+                  />
+                </div>
+                {!isClosed && currentProduct === product.name && (
+                  <ModelWindow toggleMW={closeMW} isOpen={isMwOpen}>
+                    <MWWindowBody handleCloseWindow={closeMW}>
+                      <MWStoreProductDetail product={product} key={index} />
+                    </MWWindowBody>
+                  </ModelWindow>
+                )}
+              </>
+            );
+          })}
+          {/*  */}
         </ul>
       </section>
     );

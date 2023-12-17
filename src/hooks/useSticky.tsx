@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export const useSticky = (
   initialState: boolean
@@ -14,13 +14,13 @@ export const useSticky = (
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setIsSticky(false);
-          } else {
             setIsSticky(true);
+          } else {
+            setIsSticky(false);
           }
         });
       },
-      { threshold: 0.95 } //0.95
+      { threshold: 0.1 }
     );
 
     observer.observe(headerElement);
@@ -28,8 +28,7 @@ export const useSticky = (
     return () => {
       observer.unobserve(headerElement);
     };
-  }, []);
-  //Ask Maks to discribe this part
+  }, [divRef, setIsSticky, isSticky]);
 
   return [isSticky, divRef];
 };

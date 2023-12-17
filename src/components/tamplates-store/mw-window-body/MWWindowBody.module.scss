@@ -1,0 +1,26 @@
+.mw-window-body {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+
+  border-radius: var(--helio-space-S);
+  box-shadow: 0 2px 20px 12px var(--helio-color-shadow);
+
+  background-color: var(--helio-color-floatingElementBackground);
+  box-sizing: border-box;
+
+  overflow: hidden;
+  padding: 0 0 var(--helio-space-M) 0;
+
+  &__top-buttons-panel {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--helio-space-M);
+
+    box-sizing: border-box;
+  }
+
+  &__children {
+    padding: 0 var(--helio-space-XL);
+  }
+}
