@@ -5,7 +5,7 @@ import { SET_LOCATION_INFO_TEMPLATE } from "./confirmLocation.data";
 import Button from "../../../../atoms/button/Button";
 import { STYLE_MW_LOCATION_BUTTON } from "../../../../../constant/styles";
 //
-import { UserConfirmedLocationI } from "../../../../../types/UserLocation";
+import { UserConfirmedLocationI } from "../../../../../types/IUserLocation";
 //
 import Map from "../../../../atoms/map/Map";
 import MapMarker_small from "../../../../../assets/icons/map-marker-small/MapMarker";

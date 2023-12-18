@@ -5,3 +5,7 @@ export const STORE_CART_TEMPLATE = {
     "Пока что корзина пуста. Добавленные вами продукты будут отображаться здесь!",
   isClosedCartText: "Тимчасово не працює",
 };
+
+export const CART_ITEM_TEMPLATE = {
+  currency: "грн",
+};

@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import style from "./PathToStoreSeparator.module.scss";
-import { IconI } from "../../../types/icon";
+import { IconI } from "../../../types/IIcon";
 
-const PathToStoreSeparator: FC<IconI> = ({ color }) => {
+const PathToStoreSeparator: FC<IconI> = memo(({ color }) => {
   return (
     <svg
       width="24"
@@ -19,5 +19,5 @@ const PathToStoreSeparator: FC<IconI> = ({ color }) => {
       ></path>
     </svg>
   );
-};
+});
 export default PathToStoreSeparator;

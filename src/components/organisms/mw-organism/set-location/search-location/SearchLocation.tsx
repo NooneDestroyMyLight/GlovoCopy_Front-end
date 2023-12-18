@@ -8,7 +8,7 @@ import LocationIcon from "../../../../../assets/icons/set-address/LocationIcon";
 import FlagMedium from "../../../../../assets/icons/set-address/FlagMedium";
 //Type
 import { UseFormRegister, UseFormResetField } from "react-hook-form";
-import { UserLocationI } from "../../../../../types/UserLocation";
+import { UserLocationI } from "../../../../../types/IUserLocation";
 //Component
 import MWInput from "../../../../molecules/mw-input/MWInput";
 //Query

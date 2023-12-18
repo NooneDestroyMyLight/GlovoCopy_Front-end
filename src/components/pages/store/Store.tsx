@@ -16,6 +16,7 @@ import StoreHeaderStickyHeader from "../../molecules-store/store-header-sticky/S
 import { PATH_TO_STORE_DATA } from "../../atoms-store/path-to-store/pathToStore.data";
 //
 import { useOverlayHeaderView } from "../../../hooks/useOverlayHeaderView";
+import { useTypedSelector } from "../../../hooks/hook-redux/useTypedSelector";
 
 const Store: FC = ({}) => {
   const catalogueList = STORE_CATALOGUE_LIST_DATA.map(
@@ -28,6 +29,8 @@ const Store: FC = ({}) => {
   );
 
   const [isSticky, divRef] = useOverlayHeaderView(false);
+
+  const { cart } = useTypedSelector((state) => state.cart);
 
   return (
     <main className={style["store"]}>
@@ -58,7 +61,7 @@ const Store: FC = ({}) => {
                 isSticky && style["store_sticky-el"]
               }`}
             >
-              <StoreCart isClosed={STORE_DATA.isClosed} />
+              <StoreCart isClosed={STORE_DATA.isClosed} cartItems={cart} />
             </div>
           </div>
           <div className={style["catalogue"]}>

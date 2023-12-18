@@ -1,16 +1,20 @@
 import { FC, useState } from "react";
 import style from "./MWStoreProductDetail.module.scss";
-import { ProductI } from "../../../types/ProductI";
+import { IProduct } from "../../../types/IProduct";
+//
 import { MW_STORE_PRODUCT_DETAIL__TEMPLATE } from "./mWStoreProductDetail.data";
 import { utilsFormatedPrice } from "../../../utils/formatedPrice";
+//
 import IconStoreIncrease from "../../../assets/icons-store-page/icon-store-increase/IconStoreIncrease";
 import IconStoreDecrease from "../../../assets/icons-store-page/icon-store-decrease/IconStoreDecrease";
 import IconStoreDecreaseDisabled from "../../../assets/icons-store-page/icon-store-decrease--disabled/IconStoreDecrease";
-import Button from "../../atoms/button/Button";
+//
 import { STYLE_MW_LOCATION_BUTTON } from "../../../constant/styles";
 import DiscountPrice from "../../atoms-store/discount-price/DiscountPrice";
 import { DISCOUNT_PRICE_STYLE_LARGE } from "../../atoms-store/discount-price/discountPrice.style";
+//
 import DiscountMark from "../../atoms-store/discount-mark/DiscountMark";
+import { useActions } from "../../../hooks/hook-redux/useActions";
 
 interface ProductCounterProps {
   count: number;
@@ -40,21 +44,33 @@ const ProductCounter: FC<ProductCounterProps> = ({ count, setCount }) => {
 };
 
 interface MWStoreProductDetailProps {
-  product: ProductI;
+  product: IProduct;
+  toggleMW: () => void;
 }
 
 const MWStoreProductDetail: FC<MWStoreProductDetailProps> = ({
-  product: { imgBig, name, price, descr, discount, discountPrice },
+  product,
+  toggleMW,
 }) => {
+  const { imgBig, name, price, descr, discount, discountPrice } = product;
   const [count, setCount] = useState<number>(1);
+  const { addToCart } = useActions();
+
+  const finalPrice = discount
+    ? (discountPrice as number) * count
+    : price * count;
 
   const buttonText: string = `${
     MW_STORE_PRODUCT_DETAIL__TEMPLATE.button
-  } ${count} за ${
-    discount
-      ? utilsFormatedPrice((discountPrice as number) * count)
-      : utilsFormatedPrice(price * count)
-  }`;
+  } ${count} за ${utilsFormatedPrice(finalPrice)}`;
+
+  const handlerAddToCart = () => {
+    addToCart({
+      ...product,
+      count: count,
+    });
+    toggleMW();
+  };
 
   return (
     <div className={style["mw-product-detail"]}>
@@ -86,8 +102,9 @@ const MWStoreProductDetail: FC<MWStoreProductDetailProps> = ({
       </div>
       <div className={style["confirm-button__wrapper"]}>
         <button
-          className={`${STYLE_MW_LOCATION_BUTTON} ${style["button"]}`}
+          onClick={handlerAddToCart}
           type="submit"
+          className={`${STYLE_MW_LOCATION_BUTTON} ${style["button"]}`}
         >
           {buttonText}
         </button>

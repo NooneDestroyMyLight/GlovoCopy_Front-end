@@ -1,21 +1,33 @@
 import { FC, memo } from "react";
 import style from "./StoreProductCard.module.scss";
-import { ProductI } from "../../../types/ProductI";
+import { IProduct } from "../../../types/IProduct";
 //
 import { utilsFormatedPrice } from "../../../utils/formatedPrice";
 //
 import IconAddToCart from "../../../assets/icons-store-page/store-add-to-cart/IconAddToCart";
 import DiscountPrice from "../../atoms-store/discount-price/DiscountPrice";
 import DiscountMark from "../../atoms-store/discount-mark/DiscountMark";
+import { useActions } from "../../../hooks/hook-redux/useActions";
 
 interface StoreProductCardProps {
-  product: ProductI;
+  product: IProduct;
   isClosed: boolean;
 }
 
 const StoreProductCard: FC<StoreProductCardProps> = memo(
   ({ product, isClosed }) => {
     const { imgSmall, name, descr, price, discount, discountPrice } = product;
+
+    const { addToCart } = useActions();
+
+    const formattedPrice = discountPrice ? discountPrice : price;
+
+    const handlerAddToCart = (
+      e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    ) => {
+      e.stopPropagation();
+      addToCart({ ...product, count: 1, totalCost: formattedPrice });
+    };
 
     return (
       <li className={style["store-product-card"]}>
@@ -44,7 +56,7 @@ const StoreProductCard: FC<StoreProductCardProps> = memo(
           {!isClosed && (
             <button
               className={style["butt__add-to-cart"]}
-              onClick={() => console.log("handleAddProductToCart")}
+              onClick={handlerAddToCart}
             >
               <IconAddToCart />
             </button>

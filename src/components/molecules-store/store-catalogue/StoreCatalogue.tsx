@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, memo, useEffect } from "react";
 import style from "./StoreCatalogue.module.scss";
 import { STORE_CATALOGUE_TEMPLATE } from "./storeCatalogue.data";
 //
@@ -10,7 +10,7 @@ interface StoreCatalogueProps {
   catalogueList: CatalogueIWithRef[];
 }
 
-const StoreCatalogue: FC<StoreCatalogueProps> = ({ catalogueList }) => {
+const StoreCatalogue: FC<StoreCatalogueProps> = memo(({ catalogueList }) => {
   const refArr = catalogueList.map((item) => item.ref);
 
   const isInView = useInView(refArr);
@@ -61,5 +61,5 @@ const StoreCatalogue: FC<StoreCatalogueProps> = ({ catalogueList }) => {
       </ul>
     </div>
   );
-};
+});
 export default StoreCatalogue;

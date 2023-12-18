@@ -13,7 +13,7 @@ import {
   UserConfirmedLocationI,
   UserLocationEntries,
   UserLocationI,
-} from "../types/UserLocation";
+} from "../types/IUserLocation";
 import { useCallback } from "react";
 
 let userConfirmedLocation: UserConfirmedLocationI;

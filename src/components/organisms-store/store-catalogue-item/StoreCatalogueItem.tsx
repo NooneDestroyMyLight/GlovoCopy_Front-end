@@ -21,7 +21,7 @@ const StoreCatalogueItem: FC<StoreCatalogueItemProps> = memo(
   ({ refEl, Icon, catalogue, isClosed }) => {
     const { productList, title } = catalogue;
     const [isMwOpen, currentProduct, closeMW, funArray] = useExclusiveMWToggle(
-      productList.map((item) => item.name)
+      productList.map((product) => product.id + "")
     );
 
     // const [curentMWProduct, setCurentMWProduct] = useState<string>("");
@@ -37,20 +37,23 @@ const StoreCatalogueItem: FC<StoreCatalogueItemProps> = memo(
         </div>
         <ul className={style["products-list"]}>
           {productList.map((product, index) => {
-            console.log(index);
             return (
               <>
                 <div onClick={funArray[index]}>
                   <StoreProductCard
                     product={product}
-                    key={index}
+                    key={product.id}
                     isClosed={isClosed}
                   />
                 </div>
-                {!isClosed && currentProduct === product.name && (
+                {!isClosed && +currentProduct === product.id && (
                   <ModelWindow toggleMW={closeMW} isOpen={isMwOpen}>
                     <MWWindowBody handleCloseWindow={closeMW}>
-                      <MWStoreProductDetail product={product} key={index} />
+                      <MWStoreProductDetail
+                        product={product}
+                        key={product.id}
+                        toggleMW={closeMW}
+                      />
                     </MWWindowBody>
                   </ModelWindow>
                 )}

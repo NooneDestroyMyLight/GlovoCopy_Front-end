@@ -1,7 +1,7 @@
 import { RequestType, geocode } from "react-geocode";
 import { GEOCODE_REQ_PARAMS } from "../components/atoms/map/google-map.data";
 import { UseFormReset, UseFormSetValue } from "react-hook-form";
-import { UserLocationI } from "../types/UserLocation";
+import { UserLocationI } from "../types/IUserLocation";
 
 export const handleCenterChanged = async (
   mapRef: React.MutableRefObject<google.maps.Map | null>,

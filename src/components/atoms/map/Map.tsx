@@ -8,7 +8,7 @@ import { useMapInit } from "../../../hooks/useGoogleMapInit";
 //
 import { debounce } from "../../../utils/debounce";
 import { UseFormReset, UseFormSetValue } from "react-hook-form";
-import { UserLocationI } from "../../../types/UserLocation";
+import { UserLocationI } from "../../../types/IUserLocation";
 import { handleCenterChanged } from "../../../services/getAddressByMap";
 
 interface MapI {

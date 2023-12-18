@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import style from "./PathToStore.module.scss";
 import { PATH_TO_STORE_DATA } from "./pathToStore.data";
 import PathToStoreSeparator from "../../../assets/icons-store-page/path-to-store-separator/PathToStoreSeparator";
 import { WHITE } from "../../../assets/icons/location-small/locationSmall.data";
 
-const PathToStore: FC = ({}) => {
+const PathToStore: FC = memo(({}) => {
   return (
     <div className={style["path-to-store"]}>
       <span className={style["path-to-store__link"]}>
@@ -18,6 +18,6 @@ const PathToStore: FC = ({}) => {
       </span>
     </div>
   );
-};
+});
 
 export default PathToStore;

@@ -36,3 +36,28 @@
     }
   }
 }
+
+///CartItem:FC
+.cart-item {
+  width: 100%;
+  &__detail {
+    display: grid;
+    // grid-template-areas: "left center right";
+    grid-template-columns: 40px 1fr auto;
+  }
+  &__count {
+    font-weight: 700;
+  }
+  &__name {
+  }
+  &__price {
+  }
+  .cart-item__buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  .icon__wrapper {
+    height: 24px;
+    width: 24px;
+  }
+}
