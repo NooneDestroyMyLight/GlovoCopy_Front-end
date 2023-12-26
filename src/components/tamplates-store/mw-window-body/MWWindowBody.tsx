@@ -6,14 +6,16 @@ import CloseWindow from "../../../assets/icons/close-window/CloseWindow";
 interface MWWindowBodyProps {
   children: ReactNode;
   handleCloseWindow: () => void;
+  className: string;
 }
 
 const MWWindowBody: FC<MWWindowBodyProps> = ({
   children,
+  className,
   handleCloseWindow,
 }) => {
   return (
-    <section className={style["mw-window-body"]}>
+    <section className={`${style["mw-window-body"]} ${className}`}>
       <div className={style["mw-window-body__top-buttons-panel"]}>
         <div />
         <div onClick={handleCloseWindow}>

@@ -40,7 +40,9 @@ const HeaderProfileMobile: FC = memo(({}) => {
       >
         <div className={style["profile--mobile"]}>
           <div className={style["profile--mobile__header"]}>
-            <CloseWindow onIconClick={handleToggle} />
+            <div onClick={handleToggle}>
+              <CloseWindow />
+            </div>
           </div>
           <div className={style["menu"]}>
             <span

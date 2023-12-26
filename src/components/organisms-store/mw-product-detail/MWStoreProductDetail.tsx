@@ -5,43 +5,14 @@ import { IProduct } from "../../../types/IProduct";
 import { MW_STORE_PRODUCT_DETAIL__TEMPLATE } from "./mWStoreProductDetail.data";
 import { utilsFormatedPrice } from "../../../utils/formatedPrice";
 //
-import IconStoreIncrease from "../../../assets/icons-store-page/icon-store-increase/IconStoreIncrease";
-import IconStoreDecrease from "../../../assets/icons-store-page/icon-store-decrease/IconStoreDecrease";
-import IconStoreDecreaseDisabled from "../../../assets/icons-store-page/icon-store-decrease--disabled/IconStoreDecrease";
-//
+
 import { STYLE_MW_LOCATION_BUTTON } from "../../../constant/styles";
-import DiscountPrice from "../../atoms-store/discount-price/DiscountPrice";
-import { DISCOUNT_PRICE_STYLE_LARGE } from "../../atoms-store/discount-price/discountPrice.style";
+
 //
 import DiscountMark from "../../atoms-store/discount-mark/DiscountMark";
 import { useActions } from "../../../hooks/hook-redux/useActions";
-
-interface ProductCounterProps {
-  count: number;
-  setCount: React.Dispatch<React.SetStateAction<number>>;
-}
-
-const ProductCounter: FC<ProductCounterProps> = ({ count, setCount }) => {
-  return (
-    <div className={style["product-counter"]}>
-      <button
-        disabled={count === 1}
-        onClick={() => setCount(count - 1)}
-        //
-        className={style["button-counter"]}
-      >
-        {count === 1 ? <IconStoreDecreaseDisabled /> : <IconStoreDecrease />}
-      </button>
-      <div className={style["product-count"]}>{count}</div>
-      <button
-        className={style["button-counter"]}
-        onClick={() => setCount(count + 1)}
-      >
-        <IconStoreIncrease />
-      </button>
-    </div>
-  );
-};
+import MWStoreProductDetailCounter from "../../atoms-store/mw-store-product-details/mw-store-product-detail-counter/MWStoreProductDetailCounter";
+import MWStoreProductDetailPrice from "../../atoms-store/mw-store-product-details/mw-store-product-detail-price/MWStoreProductDetailPrice";
 
 interface MWStoreProductDetailProps {
   product: IProduct;
@@ -56,7 +27,7 @@ const MWStoreProductDetail: FC<MWStoreProductDetailProps> = ({
   const [count, setCount] = useState<number>(1);
   const { addToCart } = useActions();
 
-  const finalPrice = discount
+  const finalPrice = discountPrice
     ? (discountPrice as number) * count
     : price * count;
 
@@ -82,22 +53,16 @@ const MWStoreProductDetail: FC<MWStoreProductDetailProps> = ({
           {discount && <DiscountMark value={discount} />}
         </div>
         <h4 className={style["product-title"]}>{name}</h4>
-        <div className={style["price__wrapper"]}>
-          {discount ? (
-            <DiscountPrice
-              discountPrice={discountPrice as number}
-              price={price}
-              classNameSize={DISCOUNT_PRICE_STYLE_LARGE}
-            />
-          ) : (
-            <span className={style["price"]}>{price}₴</span>
-          )}
-        </div>
+        <MWStoreProductDetailPrice
+          price={price}
+          discount={discount}
+          discountPrice={discountPrice}
+        />
         <div className={style["descr__wrapper"]}>
           <p className={style["descr"]}>{descr}</p>
         </div>
         <div className={style["counter__wrapper"]}>
-          <ProductCounter count={count} setCount={setCount} />
+          <MWStoreProductDetailCounter count={count} setCount={setCount} />
         </div>
       </div>
       <div className={style["confirm-button__wrapper"]}>

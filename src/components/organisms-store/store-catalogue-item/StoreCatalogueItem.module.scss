@@ -23,3 +23,8 @@
     gap: 20px;
   }
 }
+
+.mw-store-product-detail--extend {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+}

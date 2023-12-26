@@ -1,0 +1,18 @@
+.mw-store-product-detail-counter {
+  display: flex;
+  align-items: center;
+  gap: var(--helio-space-XS);
+
+  .button-counter {
+    width: var(--helio-space-2XL);
+    height: var(--helio-space-2XL);
+  }
+
+  .product-count {
+    font-size: 20px;
+    font-weight: 700;
+
+    min-width: 26px;
+    text-align: center;
+  }
+}

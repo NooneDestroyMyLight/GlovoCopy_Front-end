@@ -25,15 +25,6 @@
     margin-bottom: var(--helio-space-M);
   }
 
-  .price__wrapper {
-    width: 100%;
-    text-align: left;
-    margin-bottom: var(--helio-space-S);
-  }
-  .price {
-    font-size: 20px;
-  }
-
   .product-img__container {
     height: 300px;
     width: 300px;
@@ -73,24 +64,5 @@
     .button {
       width: 308px;
     }
-  }
-}
-// ProductCounter:FC
-.product-counter {
-  display: flex;
-  align-items: center;
-  gap: var(--helio-space-XS);
-
-  .button-counter {
-    width: var(--helio-space-2XL);
-    height: var(--helio-space-2XL);
-  }
-
-  .product-count {
-    font-size: 20px;
-    font-weight: 700;
-
-    min-width: 26px;
-    text-align: center;
   }
 }

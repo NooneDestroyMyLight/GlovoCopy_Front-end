@@ -10,4 +10,6 @@ export const STORE_DATA: StoreDataI = {
   storeDiscount: "20%",
   isClosed: false,
 };
-export const STORE_TEMPLATE = {};
+export const STORE_TEMPLATE = {
+  currencySymbol: "₴",
+};

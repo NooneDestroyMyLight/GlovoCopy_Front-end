@@ -6,7 +6,6 @@
   --helio-color-primaryBorder: var(--helio-primitiveColor-grey100);
   --helio-color-floatingElementBackground: var(--helio-primitiveColor-white);
   --helio-color-mediumGlobalBackground: var(--helio-primitiveColor-yellow200);
-  --helio-primitiveColor-white: white;
   --helio-primitiveColor-yellow500: #e19f17ff;
   --helio-primitiveColor-yellow200: #ffde99ff;
   --helio-primitiveColor-yellow50: #fff3da;
@@ -14,7 +13,8 @@
   --helio-primitiveColor-grey600: #6e6e6eff;
   --helio-primitiveColor-grey300: #c1c1c1ff;
   --helio-primitiveColor-grey100: #e4e4e4;
-  --helio-primitiveColor-red300: #ff6666ff;
+  --helio---helio-color-primaryBackground-red300: #ff6666ff;
+  --helio-color-primaryBackground: var(--helio-primitiveColor-white);
   --helio-primitiveColor-white: #ffffffff;
   --helio-primitiveColor-blackTransparent10: #0000001a;
   --helio-primitiveColor-black: #000000ff;
