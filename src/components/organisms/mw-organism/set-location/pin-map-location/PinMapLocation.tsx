@@ -5,7 +5,7 @@ import { PIN_MAP_LOCATION_TEMPLATE } from "./pinMapLocation.data";
 //
 import Map from "../../../../atoms/map/Map";
 import { UseFormReset, UseFormSetValue } from "react-hook-form";
-import { UserLocationI } from "../../../../../types/UserLocation";
+import { UserLocationI } from "../../../../../types/IUserLocation";
 //
 
 interface PinMapLocationI {

@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 import style from "./MwLocationPrevButton.module.scss";
-import { IconI } from "../../../types/icon";
+import { IconI } from "../../../types/IIcon";
 
 interface MwLocationPrevButtonI extends IconI {
   onIconClick?: () => void;

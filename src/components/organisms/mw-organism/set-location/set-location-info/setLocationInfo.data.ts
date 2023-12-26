@@ -1,5 +1,5 @@
 import { RegisterOptions } from "react-hook-form";
-import { UserLocationI } from "../../../../../types/UserLocation";
+import { UserLocationI } from "../../../../../types/IUserLocation";
 
 export interface setLocationInfoField {
   name: string;

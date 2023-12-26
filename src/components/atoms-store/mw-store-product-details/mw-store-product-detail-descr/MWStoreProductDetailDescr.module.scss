@@ -1,0 +1,17 @@
+.mw-store-product-detail-descr {
+  display: inline;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+
+  margin-bottom: var(--helio-space-XL);
+  overflow: hidden;
+
+  &__text {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+  }
+}

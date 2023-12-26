@@ -9,3 +9,7 @@ export const STORE_TOPIC_DATA = {
   deliveryTime: "30-40'",
   rating: "98%",
 };
+
+export const STORE_TOPIC_TEMPLATE = {
+  isDiscountTemp: "на деякі позиції",
+};

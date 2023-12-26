@@ -1,5 +1,5 @@
 import { FC, memo } from "react";
-import { IconI } from "../../../types/icon";
+import { IconI } from "../../../types/IIcon";
 
 const MapMarker_small: FC = memo(({}) => {
   return (

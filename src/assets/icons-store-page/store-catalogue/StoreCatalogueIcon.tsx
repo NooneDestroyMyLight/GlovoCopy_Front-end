@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import style from "./StoreCatalogueIcon.module.scss";
-import { IconI } from "../../../types/icon";
+import { IconI } from "../../../types/IIcon";
 
-const StoreCatalogueIcon: FC<IconI> = ({}) => {
+const StoreCatalogueIcon: FC<IconI> = memo(({}) => {
   return (
     <svg width="13" height="12" viewBox="0 0 13 12" fill="none">
       <rect
@@ -37,5 +37,5 @@ const StoreCatalogueIcon: FC<IconI> = ({}) => {
       />
     </svg>
   );
-};
+});
 export default StoreCatalogueIcon;

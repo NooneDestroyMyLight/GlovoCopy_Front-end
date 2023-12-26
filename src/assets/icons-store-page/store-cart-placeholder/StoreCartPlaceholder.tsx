@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import style from "./StoreCartPlaceholder.module.scss";
 
 const alt = "Cart is empty";
 
-const StoreCartPlaceholder: FC = ({}) => {
+const StoreCartPlaceholder: FC = memo(({}) => {
   return (
     <svg
       width="227"
@@ -619,5 +619,5 @@ const StoreCartPlaceholder: FC = ({}) => {
       <title>{alt}</title>
     </svg>
   );
-};
+});
 export default StoreCartPlaceholder;

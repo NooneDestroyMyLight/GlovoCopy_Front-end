@@ -47,3 +47,26 @@
     display: none;
   }
 }
+
+.store-topic-mark {
+  display: flex;
+  align-items: center;
+  gap: var(--helio-space-XS);
+
+  font-size: 12px;
+  font-weight: 400;
+
+  background-color: var(--color-globalBackground);
+  border-radius: 4px;
+
+  width: fit-content;
+  min-height: var(--helio-space-M);
+
+  padding: var(--helio-space-3XS) var(--helio-space-2XS);
+  margin-bottom: var(--helio-space-L);
+
+  &__icon {
+    width: 16px;
+    height: 16px;
+  }
+}

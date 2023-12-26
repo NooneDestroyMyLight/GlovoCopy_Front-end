@@ -10,7 +10,7 @@ import {
   UseFormResetField,
   UseFormTrigger,
 } from "react-hook-form";
-import { UserLocationI } from "../../../../../types/UserLocation";
+import { UserLocationI } from "../../../../../types/IUserLocation";
 //
 import Button from "../../../../atoms/button/Button";
 import { STYLE_MW_LOCATION_BUTTON } from "../../../../../constant/styles";

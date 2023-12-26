@@ -1,15 +1,13 @@
 .store-cart {
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
 
-  // min-height: 400px;
+  min-height: 400px;
+  max-height: calc(100vh - 184px);
 
   border-radius: 10px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   background-color: var(--helio-color-floatingElementBackground);
-
-  padding: 0 var(--helio-space-M) var(--helio-space-M) var(--helio-space-M);
 
   &__title {
     font-size: 28px;
@@ -18,21 +16,186 @@
     text-align: center;
 
     margin: var(--helio-space-XL) 0 var(--helio-space-2XL);
+    padding: 0 var(--helio-space-M);
   }
 
   &__placeholder {
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-sizing: border-box;
+
+    flex-grow: 1;
+    overflow: auto;
 
     margin-bottom: var(--helio-space-L);
+    padding: 0 var(--helio-space-M);
+
+    .cart-items-list__wrapper {
+      background: linear-gradient(
+          var(--helio-color-primaryBackground) 30%,
+          hsla(0, 0%, 100%, 0)
+        ),
+        linear-gradient(
+            hsla(0, 0%, 100%, 0),
+            var(--helio-color-primaryBackground) 70%
+          )
+          0 100%,
+        radial-gradient(
+          farthest-side at 50% 0,
+          rgba(0, 0, 0, 0.07),
+          transparent
+        ),
+        radial-gradient(
+            farthest-side at 50% 99%,
+            rgba(0, 0, 0, 0.07),
+            transparent
+          )
+          0 100%;
+      background-attachment: local, local, scroll, scroll;
+      background-color: var(--helio-color-primaryBackground);
+      background-repeat: no-repeat;
+      background-size: 100% 40px, 100% 40px, 100% 7px, 100% 7px;
+
+      width: 100%;
+      overflow: auto;
+      .cart-items-list {
+        height: 100%;
+        overflow: auto;
+        // min-height: 0;
+        width: 100%;
+      }
+    }
+
     &__text {
       font-size: 16px;
       font-weight: 300;
       line-height: 1.4;
 
       margin: 40px 20px 0;
+
       text-align: center;
     }
   }
+
+  .confirm-order-button {
+    text-align: center;
+    margin-bottom: var(--helio-space-M);
+  }
+}
+
+.padding {
+  padding: 0 var(--helio-space-M);
+}
+
+///CartItem:FC
+.cart-item {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 100%;
+
+  padding: var(--helio-space-S) 0;
+
+  .font {
+    color: var(--helio-color-primaryText);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.4;
+  }
+
+  &__detail {
+    display: grid;
+    // grid-template-areas: "left center right";
+    grid-template-columns: 40px 1fr auto;
+    grid-template-areas: "left center right";
+  }
+  &__count {
+    font-weight: 700 !important;
+  }
+  &__name {
+  }
+  &__price {
+  }
+
+  .cart-item__buttons {
+    display: flex;
+    justify-content: space-between;
+
+    height: 38px;
+
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .icon__wrapper {
+    height: 24px;
+    width: 24px;
+  }
+
+  .discount {
+    align-items: center;
+    .discount__mark {
+      grid-area: center;
+    }
+    .discount__price {
+      grid-area: right;
+      text-decoration-line: line-through;
+
+      font-size: 14px;
+      font-weight: 300;
+    }
+  }
+}
+
+.store-cart-message {
+  color: var(--helio-color-primaryText);
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.6;
+  text-align: center;
+
+  position: relative;
+  padding: 0 var(--helio-space-M) var(--helio-space-M);
+
+  // visibility: hidden;
+  opacity: 1;
+  transition: opacity 0.4s;
+
+  .progress-line {
+    width: 100%;
+    height: 3px;
+
+    border-radius: 8px;
+    height: 4px;
+
+    background-color: #e9f8f5;
+
+    transition: width 1s ease;
+
+    top: 0;
+    left: 0;
+    position: absolute;
+
+    z-index: 1;
+  }
+
+  .progress-line__percentage {
+    background-color: var(--color-accent);
+    z-index: 2;
+    width: var(--percentage);
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+
+    margin: var(--helio-space-S);
+    width: 100%;
+  }
+}
+
+.store-cart-message--hidden {
+  transition-delay: 0.7s;
+  // transition: opacity 0.4s;
+  opacity: 0;
 }

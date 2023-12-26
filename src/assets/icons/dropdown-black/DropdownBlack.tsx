@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 import style from "./DropdownBlack.module.scss";
-import { IconI } from "../../../types/icon";
+import { IconI } from "../../../types/IIcon";
 
 //styles icon_size
 export const DD_ICON_SMALL = style.small;

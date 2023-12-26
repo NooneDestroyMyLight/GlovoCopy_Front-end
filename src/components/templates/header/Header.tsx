@@ -49,7 +49,7 @@ const Header: FC<HeaderI> = memo(({}) => {
   const [userAddress, setUserCurrentAddress] = useState<string>(""); // ITS JUST PLACEHOLDER CHANGE IT INTO STATE-MANAGER
   //
 
-  const isAuth: boolean = true;
+  const isAuth: boolean = false;
   return (
     <>
       <div ref={elRef} className={style.stickyScreen} />

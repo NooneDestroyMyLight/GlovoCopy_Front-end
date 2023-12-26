@@ -10,10 +10,13 @@ export const useExclusiveItem = (
   );
 
   const handleOpenCurrent = idList.map((item) =>
-    useCallback((arg = undefined) => {
-      if (arg === null) setCurrent(null);
-      else setCurrent(isCurrent === item ? null : item);
-    }, [])
+    useCallback(
+      (arg = undefined) => {
+        if (arg === null) setCurrent(null);
+        else setCurrent(isCurrent === item ? null : item);
+      },
+      [isCurrent]
+    )
   );
 
   const ref = useCallback(

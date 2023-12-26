@@ -33,7 +33,6 @@ export const useAutocompleteInit = (
 ] => {
   //
   const [isLoaded] = useMapInit();
-  const [isLoading, toggle] = useLoading();
   //
   const {
     ready,

@@ -1,0 +1,21 @@
+.discount-price__wrapper {
+  display: flex;
+  align-items: center;
+
+  gap: var(--helio-space-S);
+  .product-price__original {
+    font-size: 12px;
+
+    color: var(--helio-color-secondaryText);
+    text-decoration: line-through;
+  }
+}
+
+.large {
+  .product-price {
+    font-size: 20px;
+  }
+  .product-price__original {
+    font-size: 16px;
+  }
+}
