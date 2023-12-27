@@ -33,6 +33,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 349,
         discount: "",
+        customizations: [],
       },
       {
         id: 2,
@@ -45,6 +46,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 349,
         discount: "",
+        customizations: [],
       },
       {
         id: 3,
@@ -57,6 +59,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 349,
         discount: "",
+        customizations: [],
       },
     ],
   },
@@ -75,6 +78,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 349,
         discount: "",
+        customizations: [],
       },
       {
         id: 5,
@@ -87,6 +91,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 349,
         discount: "",
+        customizations: [],
       },
       {
         id: 6,
@@ -99,6 +104,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 349,
         discount: "",
+        customizations: [],
       },
       {
         id: 7,
@@ -111,6 +117,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 349,
         discount: "",
+        customizations: [],
       },
       {
         id: 8,
@@ -123,6 +130,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 349,
         discount: "",
+        customizations: [],
       },
       {
         id: 9,
@@ -135,6 +143,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 349,
         discount: "",
+        customizations: [],
       },
     ],
   },
@@ -154,6 +163,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
         price: 349,
         discount: "20%",
         discountPrice: 279.2,
+        customizations: [],
       },
       {
         id: 11,
@@ -166,6 +176,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 349,
         discount: "",
+        customizations: [],
       },
       {
         id: 12,
@@ -178,6 +189,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 349,
         discount: "",
+        customizations: [],
       },
       {
         id: 13,
@@ -190,6 +202,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 37,
         discount: "",
+        customizations: [],
       },
     ],
   },

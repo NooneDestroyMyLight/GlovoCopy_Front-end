@@ -11,9 +11,7 @@ import {
   MW_BODY_EXTENDED,
   MW_BODY_GENREAL,
 } from "../../tamplates-store/mw-window-body/MWWindowBody.style";
-import StoreCustomProductList from "../../organisms/store-custom-product-list/StoreCustomProductList";
-import { STORE_CUSTOM_LIST_DATA } from "../../organisms/store-custom-product-list/storeCustomProductList.data";
-import MWStoreProductDetailCustom from "../mw-store-product-detail--custom/MWStoreProductDetailCustom";
+
 import MWStoreProductDetailExtend from "../../tamplates-store/mw-store-product-detail--extend/MWStoreProductDetailExtend";
 //
 

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import style from "./MWStoreProductDetailButton.module.scss";
 import { STYLE_MW_LOCATION_BUTTON } from "../../../../constant/styles";
 
@@ -9,20 +9,22 @@ interface MWStoreProductDetailButtonProps {
   text: string;
 }
 
-const MWStoreProductDetailButton: FC<MWStoreProductDetailButtonProps> = ({
-  handler,
-  //
-  className,
-  text,
-}) => {
-  return (
-    <button
-      onClick={handler}
-      className={`${STYLE_MW_LOCATION_BUTTON} ${className}`}
-    >
-      {text}
-    </button>
-  );
-};
+const MWStoreProductDetailButton: FC<MWStoreProductDetailButtonProps> = memo(
+  ({
+    handler,
+    //
+    className,
+    text,
+  }) => {
+    return (
+      <button
+        onClick={handler}
+        className={`${STYLE_MW_LOCATION_BUTTON} ${className}`}
+      >
+        {text}
+      </button>
+    );
+  }
+);
 
 export default MWStoreProductDetailButton;

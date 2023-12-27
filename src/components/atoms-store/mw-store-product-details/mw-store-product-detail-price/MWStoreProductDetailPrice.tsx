@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import style from "./MWStoreProductDetailPrice.module.scss";
 import DiscountPrice from "../../discount-price/DiscountPrice";
 import { DISCOUNT_PRICE_STYLE_LARGE } from "../../discount-price/discountPrice.style";
@@ -11,26 +11,24 @@ interface MWStoreProductDetailPriceProps {
   price: number;
 }
 
-const MWStoreProductDetailPrice: FC<MWStoreProductDetailPriceProps> = ({
-  discount,
-  discountPrice,
-  price,
-}) => {
-  return (
-    <div className={style["mw-store-product-detail-price"]}>
-      {discount ? (
-        <DiscountPrice
-          discountPrice={discountPrice as number}
-          price={price}
-          classNameSize={DISCOUNT_PRICE_STYLE_LARGE}
-        />
-      ) : (
-        <span className={style["price"]}>{`${utilsFormatedPrice(price)} ${
-          STORE_TEMPLATE.currencySymbol
-        }`}</span>
-      )}
-    </div>
-  );
-};
+const MWStoreProductDetailPrice: FC<MWStoreProductDetailPriceProps> = memo(
+  ({ discount, discountPrice, price }) => {
+    return (
+      <div className={style["mw-store-product-detail-price"]}>
+        {discount ? (
+          <DiscountPrice
+            discountPrice={discountPrice as number}
+            price={price}
+            classNameSize={DISCOUNT_PRICE_STYLE_LARGE}
+          />
+        ) : (
+          <span className={style["price"]}>{`${utilsFormatedPrice(price)} ${
+            STORE_TEMPLATE.currencySymbol
+          }`}</span>
+        )}
+      </div>
+    );
+  }
+);
 
 export default MWStoreProductDetailPrice;

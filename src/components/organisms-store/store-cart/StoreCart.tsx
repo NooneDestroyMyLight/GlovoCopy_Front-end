@@ -17,15 +17,41 @@ import IconStoreDecrease from "../../../assets/icons-store-page/icon-store-decre
 import DiscountMark from "../../atoms-store/discount-mark/DiscountMark";
 import { STYLE_MW_LOCATION_BUTTON } from "../../../constant/styles";
 import { STORE_TEMPLATE } from "../../pages/store/Store.data";
+import { getFinalPrice } from "../../../utils/getFinalPrice";
+
+const _ = undefined;
 
 interface CartItemProps {
   product: ICartProduct;
 }
 
 const CartItem: FC<CartItemProps> = memo(
-  ({ product: { count, name, price, discountPrice, id, discount } }) => {
-    const totalActialPrice = count * getActualPrice(price, discountPrice);
-    const totalOldPrice = count * price;
+  ({
+    product: {
+      count,
+      name,
+      price,
+      discountPrice,
+      id,
+      discount,
+      customizations,
+    },
+  }) => {
+    // const totalActialPrice = count * getActualPrice(price, discountPrice);
+    const totalActialPrice = getFinalPrice(
+      price,
+      count,
+      discountPrice,
+      customizations?.reduce((total, item) => (total += item.price), 0)
+    );
+    //
+    const totalOldPrice = getFinalPrice(
+      price,
+      count,
+      _,
+      customizations?.reduce((total, item) => (total += item.price), 0)
+    );
+
     const { increase, decrease } = useActions();
 
     return (
@@ -150,9 +176,15 @@ const StoreCart: FC<StoreCartProps> = memo(({ cartItems, isClosed }) => {
     0
   );
 
+  console.log("cartItems", cartItems);
   const totalCartCost = cartItems.reduce(
-    (total: number, { price, discountPrice, count }) =>
-      (total += getActualPrice(price, discountPrice) * count),
+    (total: number, { price, discountPrice, count, customizations }) =>
+      (total += getFinalPrice(
+        price,
+        count,
+        discountPrice,
+        customizations?.reduce((total, item) => (total += item.price), 0)
+      )),
     0
   );
 
@@ -200,7 +232,7 @@ const StoreCart: FC<StoreCartProps> = memo(({ cartItems, isClosed }) => {
           </button>
         </div>
       )}
-      {/*delivery-discont + mw*/}
+      {/*add costomizatation*/}
     </div>
   );
 });

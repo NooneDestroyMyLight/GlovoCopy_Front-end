@@ -7,3 +7,9 @@
   padding-bottom: var(--helio-space-2XS);
   width: 100%;
 }
+
+.img {
+  object-fit: cover;
+  height: 300px;
+  width: 300px;
+}

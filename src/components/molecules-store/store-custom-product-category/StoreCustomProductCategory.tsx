@@ -1,8 +1,6 @@
 import { FC, memo, useCallback, useState } from "react";
 import style from "./StoreCustomProductCategory.module.scss";
 //
-import { ICustomizationItem } from "../../atoms-store/customization-item/customizationItem.data";
-//
 import IconAddToCart from "../../../assets/icons-store-page/store-add-to-cart/IconAddToCart";
 import {
   IStoreCustomProductCategory,
@@ -14,20 +12,21 @@ import {
   SRC_ICON_STORE_DISABLED_CUSTOMIZATION_ITEM,
   SRC_ICON_STORE_SELECTED_CUSTOMIZATION_ITEM,
 } from "../../../assets/icons/icon-src-const";
+import { ICustomizationItem } from "../../../types/IProduct";
 
 interface CustomizationItemProps {
   customization: ICustomizationItem;
-  selectedItemValidation: (customizationItem: ICustomizationItem) => void;
+  handlerAddCustomization: (customizationItem: ICustomizationItem) => void;
   isDisabled: boolean;
   isSelected: boolean;
 }
 
 const CustomizationItem: FC<CustomizationItemProps> = memo(
-  ({ customization, isDisabled, isSelected, selectedItemValidation }) => {
+  ({ customization, isDisabled, isSelected, handlerAddCustomization }) => {
     const { name, price } = customization;
     return (
       <button
-        onClick={() => selectedItemValidation(customization)}
+        onClick={() => handlerAddCustomization(customization)}
         disabled={isDisabled && !isSelected}
         className={`${style["customization-item"]} ${
           isDisabled && !isSelected && style["customization-item--disabled"]
@@ -62,9 +61,7 @@ const CustomizationItem: FC<CustomizationItemProps> = memo(
 
 interface CustomProductCategoryProps {
   storeCustomProductCategory: IStoreCustomProductCategory;
-  setGlobalSelectedItem: React.Dispatch<
-    React.SetStateAction<ICustomizationItem[]>
-  >;
+  handlerAddCustomization: (customizationItem: ICustomizationItem) => void;
 }
 
 const StoreCustomProductCategory: FC<CustomProductCategoryProps> = memo(
@@ -74,7 +71,7 @@ const StoreCustomProductCategory: FC<CustomProductCategoryProps> = memo(
       maxCustomizations,
       title,
     },
-    setGlobalSelectedItem,
+    handlerAddCustomization,
   }) => {
     const [selectedItems, setSelectedItem] = useState<ICustomizationItem[]>([]);
 
@@ -85,13 +82,13 @@ const StoreCustomProductCategory: FC<CustomProductCategoryProps> = memo(
             (item) => item.id !== customizationItem.id
           );
           setSelectedItem(filteredItem);
-          setGlobalSelectedItem(filteredItem);
+          handlerAddCustomization(customizationItem);
         } else {
           setSelectedItem([...selectedItems, customizationItem]);
-          setGlobalSelectedItem([...selectedItems, customizationItem]);
+          handlerAddCustomization(customizationItem);
         }
       },
-      [selectedItems, setSelectedItem]
+      [selectedItems, setSelectedItem, handlerAddCustomization]
     );
 
     return (
@@ -103,17 +100,23 @@ const StoreCustomProductCategory: FC<CustomProductCategoryProps> = memo(
           >{`${Store_Custom_Product_Category_TEMPLATE.subTitle}${maxCustomizations} `}</span>
         </div>
         <ul className={"custom-products_list"}>
-          {customizationsList.map((customization) => (
-            <CustomizationItem
-              customization={customization}
-              key={customization.id}
-              selectedItemValidation={selectedItemValidation}
-              isDisabled={selectedItems.length >= maxCustomizations}
-              isSelected={selectedItems.some(
-                (selected) => selected.id === customization.id
-              )}
-            />
-          ))}
+          {customizationsList.map((customization) => {
+            //
+            const isDisabled = selectedItems.length >= maxCustomizations;
+            const isSelected = selectedItems.some(
+              (selected) => selected.id === customization.id
+            );
+            //
+            return (
+              <CustomizationItem
+                customization={customization}
+                key={customization.id}
+                handlerAddCustomization={selectedItemValidation}
+                isDisabled={isDisabled}
+                isSelected={isSelected}
+              />
+            );
+          })}
         </ul>
       </li>
     );
