@@ -7,6 +7,7 @@ interface MWStoreProductDetailButtonProps {
   //
   className: string;
   text: string;
+  disabled?: boolean;
 }
 
 const MWStoreProductDetailButton: FC<MWStoreProductDetailButtonProps> = memo(
@@ -15,11 +16,13 @@ const MWStoreProductDetailButton: FC<MWStoreProductDetailButtonProps> = memo(
     //
     className,
     text,
+    disabled,
   }) => {
     return (
       <button
         onClick={handler}
         className={`${STYLE_MW_LOCATION_BUTTON} ${className}`}
+        disabled={disabled}
       >
         {text}
       </button>

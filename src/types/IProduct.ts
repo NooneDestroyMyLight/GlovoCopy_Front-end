@@ -13,5 +13,5 @@ export interface IProduct {
   price: number;
   discount: string;
   discountPrice?: number;
-  customizations: ICustomizationItem[];
+  customizations?: ICustomizationItem[];
 }

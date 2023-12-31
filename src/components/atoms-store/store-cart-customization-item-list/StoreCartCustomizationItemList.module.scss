@@ -1,2 +1,10 @@
 .store-cart-customization-item-list {
+  text-align: left;
+  color: var(--helio-color-secondaryText);
+
+  &__button {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
 }

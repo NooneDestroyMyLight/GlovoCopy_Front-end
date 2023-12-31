@@ -8,14 +8,15 @@ import IconStoreIncrease from "../../../../assets/icons-store-page/icon-store-in
 interface ProductCounterProps {
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
+  isDisabled?: boolean;
 }
 
 const MWStoreProductDetailCounter: FC<ProductCounterProps> = memo(
-  ({ count, setCount }) => {
+  ({ count, setCount, isDisabled }) => {
     return (
       <div className={style["mw-store-product-detail-counter"]}>
         <button
-          disabled={count === 1}
+          disabled={count === 1 || isDisabled}
           onClick={() => setCount(count - 1)}
           //
           className={style["button-counter"]}
@@ -26,6 +27,8 @@ const MWStoreProductDetailCounter: FC<ProductCounterProps> = memo(
         <button
           className={style["button-counter"]}
           onClick={() => setCount(count + 1)}
+          //
+          disabled={isDisabled}
         >
           <IconStoreIncrease />
         </button>

@@ -7,10 +7,12 @@ import { ICustomizationItem } from "../../../types/IProduct";
 interface StoreCustomProductListProps {
   customProductsList: IStoreCustomProductCategory[];
   handlerAddCustomization: (customizationItem: ICustomizationItem) => void;
+  //
+  selectedItems: ICustomizationItem[];
 }
 
 const StoreCustomProductList: FC<StoreCustomProductListProps> = memo(
-  ({ customProductsList, handlerAddCustomization }) => {
+  ({ customProductsList, handlerAddCustomization, selectedItems }) => {
     return (
       <ul className={style["store-custom-product-list"]}>
         {customProductsList.map((category) => (
@@ -18,6 +20,7 @@ const StoreCustomProductList: FC<StoreCustomProductListProps> = memo(
             storeCustomProductCategory={category}
             key={category.id}
             handlerAddCustomization={handlerAddCustomization}
+            selectedItems={selectedItems}
           />
         ))}
       </ul>

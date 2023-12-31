@@ -1,5 +1,6 @@
-import { FC, memo, useCallback, useState } from "react";
+import { FC, memo, useCallback, useMemo, useState } from "react";
 import style from "./MWStoreProductDetailCustom.module.scss";
+//
 import MWStoreProductDetailPictures from "../../atoms-store/mw-store-product-details/mw-store-product-detail-pictures/MWStoreProductDetailPictures";
 import MWStoreProductDetailTitle from "../../atoms-store/mw-store-product-details/mw-store-product-detail-title/MWStoreProductDetailTitle";
 import MWStoreProductDetailPrice from "../../atoms-store/mw-store-product-details/mw-store-product-detail-price/MWStoreProductDetailPrice";
@@ -7,6 +8,7 @@ import MWStoreProductDetailDescr from "../../atoms-store/mw-store-product-detail
 import MWStoreProductDetailCounter from "../../atoms-store/mw-store-product-details/mw-store-product-detail-counter/MWStoreProductDetailCounter";
 import MWStoreProductDetailButton from "../../atoms-store/mw-store-product-details/mw-store-product-detail-button/MWStoreProductDetailButton";
 //
+import { ICartProduct } from "../../../types/IProductCart";
 import { STYLE_MW_STORE_PRODUCT_DETAIL_BUTTON } from "../../atoms-store/mw-store-product-details/mw-store-product-detail-button/MWStoreProductDetailButton.style";
 import { ICustomizationItem, IProduct } from "../../../types/IProduct";
 import { useActions } from "../../../hooks/hook-redux/useActions";
@@ -14,19 +16,26 @@ import { utilsFormatedPrice } from "../../../utils/formatedPrice";
 //
 import { MW_STORE_PRODUCT_DETAIL__TEMPLATE } from "../mw-product-detail/mWStoreProductDetail.data";
 import { getFinalPrice } from "../../../utils/getFinalPrice";
+import { useButtonDisabled } from "../../../hooks/useButtonDisabled";
 
 interface MWStoreProductDetailCustomProps {
   product: IProduct;
+  editableProduct?: ICartProduct;
+  //
   toggleMW: () => void;
   //
   selectedGlobalItems?: ICustomizationItem[];
+  //
 }
 
 const MWStoreProductDetailCustom: FC<MWStoreProductDetailCustomProps> = memo(
-  ({ product, toggleMW, selectedGlobalItems }) => {
+  ({ product, toggleMW, selectedGlobalItems, editableProduct }) => {
     const { descr, discount, imgBig, name, price, discountPrice } = product;
-    const [count, setCount] = useState<number>(1);
-    const { addToCart } = useActions();
+    const [count, setCount] = useState<number>(
+      editableProduct?.count ? editableProduct.count : 1
+    );
+    const [isDisabled, handlerToggle] = useButtonDisabled();
+    const { addToCart, editCartItem } = useActions();
 
     const finalPrice = getFinalPrice(
       price,
@@ -40,19 +49,32 @@ const MWStoreProductDetailCustom: FC<MWStoreProductDetailCustomProps> = memo(
     } ${count} за ${utilsFormatedPrice(finalPrice)}`;
 
     const handlerAddToCart = useCallback(() => {
+      handlerToggle();
       addToCart({
         ...product,
         count: count,
         customizations: selectedGlobalItems as ICustomizationItem[],
       });
       toggleMW();
-    }, [count, selectedGlobalItems]);
+    }, [count, selectedGlobalItems, isDisabled]);
+
+    const handlerEditCartItem = useCallback(() => {
+      handlerToggle();
+      editCartItem({
+        editedProduct: {
+          ...product,
+          count: count,
+          customizations: selectedGlobalItems as ICustomizationItem[],
+        },
+        initialProduct: editableProduct as ICartProduct,
+      });
+      toggleMW();
+    }, [count, selectedGlobalItems, isDisabled]);
 
     return (
       <div className={style["mw-store-product-detail--custom"]}>
         <MWStoreProductDetailPictures src={imgBig} />
         <MWStoreProductDetailTitle text={name} />
-
         <MWStoreProductDetailPrice
           discount={discount}
           discountPrice={discountPrice}
@@ -73,8 +95,10 @@ const MWStoreProductDetailCustom: FC<MWStoreProductDetailCustomProps> = memo(
         >
           <MWStoreProductDetailButton
             className={STYLE_MW_STORE_PRODUCT_DETAIL_BUTTON}
-            handler={handlerAddToCart}
+            handler={editableProduct ? handlerEditCartItem : handlerAddToCart}
             text={buttonText}
+            //
+            disabled={isDisabled}
           />
         </div>
       </div>

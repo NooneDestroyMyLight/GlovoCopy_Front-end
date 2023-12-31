@@ -12,21 +12,22 @@ import { useActions } from "../../../hooks/hook-redux/useActions";
 interface StoreProductCardProps {
   product: IProduct;
   isClosed: boolean;
+  isCustomization?: boolean;
 }
 
 const StoreProductCard: FC<StoreProductCardProps> = memo(
-  ({ product, isClosed }) => {
+  ({ product, isClosed, isCustomization }) => {
     const { imgSmall, name, descr, price, discount, discountPrice } = product;
 
     const { addToCart } = useActions();
 
-    const formattedPrice = discountPrice ? discountPrice : price;
+    // const formattedPrice = discountPrice ? discountPrice : price;
 
     const handlerAddToCart = (
       e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
       e.stopPropagation();
-      addToCart({ ...product, count: 1, totalCost: formattedPrice });
+      addToCart({ ...product, count: 1 });
     };
 
     return (
@@ -56,7 +57,7 @@ const StoreProductCard: FC<StoreProductCardProps> = memo(
           {!isClosed && (
             <button
               className={style["butt__add-to-cart"]}
-              onClick={handlerAddToCart}
+              onClick={isCustomization ? undefined : handlerAddToCart}
             >
               <IconAddToCart />
             </button>
