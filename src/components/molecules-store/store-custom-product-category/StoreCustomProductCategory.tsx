@@ -1,7 +1,5 @@
-import { FC, memo, useCallback, useState } from "react";
+import { FC, memo, useCallback, useEffect, useMemo, useState } from "react";
 import style from "./StoreCustomProductCategory.module.scss";
-//
-import { ICustomizationItem } from "../../atoms-store/customization-item/customizationItem.data";
 //
 import IconAddToCart from "../../../assets/icons-store-page/store-add-to-cart/IconAddToCart";
 import {
@@ -14,20 +12,21 @@ import {
   SRC_ICON_STORE_DISABLED_CUSTOMIZATION_ITEM,
   SRC_ICON_STORE_SELECTED_CUSTOMIZATION_ITEM,
 } from "../../../assets/icons/icon-src-const";
+import { ICustomizationItem } from "../../../types/IProduct";
 
 interface CustomizationItemProps {
   customization: ICustomizationItem;
-  selectedItemValidation: (customizationItem: ICustomizationItem) => void;
+  handlerAddCustomization: (customizationItem: ICustomizationItem) => void;
   isDisabled: boolean;
   isSelected: boolean;
 }
 
 const CustomizationItem: FC<CustomizationItemProps> = memo(
-  ({ customization, isDisabled, isSelected, selectedItemValidation }) => {
+  ({ customization, isDisabled, isSelected, handlerAddCustomization }) => {
     const { name, price } = customization;
     return (
       <button
-        onClick={() => selectedItemValidation(customization)}
+        onClick={() => handlerAddCustomization(customization)}
         disabled={isDisabled && !isSelected}
         className={`${style["customization-item"]} ${
           isDisabled && !isSelected && style["customization-item--disabled"]
@@ -62,9 +61,8 @@ const CustomizationItem: FC<CustomizationItemProps> = memo(
 
 interface CustomProductCategoryProps {
   storeCustomProductCategory: IStoreCustomProductCategory;
-  setGlobalSelectedItem: React.Dispatch<
-    React.SetStateAction<ICustomizationItem[]>
-  >;
+  handlerAddCustomization: (customizationItem: ICustomizationItem) => void;
+  selectedItems: ICustomizationItem[];
 }
 
 const StoreCustomProductCategory: FC<CustomProductCategoryProps> = memo(
@@ -73,25 +71,23 @@ const StoreCustomProductCategory: FC<CustomProductCategoryProps> = memo(
       customizationsList,
       maxCustomizations,
       title,
+      //
     },
-    setGlobalSelectedItem,
+    handlerAddCustomization,
+    selectedItems,
   }) => {
-    const [selectedItems, setSelectedItem] = useState<ICustomizationItem[]>([]);
-
-    const selectedItemValidation = useCallback(
-      (customizationItem: ICustomizationItem) => {
-        if (selectedItems.some((item) => item.id === customizationItem.id)) {
-          const filteredItem = selectedItems.filter(
-            (item) => item.id !== customizationItem.id
-          );
-          setSelectedItem(filteredItem);
-          setGlobalSelectedItem(filteredItem);
-        } else {
-          setSelectedItem([...selectedItems, customizationItem]);
-          setGlobalSelectedItem([...selectedItems, customizationItem]);
-        }
-      },
-      [selectedItems, setSelectedItem]
+    const isDisabled = useMemo(
+      () =>
+        selectedItems.filter(
+          (item) =>
+            customizationsList.filter((inner) => inner.id === item.id).length
+        ).length >= maxCustomizations,
+      [
+        selectedItems.filter(
+          (item) =>
+            customizationsList.filter((inner) => inner.id === item.id).length
+        ).length,
+      ]
     );
 
     return (
@@ -103,17 +99,45 @@ const StoreCustomProductCategory: FC<CustomProductCategoryProps> = memo(
           >{`${Store_Custom_Product_Category_TEMPLATE.subTitle}${maxCustomizations} `}</span>
         </div>
         <ul className={"custom-products_list"}>
-          {customizationsList.map((customization) => (
-            <CustomizationItem
-              customization={customization}
-              key={customization.id}
-              selectedItemValidation={selectedItemValidation}
-              isDisabled={selectedItems.length >= maxCustomizations}
-              isSelected={selectedItems.some(
-                (selected) => selected.id === customization.id
-              )}
-            />
-          ))}
+          {customizationsList.map((customization) => {
+            // const isDisabled =
+            //   selectedItems.length >= maxCustomizations ? true : false;
+            // const isSelected = selectedItems.some(
+            //   (selected) => selected.id === customization.id
+            // );
+
+            // useEffect(() => {
+            //   if (isAlreadySelected)
+            //     isAlreadySelected.map(
+            //       (item) =>
+            //         item.id === customization.id &&
+            //         !selectedItems.some(
+            //           (selectedItem) => selectedItem.id === item.id
+            //         ) &&
+            //         selectedItemValidation(item)
+            //     );
+            //   console.log(isAlreadySelected);
+            // }, [isAlreadySelected, selectedItemValidation]);
+
+            const isSelected = selectedItems.some(
+              (item) => item.id === customization.id
+            );
+
+            // const handler = useMemo(
+            //   () => handlerAddCustomization,
+            //   [isSelected, isDisabled]
+            // );
+
+            return (
+              <CustomizationItem
+                customization={customization}
+                key={customization.id}
+                handlerAddCustomization={handlerAddCustomization}
+                isDisabled={isDisabled}
+                isSelected={isSelected}
+              />
+            );
+          })}
         </ul>
       </li>
     );

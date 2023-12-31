@@ -1,4 +1,24 @@
 .mw-store-product-detail--custom {
   border-left: 1px solid var(--helio-color-primaryBorder);
   padding: 0 0 var(--helio-space-XL) var(--helio-space-XL);
+  position: relative;
+
+  display: grid;
+
+  &__counter-position {
+    margin-top: var(--helio-space-XL);
+    text-align: center;
+  }
+
+  &__descr-position {
+    margin-bottom: var(--helio-space-XL);
+  }
+
+  &__button-position {
+    position: sticky;
+    bottom: 0;
+
+    margin-top: var(--helio-space-M);
+    padding-top: var(--helio-space-L);
+  }
 }

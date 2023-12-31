@@ -1,4 +1,4 @@
-import { ICustomizationItem } from "../../atoms-store/customization-item/customizationItem.data";
+import { ICustomizationItem } from "../../../types/IProduct";
 
 export interface IStoreCustomProductCategory {
   id: number;

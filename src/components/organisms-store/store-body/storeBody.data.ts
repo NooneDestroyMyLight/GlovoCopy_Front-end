@@ -48,7 +48,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
       },
       {
         id: 3,
-        name: "Double(500/100/50g)",
+        name: "Double (500/100/50g)",
         imgSmall:
           "https://images.deliveryhero.io/image/menus-glovo/products/da9f1c5b85149733288f0829f1e1956eb70b152ad06dde256bcf9b097047e250?t=W3siYXZpZiI6eyJxIjoibG93In19LHsicmVzaXplIjp7IndpZHRoIjo5NiwiaGVpZ2h0Ijo5Nn19XQ==",
         imgBig:
@@ -66,7 +66,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
     productList: [
       {
         id: 4,
-        name: "Double(500/100/50g)",
+        name: "Double (500/100/50g)",
         imgSmall:
           "https://images.deliveryhero.io/image/menus-glovo/products/da9f1c5b85149733288f0829f1e1956eb70b152ad06dde256bcf9b097047e250?t=W3siYXZpZiI6eyJxIjoibG93In19LHsicmVzaXplIjp7IndpZHRoIjo5NiwiaGVpZ2h0Ijo5Nn19XQ==",
         imgBig:
@@ -75,10 +75,11 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 349,
         discount: "",
+        customizations: [],
       },
       {
         id: 5,
-        name: "Double(500/100/50g)",
+        name: "Double (500/100/50g)",
         imgSmall:
           "https://images.deliveryhero.io/image/menus-glovo/products/da9f1c5b85149733288f0829f1e1956eb70b152ad06dde256bcf9b097047e250?t=W3siYXZpZiI6eyJxIjoibG93In19LHsicmVzaXplIjp7IndpZHRoIjo5NiwiaGVpZ2h0Ijo5Nn19XQ==",
         imgBig:
@@ -87,10 +88,11 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 349,
         discount: "",
+        customizations: [],
       },
       {
         id: 6,
-        name: "Double(500/100/50g)",
+        name: "Double (500/100/50g)",
         imgSmall:
           "https://images.deliveryhero.io/image/menus-glovo/products/da9f1c5b85149733288f0829f1e1956eb70b152ad06dde256bcf9b097047e250?t=W3siYXZpZiI6eyJxIjoibG93In19LHsicmVzaXplIjp7IndpZHRoIjo5NiwiaGVpZ2h0Ijo5Nn19XQ==",
         imgBig:
@@ -99,10 +101,11 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 349,
         discount: "",
+        customizations: [],
       },
       {
         id: 7,
-        name: "Double(500/100/50g)",
+        name: "Double (500/100/50g)",
         imgSmall:
           "https://images.deliveryhero.io/image/menus-glovo/products/da9f1c5b85149733288f0829f1e1956eb70b152ad06dde256bcf9b097047e250?t=W3siYXZpZiI6eyJxIjoibG93In19LHsicmVzaXplIjp7IndpZHRoIjo5NiwiaGVpZ2h0Ijo5Nn19XQ==",
         imgBig:
@@ -114,7 +117,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
       },
       {
         id: 8,
-        name: "Double(500/100/50g)",
+        name: "Double (500/100/50g)",
         imgSmall:
           "https://images.deliveryhero.io/image/menus-glovo/products/da9f1c5b85149733288f0829f1e1956eb70b152ad06dde256bcf9b097047e250?t=W3siYXZpZiI6eyJxIjoibG93In19LHsicmVzaXplIjp7IndpZHRoIjo5NiwiaGVpZ2h0Ijo5Nn19XQ==",
         imgBig:
@@ -126,7 +129,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
       },
       {
         id: 9,
-        name: "Double(500/100/50g)",
+        name: "Double (500/100/50g)",
         imgSmall:
           "https://images.deliveryhero.io/image/menus-glovo/products/da9f1c5b85149733288f0829f1e1956eb70b152ad06dde256bcf9b097047e250?t=W3siYXZpZiI6eyJxIjoibG93In19LHsicmVzaXplIjp7IndpZHRoIjo5NiwiaGVpZ2h0Ijo5Nn19XQ==",
         imgBig:
@@ -135,6 +138,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 349,
         discount: "",
+        customizations: [],
       },
     ],
   },
@@ -144,7 +148,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
     productList: [
       {
         id: 10,
-        name: "Double(500/100/50g)1",
+        name: "Double (500/100/50g)1",
         imgSmall:
           "https://images.deliveryhero.io/image/menus-glovo/products/da9f1c5b85149733288f0829f1e1956eb70b152ad06dde256bcf9b097047e250?t=W3siYXZpZiI6eyJxIjoibG93In19LHsicmVzaXplIjp7IndpZHRoIjo5NiwiaGVpZ2h0Ijo5Nn19XQ==",
         imgBig:
@@ -154,10 +158,11 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
         price: 349,
         discount: "20%",
         discountPrice: 279.2,
+        customizations: [],
       },
       {
         id: 11,
-        name: "Double(500/100/50g)",
+        name: "Double (500/100/50g)",
         imgSmall:
           "https://images.deliveryhero.io/image/menus-glovo/products/da9f1c5b85149733288f0829f1e1956eb70b152ad06dde256bcf9b097047e250?t=W3siYXZpZiI6eyJxIjoibG93In19LHsicmVzaXplIjp7IndpZHRoIjo5NiwiaGVpZ2h0Ijo5Nn19XQ==",
         imgBig:
@@ -166,10 +171,11 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 349,
         discount: "",
+        customizations: [],
       },
       {
         id: 12,
-        name: "Double(500/100/50g)",
+        name: "Double (500/100/50g)",
         imgSmall:
           "https://images.deliveryhero.io/image/menus-glovo/products/da9f1c5b85149733288f0829f1e1956eb70b152ad06dde256bcf9b097047e250?t=W3siYXZpZiI6eyJxIjoibG93In19LHsicmVzaXplIjp7IndpZHRoIjo5NiwiaGVpZ2h0Ijo5Nn19XQ==",
         imgBig:
@@ -178,10 +184,11 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 349,
         discount: "",
+        customizations: [],
       },
       {
         id: 13,
-        name: "Double(500/100/50g)",
+        name: "Double (500/100/50g)",
         imgSmall:
           "https://images.deliveryhero.io/image/menus-glovo/products/da9f1c5b85149733288f0829f1e1956eb70b152ad06dde256bcf9b097047e250?t=W3siYXZpZiI6eyJxIjoibG93In19LHsicmVzaXplIjp7IndpZHRoIjo5NiwiaGVpZ2h0Ijo5Nn19XQ==",
         imgBig:
@@ -190,6 +197,7 @@ export const STORE_CATALOGUE_LIST_DATA: CatalogueI[] = [
           "булка бріошь, соус журавлиний, соус часниковий, мiкс салата, подвійна котлета з яловичини, сир чеддер, бекон, томати, солоний огірок, цибуля",
         price: 37,
         discount: "",
+        customizations: [],
       },
     ],
   },

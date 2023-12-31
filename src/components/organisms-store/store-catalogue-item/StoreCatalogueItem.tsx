@@ -1,6 +1,6 @@
-import { FC, memo, useState } from "react";
+import { FC, memo } from "react";
 import style from "./StoreCatalogueItem.module.scss";
-
+//
 import StoreProductCard from "../../molecules-store/store-product-card/StoreProductCard";
 import { CatalogueI } from "../store-body/storeBody.data";
 import ModelWindow from "../../../HOC/model-window/ModelWindow";
@@ -11,9 +11,7 @@ import {
   MW_BODY_EXTENDED,
   MW_BODY_GENREAL,
 } from "../../tamplates-store/mw-window-body/MWWindowBody.style";
-import StoreCustomProductList from "../../organisms/store-custom-product-list/StoreCustomProductList";
-import { STORE_CUSTOM_LIST_DATA } from "../../organisms/store-custom-product-list/storeCustomProductList.data";
-import MWStoreProductDetailCustom from "../mw-store-product-detail--custom/MWStoreProductDetailCustom";
+
 import MWStoreProductDetailExtend from "../../tamplates-store/mw-store-product-detail--extend/MWStoreProductDetailExtend";
 //
 
@@ -32,7 +30,6 @@ const StoreCatalogueItem: FC<StoreCatalogueItemProps> = memo(
       productList.map((product) => product.id + "")
     );
 
-    const addition = true;
     return (
       <section ref={refEl} className={style["store-catalogue-item"]}>
         <div className={style["store-catalogue-item__title"]}>
@@ -52,11 +49,12 @@ const StoreCatalogueItem: FC<StoreCatalogueItemProps> = memo(
                     product={product}
                     key={product.id}
                     isClosed={isClosed}
+                    isCustomization={Boolean(product.customizations)}
                   />
                 </div>
                 {!isClosed && +currentProduct === product.id && (
                   <ModelWindow toggleMW={closeMW} isOpen={isMwOpen}>
-                    {addition ? (
+                    {product.customizations ? (
                       <MWWindowBody
                         className={MW_BODY_EXTENDED}
                         handleCloseWindow={closeMW}
@@ -84,7 +82,6 @@ const StoreCatalogueItem: FC<StoreCatalogueItemProps> = memo(
               </>
             );
           })}
-          {/*  */}
         </ul>
       </section>
     );

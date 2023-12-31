@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useRef, useState } from "react";
+import { FC, useRef } from "react";
 import style from "./Store.module.scss";
 //
 import { STORE_DATA } from "./Store.data";
@@ -29,7 +29,6 @@ const Store: FC = ({}) => {
   );
 
   const [isSticky, divRef] = useOverlayHeaderView(false);
-
   const { cart } = useTypedSelector((state) => state.cart);
 
   return (

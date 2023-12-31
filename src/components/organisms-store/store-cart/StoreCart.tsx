@@ -1,141 +1,46 @@
-import { FC, memo } from "react";
+import { FC, memo, useCallback, useState } from "react";
 import style from "./StoreCart.module.scss";
-import {
-  CART_ITEM_DATA,
-  CART_ITEM_TEMPLATE,
-  STORE_CART_TEMPLATE,
-} from "./storeCart.data";
+import { CART_ITEM_TEMPLATE, STORE_CART_TEMPLATE } from "./storeCart.data";
 import { ICartProduct } from "../../../types/IProductCart";
 import { utilsFormatedPrice } from "../../../utils/formatedPrice";
-import { useActions } from "../../../hooks/hook-redux/useActions";
-import { getActualPrice } from "../../../utils/getActualPrice";
 //
 import StoreCartPlaceholder from "../../../assets/icons-store-page/store-cart-placeholder/StoreCartPlaceholder";
 import StoreCartPlaceholderClosed from "../../../assets/icons-store-page/store-cart-placeholder-closed/StoreCartPlaceholderClosed";
-import IconStoreIncrease from "../../../assets/icons-store-page/icon-store-increase/IconStoreIncrease";
-import IconStoreDecrease from "../../../assets/icons-store-page/icon-store-decrease/IconStoreDecrease";
-import DiscountMark from "../../atoms-store/discount-mark/DiscountMark";
 import { STYLE_MW_LOCATION_BUTTON } from "../../../constant/styles";
-import { STORE_TEMPLATE } from "../../pages/store/Store.data";
+import { getFinalPrice } from "../../../utils/getFinalPrice";
+import { useToggle } from "../../../hooks/useToggle";
+import ModelWindow from "../../../HOC/model-window/ModelWindow";
+import MWWindowBody from "../../tamplates-store/mw-window-body/MWWindowBody";
+import MWStoreProductDetailExtend from "../../tamplates-store/mw-store-product-detail--extend/MWStoreProductDetailExtend";
+import { MW_BODY_EXTENDED } from "../../tamplates-store/mw-window-body/MWWindowBody.style";
+import StoreCartMessage from "../../atoms-store/store-cart-message/StoreCartMessage";
+import CartItem from "../../atoms-store/store-cart-item/StoreCartItem";
 
-interface CartItemProps {
+interface MWLocalComponentProductDetailProps {
   product: ICartProduct;
+  handlerMWToggle: () => void;
+  isMWOpen: boolean;
 }
-
-const CartItem: FC<CartItemProps> = memo(
-  ({ product: { count, name, price, discountPrice, id, discount } }) => {
-    const totalActialPrice = count * getActualPrice(price, discountPrice);
-    const totalOldPrice = count * price;
-    const { increase, decrease } = useActions();
-
-    return (
-      <li className={style["cart-item"]}>
-        <div className={style["cart-item__detail"]}>
-          <span className={`${style["cart-item__count"]} ${style["font"]}`}>
-            {count}х
-          </span>
-          <span className={`${style["cart-item__name"]} ${style["font"]}`}>
-            {name}
-          </span>
-          <span className={`${style["cart-item__price"]} ${style["font"]}`}>
-            {`${utilsFormatedPrice(totalActialPrice)} ${
-              CART_ITEM_TEMPLATE.currency
-            }`}
-          </span>
-        </div>
-        {discount && (
-          <div className={`${style["cart-item__detail"]} ${style["discount"]}`}>
-            <div className={style["discount__mark"]}>
-              <DiscountMark value={discount} />
-            </div>
-            <span className={style["discount__price"]}>
-              {`${utilsFormatedPrice(totalOldPrice)} ${
-                CART_ITEM_TEMPLATE.currency
-              }`}
-            </span>
-          </div>
-        )}
-        <div className={style["cart-item__buttons"]}>
-          <button onClick={() => decrease({ id: id, count: count })}>
-            <div className={style["icon__wrapper"]}>
-              <IconStoreDecrease />
-            </div>
-          </button>
-          <button onClick={() => increase(id)}>
-            <div className={style["icon__wrapper"]}>
-              <IconStoreIncrease />
-            </div>
-          </button>
-        </div>
-      </li>
-    );
-  }
-);
-
-interface StoreCartMessageProps {
-  totalCartCost: number;
-}
-
-const StoreCartMessage: FC<StoreCartMessageProps> = ({ totalCartCost }) => {
-  let message = CART_ITEM_TEMPLATE.message.replace(/a|b/g, (match) => {
-    if (match === "a")
-      return (
-        "" +
-        utilsFormatedPrice(CART_ITEM_DATA.breakCredit) +
-        ` ${STORE_TEMPLATE.currencySymbol}`
-      );
-    if (match === "b")
-      return (
-        "" +
-        utilsFormatedPrice(CART_ITEM_DATA.saveCredit) +
-        ` ${STORE_TEMPLATE.currencySymbol}`
-      );
-    else return match;
-  });
-
-  const lineProgress = (totalCartCost / CART_ITEM_DATA.breakCredit) * 100;
-
-  document.documentElement.style.setProperty(
-    "--percentage",
-    `${lineProgress > 100 ? 100 : lineProgress}%`
-  );
-
-  // setTimeout(() => style["store-cart-message--visible"], 1000);
-
-  // const test = setTimeout(() => style["store-cart-message--hidden"], 1000);
-  // console.log(test);
-
+const MWLocalComponentProductDetail: FC<MWLocalComponentProductDetailProps> = ({
+  product,
+  handlerMWToggle,
+  isMWOpen,
+}) => {
   return (
-    <button
-      className={`${style["store-cart-message"]} ${
-        lineProgress > 100 && style["store-cart-message--hidden"]
-      }`}
-    >
-      <span className={style["progress-line"]} />
-      <span
-        className={`${style["progress-line"]} ${style["progress-line__percentage"]}`}
-      />
-      <div className={style["store-cart-message__content"]}>
-        {lineProgress > 100 ? (
-          <span>{CART_ITEM_TEMPLATE.successfulMessage}</span>
-        ) : (
-          <>
-            <i className={style["icon"]} />
-            <span>
-              {message
-                .split(/\b/)
-                .map((word, i) =>
-                  isNaN(parseFloat(word)) ? (
-                    word
-                  ) : (
-                    <strong key={i}>{word}</strong>
-                  )
-                )}
-            </span>
-          </>
-        )}
-      </div>
-    </button>
+    <ModelWindow toggleMW={handlerMWToggle} isOpen={isMWOpen}>
+      <MWWindowBody
+        className={MW_BODY_EXTENDED}
+        handleCloseWindow={handlerMWToggle}
+      >
+        <MWStoreProductDetailExtend
+          product={product}
+          toggleMW={handlerMWToggle}
+          //
+          editableProduct={product}
+          key={product.id}
+        />
+      </MWWindowBody>
+    </ModelWindow>
   );
 };
 
@@ -145,17 +50,32 @@ interface StoreCartProps {
 }
 
 const StoreCart: FC<StoreCartProps> = memo(({ cartItems, isClosed }) => {
+  const [mWProduct, setMWProduct] = useState<ICartProduct | null>(null);
+  const [isMwOpen, mwToggle] = useToggle(false);
+
   const totalProductCount = cartItems.reduce(
     (total, item) => total + item.count,
     0
   );
 
   const totalCartCost = cartItems.reduce(
-    (total: number, { price, discountPrice, count }) =>
-      (total += getActualPrice(price, discountPrice) * count),
+    (total: number, { price, discountPrice, count, customizations }) =>
+      (total += getFinalPrice(
+        price,
+        count,
+        discountPrice,
+        customizations?.reduce((total, item) => (total += item.price), 0)
+      )),
     0
   );
 
+  const handlerToggle = useCallback(
+    (product: ICartProduct) => {
+      setMWProduct(product);
+      mwToggle();
+    },
+    [setMWProduct]
+  );
   return (
     <div className={style["store-cart"]}>
       <h2 className={style["store-cart__title"]}>
@@ -168,7 +88,11 @@ const StoreCart: FC<StoreCartProps> = memo(({ cartItems, isClosed }) => {
           <div className={style["cart-items-list__wrapper"]}>
             <div className={style["cart-items-list"]}>
               {cartItems.map((product) => (
-                <CartItem key={product.id} product={product} />
+                <CartItem
+                  key={product.id}
+                  product={product}
+                  mwToggle={handlerToggle}
+                />
               ))}
             </div>
           </div>
@@ -200,7 +124,14 @@ const StoreCart: FC<StoreCartProps> = memo(({ cartItems, isClosed }) => {
           </button>
         </div>
       )}
-      {/*delivery-discont + mw*/}
+      {mWProduct && (
+        <MWLocalComponentProductDetail
+          handlerMWToggle={mwToggle}
+          isMWOpen={isMwOpen}
+          product={mWProduct}
+        />
+      )}
+      {/*add costomizatation*/}
     </div>
   );
 });

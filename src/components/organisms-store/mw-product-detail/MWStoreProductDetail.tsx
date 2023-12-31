@@ -13,6 +13,7 @@ import DiscountMark from "../../atoms-store/discount-mark/DiscountMark";
 import { useActions } from "../../../hooks/hook-redux/useActions";
 import MWStoreProductDetailCounter from "../../atoms-store/mw-store-product-details/mw-store-product-detail-counter/MWStoreProductDetailCounter";
 import MWStoreProductDetailPrice from "../../atoms-store/mw-store-product-details/mw-store-product-detail-price/MWStoreProductDetailPrice";
+import { useButtonDisabled } from "../../../hooks/useButtonDisabled";
 
 interface MWStoreProductDetailProps {
   product: IProduct;
@@ -26,6 +27,7 @@ const MWStoreProductDetail: FC<MWStoreProductDetailProps> = ({
   const { imgBig, name, price, descr, discount, discountPrice } = product;
   const [count, setCount] = useState<number>(1);
   const { addToCart } = useActions();
+  const [isDisabled, handlerToggle] = useButtonDisabled();
 
   const finalPrice = discountPrice
     ? (discountPrice as number) * count
@@ -36,6 +38,7 @@ const MWStoreProductDetail: FC<MWStoreProductDetailProps> = ({
   } ${count} за ${utilsFormatedPrice(finalPrice)}`;
 
   const handlerAddToCart = () => {
+    handlerToggle();
     addToCart({
       ...product,
       count: count,
@@ -62,7 +65,11 @@ const MWStoreProductDetail: FC<MWStoreProductDetailProps> = ({
           <p className={style["descr"]}>{descr}</p>
         </div>
         <div className={style["counter__wrapper"]}>
-          <MWStoreProductDetailCounter count={count} setCount={setCount} />
+          <MWStoreProductDetailCounter
+            count={count}
+            setCount={setCount}
+            isDisabled={isDisabled}
+          />
         </div>
       </div>
       <div className={style["confirm-button__wrapper"]}>
@@ -70,6 +77,8 @@ const MWStoreProductDetail: FC<MWStoreProductDetailProps> = ({
           onClick={handlerAddToCart}
           type="submit"
           className={`${STYLE_MW_LOCATION_BUTTON} ${style["button"]}`}
+          //
+          disabled={isDisabled}
         >
           {buttonText}
         </button>

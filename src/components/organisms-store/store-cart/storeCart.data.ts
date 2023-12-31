@@ -1,3 +1,5 @@
+import { DEFAULT_LABEL } from "../../../utils/funTextIncert";
+
 export const STORE_CART_TEMPLATE = {
   title: "Ваше заказ",
   placeholderImg: "",
@@ -9,8 +11,8 @@ export const STORE_CART_TEMPLATE = {
 export const CART_ITEM_TEMPLATE = {
   currency: "грн",
   buttonText: "Замовити продукти",
-  message: "Закажіть на  a, щоб зекономити b на зборах!",
-  successfulMessage: "🎉 Ура, ви зекономили 10.00 !",
+  message: `Закажіть на ${DEFAULT_LABEL}1, щоб зекономити ${DEFAULT_LABEL}2 на зборах!`,
+  successfulMessage: `🎉 Ура, ви зекономили ${DEFAULT_LABEL}1 !`,
 };
 
 export const CART_ITEM_DATA = {
