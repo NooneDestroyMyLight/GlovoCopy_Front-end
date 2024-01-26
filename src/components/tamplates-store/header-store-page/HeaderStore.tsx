@@ -2,8 +2,7 @@ import { FC, memo } from "react";
 import style from "./HeaderStore.module.scss";
 import { useExclusiveItem } from "../../../hooks/useExclusiveItem";
 //
-import Logo from "../../../assets/icons/logo/logo-text/Logo";
-//
+
 import HeaderUserAddress from "../../molecules/header-user-adress/HeaderUserAddress";
 import { FONT_WHITE } from "../../molecules/header-user-adress/headerUserAddress.data";
 import { WHITE } from "../../../assets/icons/location-small/locationSmall.data";
@@ -13,6 +12,7 @@ import ProfileStore from "../../../assets/icons/header-store/profile-store-page/
 //
 import HeaderOrdersDD from "../../molecules/header-orders-dd/HeaderOrdersDD";
 import OrdersStore from "../../../assets/icons/header-store/orders-store-page/OrderStore";
+import IconLogoText from "../../../assets/icons/icon-logo-text/IconLogoText";
 
 const dDList: string[] = ["header-user-info", "header-user-orders"];
 
@@ -21,9 +21,11 @@ const HeaderStore: FC = memo(({}) => {
     useExclusiveItem(dDList);
   //
   return (
-    <header className={style["header-store"]}>
+    <header
+      className={`${style["header-store"]} ${style["header-store--hidden"]}`}
+    >
       <div className={style["header-store__container"]}>
-        <Logo colorText={WHITE} colorBallon={"var(--color-globalBackground)"} />
+        <IconLogoText />
         <div />
         <div className={style["header-store__right-bar"]}>
           <HeaderUserAddress

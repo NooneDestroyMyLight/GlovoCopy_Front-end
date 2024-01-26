@@ -1,0 +1,8 @@
+.icon-user-email {
+  transition: stroke 1s ease-in-out;
+}
+
+.icon-user-email--error {
+  transition: stroke 1s ease-in-out;
+  stroke: var(--helio-color-alert);
+}

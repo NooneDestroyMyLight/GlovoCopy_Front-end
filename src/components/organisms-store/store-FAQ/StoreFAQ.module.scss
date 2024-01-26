@@ -1,0 +1,114 @@
+.store-faq {
+  --faq-wave-desktop: url(https://glovoapp.com/images/seo-landing/faq-waves/faq-wave-desktop.svg);
+
+  background-clip: padding-box;
+  border-top: 120px solid transparent;
+  border-image-slice: 120 0 0;
+  border-image-source: var(--faq-wave-desktop);
+
+  margin-top: var(--helio-space-4XL);
+  margin-bottom: -136px;
+
+  padding-bottom: 68px;
+  background-color: var(--helio-color-secondaryBackground);
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+    margin: 0 auto;
+    margin-bottom: var(--helio-space-3XL);
+    margin-top: calc(var(--helio-space-M) * -1);
+
+    max-width: calc(1124px + 15%);
+
+    padding-left: 7.5%;
+    padding-right: 7.5%;
+    width: 100%;
+
+    .store-faq__list {
+      column-count: 2;
+    }
+  }
+  &__title__wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--helio-space-XS);
+    margin-bottom: var(--helio-space-L);
+
+    .store-faq__title {
+      color: var(--helio-color-primaryText);
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+      word-wrap: anywhere;
+    }
+  }
+}
+
+.store-faq-item {
+  padding: var(--helio-space-XL);
+  border: 1px solid var(--helio-color-primaryBorder);
+  border-radius: var(--helio-space-XS);
+
+  background-color: var(--helio-color-floatingElementBackground);
+
+  page-break-inside: avoid;
+
+  margin-bottom: var(--helio-space-XS);
+
+  &__title {
+    color: var(--helio-color-primaryText);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.22;
+  }
+  .title {
+    margin-bottom: var(--helio-space-XS);
+  }
+  &__text {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.25;
+  }
+}
+
+@media (max-width: 1024px) {
+  .store-faq {
+    --faq-wave-mobile: url(https://glovoapp.com/images/seo-landing/faq-waves/faq-wave-mobile.svg);
+    background-clip: padding-box;
+    border-image-slice: 24 0 0;
+    border-image-source: var(--faq-wave-mobile);
+    border-top: 24px solid transparent;
+    //
+    margin-bottom: -148px;
+    padding-bottom: 74px;
+
+    &__container {
+      padding-left: 5%;
+      padding-right: 5%;
+      padding-bottom: var(--helio-space-XS);
+
+      margin-bottom: var(--helio-space-XL);
+      margin-top: var(--helio-space-M);
+
+      // .store-faq__list {
+      //   column-count: 1;
+      // }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .store-faq {
+    &__container {
+      padding-left: var(--helio-space-M);
+      padding-right: var(--helio-space-M);
+      .store-faq__list {
+        column-count: 1;
+      }
+    }
+  }
+}

@@ -21,7 +21,7 @@ const MWStoreProductDetailButton: FC<MWStoreProductDetailButtonProps> = memo(
     return (
       <button
         onClick={handler}
-        className={`${STYLE_MW_LOCATION_BUTTON} ${className}`}
+        className={`${STYLE_MW_LOCATION_BUTTON} ${className} `}
         disabled={disabled}
       >
         {text}

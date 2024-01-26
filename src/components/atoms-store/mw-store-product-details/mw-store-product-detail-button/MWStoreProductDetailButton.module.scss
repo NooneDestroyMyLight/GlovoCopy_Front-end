@@ -1,3 +1,9 @@
 .mw-store-product-detail-button {
   width: 100%;
+
+  @media (max-width: 600px) {
+    position: fixed;
+    bottom: 24px;
+    max-width: 312px;
+  }
 }

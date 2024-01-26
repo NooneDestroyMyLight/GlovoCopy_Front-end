@@ -1,3 +1,5 @@
+@import "/src/styles/mixins.scss";
+
 .mw-window-body {
   display: flex;
   flex-direction: column;
@@ -10,8 +12,10 @@
   background-color: var(--helio-color-floatingElementBackground);
   box-sizing: border-box;
 
-  overflow: hidden;
+  // overflow: hidden;
   padding: 0 0 var(--helio-space-M) 0;
+
+  position: relative;
 
   &__top-buttons-panel {
     display: flex;
@@ -19,19 +23,82 @@
     padding: var(--helio-space-M);
 
     box-sizing: border-box;
-  }
 
-  &__children {
-    padding: 0 var(--helio-space-XL);
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }
 
 .mw-window-body--general {
   width: 600px;
+  padding-top: var(--helio-space-3XL);
 }
 
 .mw-window-body--extended {
   max-width: 1200px;
   min-width: 800px;
   width: 80%;
+
+  padding-top: var(--helio-space-3XL);
+
+  @media (max-width: 1025px) {
+    min-width: 0;
+    width: 90%;
+  }
+
+  @media (max-width: 600px) {
+    .mw-window-body__top-buttons-panel {
+      position: fixed;
+    }
+
+    width: 100%;
+    border-radius: 0;
+  }
+}
+
+.mw-window-body--phone {
+  //  all: unset;
+  display: flex;
+  justify-content: center;
+
+  max-height: 100%;
+  width: 470px;
+  min-height: 400px;
+  border-radius: 0;
+
+  padding: var(--helio-space-2XL) var(--helio-space-2XL);
+
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 100%;
+
+    .mw-window-body__children {
+      height: 100%;
+    }
+  }
+}
+
+.mw-window-body--password {
+  @media (max-width: 1024px) {
+    width: 570px;
+  }
+  @media (max-width: 600px) {
+    .mw-window-body__top-buttons-panel {
+      position: fixed;
+    }
+
+    border-radius: 0;
+
+    width: 100%;
+    height: 100%;
+
+    .mw-window-body__children {
+      height: 100%;
+    }
+  }
+}
+
+.mw-window-body--user-info {
+  padding-bottom: 0;
 }

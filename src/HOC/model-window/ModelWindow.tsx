@@ -7,7 +7,9 @@ interface ModelWindowProps {
   children: ReactNode;
   isOpen?: boolean;
   toggleMW: () => void;
+  //
   position?: string; //children screen position
+  className?: string;
   //
   customBackdrop?: Variants;
 }
@@ -22,7 +24,9 @@ const ModelWindow: FC<ModelWindowProps> = memo(
     children,
     isOpen,
     toggleMW,
+    //
     position,
+    className,
     //
     customBackdrop,
   }) => {
@@ -36,7 +40,7 @@ const ModelWindow: FC<ModelWindowProps> = memo(
         {isOpen && (
           <motion.ul
             onClick={toggleMW}
-            className={`${style.modelWindow} ${style.modelWindow__open}`}
+            className={`${style.modelWindow} ${style.modelWindow__open} ${className}`}
             //
             variants={customBackdrop ? customBackdrop : backdrop}
             initial="closed"
@@ -47,7 +51,7 @@ const ModelWindow: FC<ModelWindowProps> = memo(
               onClick={(e): void => e.stopPropagation()}
               className={`${style.modelWindow__content} ${
                 !position ? style["mw-position__center"] : position
-              }`}
+              } `}
             >
               {children}
             </li>

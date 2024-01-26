@@ -5,6 +5,8 @@ import { STORE_TOPIC_DATA, STORE_TOPIC_TEMPLATE } from "./storeTopic.data";
 import StoreRating from "../../../assets/icons-store-page/store-rating/StoreRating";
 import StoreDeliveryFee from "../../../assets/icons-store-page/store-delivery-fee/StoreDeliveryFee";
 import StoreDeliveryTime from "../../../assets/icons-store-page/store-delivery-time/StoreDeliveryTime";
+import { utilsFormatedPrice } from "../../../utils/formatedPrice";
+import { STORE_TEMPLATE } from "../../pages/store/Store.data";
 
 interface StoreTopicMarkProps {
   value: string;
@@ -56,10 +58,9 @@ const StoreTopic: FC<StoreTopicProps> = memo(({ discount }) => {
             <div className={style["icon"]}>
               <StoreDeliveryFee />
             </div>
-            {new Intl.NumberFormat("uk-UA").format(
-              STORE_TOPIC_DATA.deliveryFee
-            )}
-            ₴
+            {`${utilsFormatedPrice(STORE_TOPIC_DATA.deliveryFee)} ${
+              STORE_TEMPLATE.currencySymbol
+            }`}
           </div>
         </div>
         <div className={style["store-topic__notes"]}></div>

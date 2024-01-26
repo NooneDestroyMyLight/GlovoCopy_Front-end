@@ -28,3 +28,25 @@
   display: grid;
   grid-template-columns: 7fr 5fr;
 }
+
+@media (max-width: 1024px) {
+  .store-catalogue-item {
+    &__title {
+      margin-bottom: var(--helio-space-M);
+    }
+  }
+}
+
+@media (max-width: 1351px) {
+  .store-catalogue-item {
+    .products-list {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .store-catalogue-item {
+    margin-top: var(--helio-space-M);
+  }
+}

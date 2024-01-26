@@ -84,3 +84,17 @@
     color: var(--helio-color-disabledText);
   }
 }
+
+@media (max-width: 1024px) {
+  .customization-item {
+    width: 100%;
+
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.4;
+
+    border: none;
+
+    padding: 0;
+  }
+}

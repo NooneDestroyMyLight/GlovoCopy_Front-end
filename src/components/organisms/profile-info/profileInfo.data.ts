@@ -1,6 +1,4 @@
-type buttonT = "Редагувати" | "Створити" | "Додати " | "Вийти";
-
-export const PROFILE_INFO_TEMPLATE = {
-  title: "Вітаємо USERNAME",
-  exit: "Вийти",
+export const TEMPLATE_PROFILE_INFO = {
+  text_title_UA: "Вітаємо USERNAME",
+  text_exit_UA: "Вийти",
 };

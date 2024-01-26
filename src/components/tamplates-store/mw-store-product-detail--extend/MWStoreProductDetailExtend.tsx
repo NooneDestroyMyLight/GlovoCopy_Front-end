@@ -44,21 +44,25 @@ const MWStoreProductDetailExtend: FC<MWStoreProductDetailExtendProps> = memo(
 
     return (
       <div className={style["mw-store-product-detail--extend"]}>
-        <StoreCustomProductList
-          customProductsList={STORE_CUSTOM_LIST_DATA.StoreCustomProductList}
-          handlerAddCustomization={handlerAddCustomization}
-          //
-          selectedItems={selectedGlobalItems}
-        />
-        <MWStoreProductDetailCustom
-          product={product}
-          editableProduct={editableProduct}
-          //
-          toggleMW={toggleMW}
-          key={product.id}
-          //
-          selectedGlobalItems={selectedGlobalItems}
-        />
+        <div className={style["block-first__wrapper"]}>
+          <StoreCustomProductList
+            customProductsList={STORE_CUSTOM_LIST_DATA.StoreCustomProductList}
+            handlerAddCustomization={handlerAddCustomization}
+            //
+            selectedItems={selectedGlobalItems}
+          />
+        </div>
+        <div className={style["block-second__wrapper"]}>
+          <MWStoreProductDetailCustom
+            product={product}
+            editableProduct={editableProduct}
+            //
+            toggleMW={toggleMW}
+            key={product.id}
+            //
+            selectedGlobalItems={selectedGlobalItems}
+          />
+        </div>
       </div>
     );
   }

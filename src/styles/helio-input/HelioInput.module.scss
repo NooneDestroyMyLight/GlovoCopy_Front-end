@@ -1,0 +1,20 @@
+.helio-input {
+  background: none;
+  border: none;
+  outline: none;
+  border-radius: 0;
+  //
+  height: calc(100% + 5px);
+  width: calc(100% - 32px);
+  //
+  font-display: fallback;
+  font-family: "Glovo", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--helio-color-primaryText);
+
+  caret-color: var(--helio-color-accent);
+  //
+  margin-top: 6px;
+  padding: 0;
+}

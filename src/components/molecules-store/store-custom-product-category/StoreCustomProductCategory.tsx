@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useEffect, useMemo, useState } from "react";
+import { FC, memo, useMemo } from "react";
 import style from "./StoreCustomProductCategory.module.scss";
 //
 import IconAddToCart from "../../../assets/icons-store-page/store-add-to-cart/IconAddToCart";

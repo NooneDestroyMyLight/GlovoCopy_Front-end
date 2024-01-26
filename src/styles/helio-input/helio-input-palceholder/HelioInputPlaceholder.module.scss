@@ -1,0 +1,15 @@
+.helio-input-placeholder {
+  color: var(--helio-color-disabledText);
+
+  position: absolute;
+  top: 2px;
+  left: 0;
+  z-index: 2;
+
+  transition: 0.3s ease-in-out;
+}
+
+.helio-input-placeholder--outline {
+  position: relative;
+  transform: translateY(-10px);
+}
