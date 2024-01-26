@@ -38,19 +38,16 @@ const StoreCartMessage: FC<StoreCartMessageProps> = ({ totalCartCost }) => {
 
   const messsage = funTextIncert(CART_ITEM_TEMPLATE.message, TEXT_ARRAY);
 
-  const successfulMessage = funTextIncert(
-    CART_ITEM_TEMPLATE.successfulMessage,
-    [
-      {
-        component: (
-          <strong>{`${utilsFormatedPrice(CART_ITEM_DATA.saveCredit)}${
-            STORE_TEMPLATE.currencySymbol
-          }`}</strong>
-        ),
-        order: 1,
-      },
-    ]
-  );
+  const messageSuccess = funTextIncert(CART_ITEM_TEMPLATE.successfulMessage, [
+    {
+      component: (
+        <strong>{`${utilsFormatedPrice(CART_ITEM_DATA.saveCredit)}${
+          STORE_TEMPLATE.currencySymbol
+        }`}</strong>
+      ),
+      order: 1,
+    },
+  ]);
 
   const lineProgress = (totalCartCost / CART_ITEM_DATA.breakCredit) * 100;
   document.documentElement.style.setProperty(
@@ -70,7 +67,7 @@ const StoreCartMessage: FC<StoreCartMessageProps> = ({ totalCartCost }) => {
       />
       <div className={style["store-cart-message__content"]}>
         {lineProgress > 100 ? (
-          <span>{successfulMessage}</span>
+          <span>{messageSuccess}</span>
         ) : (
           <>
             {/* <i className={style["icon"]} /> */}

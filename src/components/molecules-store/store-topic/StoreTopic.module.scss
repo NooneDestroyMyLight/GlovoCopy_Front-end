@@ -1,27 +1,35 @@
 .store-topic {
   background-color: var(--helio-color-floatingElementBackground);
-  box-shadow: 0 var(--helio-space-3XS) var(--helio-space-L)
-    var(--helio-color-shadow);
-  border-radius: var(--helio-space-S) var(--helio-space-3XL)
-    var(--helio-space-S) var(--helio-space-S);
+  border-radius: 0 var(--helio-space-3XL) 0 0;
 
+  margin-top: var(--helio-space-2XL);
   padding: var(--helio-space-XL) var(--helio-space-M) var(--helio-space-3XS);
   box-sizing: border-box;
+
+  margin: 0 -16px;
 
   &__content {
     padding: var(--helio-space-3XS) var(--helio-space-S) 0;
   }
 
   &__title {
-    text-align: left;
-    font-size: 40px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    //
+    color: var(--helio-color-primaryText);
+    font-size: 24px;
     font-weight: 700;
-    padding: var(--helio-space-M) 0;
+    text-align: left;
+    //
+    margin: 0 0 var(--helio-space-S);
+    overflow: hidden;
   }
 
   &__info {
     display: flex;
-    gap: var(--helio-space-M);
+    gap: 10%;
+    margin-left: 5%;
 
     margin-top: var(--helio-space-S);
     margin-bottom: var(--helio-space-S);
@@ -30,6 +38,10 @@
       display: flex;
       align-items: center;
       gap: var(--helio-space-2XS);
+
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--helio-color-primaryText);
     }
   }
 
@@ -68,5 +80,43 @@
   &__icon {
     width: 16px;
     height: 16px;
+  }
+}
+
+@media (min-width: 640px) {
+  .store-topic {
+    margin: 0;
+    padding: var(--helio-space-2XL) var(--helio-space-L) var(--helio-space-M);
+    box-shadow: 0 var(--helio-space-3XS) var(--helio-space-L)
+      var(--helio-color-shadow);
+    border-radius: var(--helio-space-S) var(--helio-space-3XL)
+      var(--helio-space-S) var(--helio-space-S);
+
+    &__title {
+      text-align: left;
+      font-size: 40px;
+      font-weight: 700;
+      padding: var(--helio-space-M) 0;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .store-topic {
+    &__title {
+      text-align: left;
+    }
+    &__info {
+      gap: var(--helio-space-M);
+      margin-left: 0;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .store-topic {
+    .store-topic__info__item {
+      flex-direction: column;
+    }
   }
 }

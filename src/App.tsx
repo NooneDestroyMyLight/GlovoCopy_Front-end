@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import MainPage from "./components/pages/main-page/MainPage";
 import Store from "./components/pages/store/Store";
+import PageCheckout from "./components/pages/page-checkout/PageCheckout";
 //
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/ESTABLISH_NAME" element={<Store />} />
-        {/* <Route path="/checkout" element={<Checkout />} /> */}
+        <Route path="/checkout" element={<PageCheckout />} />
       </Routes>
       <ToastContainer />
     </main>

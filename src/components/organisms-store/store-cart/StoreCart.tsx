@@ -15,6 +15,7 @@ import MWStoreProductDetailExtend from "../../tamplates-store/mw-store-product-d
 import { MW_BODY_EXTENDED } from "../../tamplates-store/mw-window-body/MWWindowBody.style";
 import StoreCartMessage from "../../atoms-store/store-cart-message/StoreCartMessage";
 import CartItem from "../../atoms-store/store-cart-item/StoreCartItem";
+import StoreCartMobile from "../store-cart--mobile/StoreCartMobile";
 
 interface MWLocalComponentProductDetailProps {
   product: ICartProduct;
@@ -77,62 +78,67 @@ const StoreCart: FC<StoreCartProps> = memo(({ cartItems, isClosed }) => {
     [setMWProduct]
   );
   return (
-    <div className={style["store-cart"]}>
-      <h2 className={style["store-cart__title"]}>
-        {STORE_CART_TEMPLATE.title}
-      </h2>
-      <div className={style["store-cart__placeholder"]}>
-        {isClosed && <StoreCartPlaceholderClosed />}
-        {!cartItems.length && <StoreCartPlaceholder />}
-        {cartItems.length > 0 && (
-          <div className={style["cart-items-list__wrapper"]}>
-            <div className={style["cart-items-list"]}>
-              {cartItems.map((product) => (
-                <CartItem
-                  key={product.id}
-                  product={product}
-                  mwToggle={handlerToggle}
-                />
-              ))}
+    <>
+      <div className={style["store-cart"]}>
+        <h2 className={style["store-cart__title"]}>
+          {STORE_CART_TEMPLATE.title}
+        </h2>
+        <div className={style["store-cart__placeholder"]}>
+          {isClosed && <StoreCartPlaceholderClosed />}
+          {!cartItems.length && !isClosed && <StoreCartPlaceholder />}
+          {cartItems.length > 0 && (
+            <div className={style["cart-items-list__wrapper"]}>
+              <div className={style["cart-items-list"]}>
+                {cartItems.map((product) => (
+                  <CartItem
+                    key={product.id}
+                    product={product}
+                    mwToggle={handlerToggle}
+                  />
+                ))}
+              </div>
             </div>
+          )}
+          {isClosed && (
+            <p className={style["store-cart__placeholder__text"]}>
+              {STORE_CART_TEMPLATE.isClosedCartText}
+            </p>
+          )}
+          {!cartItems.length && !isClosed && (
+            <p className={style["store-cart__placeholder__text"]}>
+              {STORE_CART_TEMPLATE.emptyCartText}
+            </p>
+          )}
+        </div>
+        {!isClosed && <StoreCartMessage totalCartCost={totalCartCost} />}
+        {cartItems.length > 0 && (
+          <div
+            className={`${style["confirm-order-button__wrapper"]} ${style["padding"]}`}
+          >
+            <button
+              className={`${STYLE_MW_LOCATION_BUTTON} ${style["confirm-order-button"]}`}
+            >
+              {`${
+                CART_ITEM_TEMPLATE.buttonText
+              } (${totalProductCount}) за ${utilsFormatedPrice(
+                totalCartCost
+              )} ${CART_ITEM_TEMPLATE.currency}`}
+            </button>
           </div>
         )}
-        {isClosed && (
-          <p className={style["store-cart__placeholder__text"]}>
-            {STORE_CART_TEMPLATE.isClosedCartText}
-          </p>
-        )}
-        {!cartItems.length && !isClosed && (
-          <p className={style["store-cart__placeholder__text"]}>
-            {STORE_CART_TEMPLATE.emptyCartText}
-          </p>
+        {mWProduct && (
+          <MWLocalComponentProductDetail
+            handlerMWToggle={mwToggle}
+            isMWOpen={isMwOpen}
+            product={mWProduct}
+          />
         )}
       </div>
-      <StoreCartMessage totalCartCost={totalCartCost} />
-      {cartItems.length > 0 && (
-        <div
-          className={`${style["confirm-order-button__wrapper"]} ${style["padding"]}`}
-        >
-          <button
-            className={`${STYLE_MW_LOCATION_BUTTON} ${style["confirm-order-button"]}`}
-          >
-            {`${
-              CART_ITEM_TEMPLATE.buttonText
-            } (${totalProductCount}) за ${utilsFormatedPrice(totalCartCost)} ${
-              CART_ITEM_TEMPLATE.currency
-            }`}
-          </button>
-        </div>
-      )}
-      {mWProduct && (
-        <MWLocalComponentProductDetail
-          handlerMWToggle={mwToggle}
-          isMWOpen={isMwOpen}
-          product={mWProduct}
-        />
-      )}
-      {/*add costomizatation*/}
-    </div>
+      <StoreCartMobile
+        totalCartCost={totalCartCost}
+        totalProductCount={totalProductCount}
+      />
+    </>
   );
 });
 export default StoreCart;

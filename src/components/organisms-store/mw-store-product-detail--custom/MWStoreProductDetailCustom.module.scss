@@ -1,9 +1,11 @@
 .mw-store-product-detail--custom {
-  border-left: 1px solid var(--helio-color-primaryBorder);
-  padding: 0 0 var(--helio-space-XL) var(--helio-space-XL);
+  display: grid;
   position: relative;
 
-  display: grid;
+  @media (min-width: 601px) {
+    border-left: 1px solid var(--helio-color-primaryBorder);
+    padding: 0 0 var(--helio-space-XL) var(--helio-space-XL);
+  }
 
   &__counter-position {
     margin-top: var(--helio-space-XL);
@@ -15,10 +17,20 @@
   }
 
   &__button-position {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
     position: sticky;
     bottom: 0;
 
     margin-top: var(--helio-space-M);
     padding-top: var(--helio-space-L);
+  }
+}
+
+@media (max-width: 1024px) {
+  .mw-store-product-detail--custom__counter-position {
+    display: none;
   }
 }

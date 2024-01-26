@@ -14,11 +14,20 @@
 
   &__right-bar {
     justify-self: end;
+    align-items: center;
     display: flex;
     gap: var(--helio-space-XS);
   }
   .menu {
     display: flex;
+    align-items: center;
     gap: var(--helio-space-L);
+  }
+}
+.header-store--hidden {
+}
+@media (max-width: 600px) {
+  .header-store--hidden {
+    display: none;
   }
 }

@@ -1,3 +1,8 @@
 .header-user-orders {
   position: relative;
+  display: inline-flex;
+
+  .header-user-orders__button {
+    display: inline-flex;
+  }
 }

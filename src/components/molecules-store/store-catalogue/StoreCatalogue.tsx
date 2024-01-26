@@ -27,7 +27,7 @@ const StoreCatalogue: FC<StoreCatalogueProps> = memo(({ catalogueList }) => {
         </span>
       </div>
       <ul className={style["store-catalogue__list"]}>
-        {catalogueList.map((item, index) => {
+        {catalogueList.map((item) => {
           // const isInView = useInView(item.ref);
 
           return (

@@ -10,27 +10,29 @@ import UserInfo from "../../molecules/header-dd-profile-items/user-info/UserInfo
 //
 import ProfileButton from "../../atoms/profile/profile-button/ProfileButton";
 import ProfileItem from "../../atoms/profile/profile-item/ProfileItem";
-import { PROFILE_INFO_TEMPLATE } from "./profileInfo.data";
+import { TEMPLATE_PROFILE_INFO } from "./profileInfo.data";
 
-interface ProfileInfoProps {}
+const { text_exit_UA, text_title_UA } = TEMPLATE_PROFILE_INFO;
 
-const ProfileInfo: FC<ProfileInfoProps> = memo(({}) => {
+interface ProfileInfoProps {
+  onClicksArrayFun: (() => void)[];
+}
+
+const ProfileInfo: FC<ProfileInfoProps> = memo(({ onClicksArrayFun }) => {
   return (
     <>
       <div className={style["profile-title"]}>
-        <p className={style["profile-title__text"]}>
-          {PROFILE_INFO_TEMPLATE.title}
-        </p>
+        <p className={style["profile-title__text"]}>{text_title_UA}</p>
       </div>
-      <UserInfo />
-      <Phone />
-      <Password />
+      <UserInfo onButtonClick={onClicksArrayFun[0]} />
+      <Phone onButtonClick={onClicksArrayFun[1]} />
+      <Password onButtonClick={onClicksArrayFun[2]} />
       <PaymentMethod />
       <PrivacyPolicy />
       <PromoCode />
       <ProfileItem>
         <div className={style["profile__button"]}>
-          <ProfileButton text={PROFILE_INFO_TEMPLATE.exit} />
+          <ProfileButton text={text_exit_UA} />
         </div>
       </ProfileItem>
     </>

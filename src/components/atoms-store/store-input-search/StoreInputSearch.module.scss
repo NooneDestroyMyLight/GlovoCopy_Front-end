@@ -2,12 +2,13 @@
   display: flex;
   align-items: center;
 
-  height: 44px;
+  height: 36px;
 
   background-color: var(--helio-color-secondaryBackground);
   border-radius: 24px;
 
-  overflow: hidden;
+  //
+  position: relative;
 }
 
 .search-input__fieldset {
@@ -27,4 +28,15 @@
 
   background-color: inherit;
   padding: var(--helio-space-2XS) 0;
+}
+
+@media (min-width: 1025px) {
+  .search-form {
+    height: 44px;
+    max-width: 100%;
+  }
+}
+
+.store-dropdown-input-suggestions--hidden {
+  display: none;
 }

@@ -6,14 +6,16 @@ import ProfileParagraphTitle from "../../../atoms/profile/profile-paragraph-titl
 import ProfileButton from "../../../atoms/profile/profile-button/ProfileButton";
 import { PHONE_TEMPLATE } from "./phone.data";
 
-interface PhoneProps {}
+interface PhoneProps {
+  onButtonClick: () => void;
+}
 
-const Phone: FC = () => {
+const Phone: FC<PhoneProps> = ({ onButtonClick }) => {
   return (
     <ProfileItem>
       <ProfileParagraph>
         <ProfileParagraphTitle text={PHONE_TEMPLATE.phoneTitle}>
-          <ProfileButton text={PHONE_TEMPLATE.buttonText} />
+          <ProfileButton onButtonClick={onButtonClick} text={PHONE_TEMPLATE.buttonText} />
         </ProfileParagraphTitle>
         <p className={style["phone-placeholder"]}>
           {PHONE_TEMPLATE.placeholder}

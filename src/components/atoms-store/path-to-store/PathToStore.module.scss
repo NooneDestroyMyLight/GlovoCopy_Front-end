@@ -14,3 +14,13 @@
     font-weight: 700;
   }
 }
+
+.path-to-store__margin {
+  margin-bottom: var(--helio-space-XL);
+}
+
+@media (max-width: 600px) {
+  .path-to-store--hidden {
+    display: none;
+  }
+}

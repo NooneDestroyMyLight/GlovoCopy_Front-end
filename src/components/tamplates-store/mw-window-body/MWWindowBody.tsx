@@ -11,14 +11,14 @@ interface MWWindowBodyProps {
 
 const MWWindowBody: FC<MWWindowBodyProps> = ({
   children,
-  className,
   handleCloseWindow,
+  className,
 }) => {
   return (
     <section className={`${style["mw-window-body"]} ${className}`}>
       <div className={style["mw-window-body__top-buttons-panel"]}>
         <div />
-        <div onClick={handleCloseWindow}>
+        <div className={style["icon-close-window"]} onClick={handleCloseWindow}>
           <CloseWindow />
         </div>
       </div>

@@ -10,4 +10,10 @@
   overflow-y: scroll;
 
   padding: 0 var(--helio-space-XL) var(--helio-space-XL) 0;
+
+  @media (max-width: 600px) {
+    overflow: hidden;
+    height: auto;
+    padding: 0;
+  }
 }
