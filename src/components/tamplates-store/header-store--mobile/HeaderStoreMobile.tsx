@@ -37,16 +37,24 @@ const NavCategoryMobile: FC<NavCategoryMobileProps> = memo(
 interface HeaderStoreMobileProps {
   storeName: string;
   categoriesList: ICatalogue[];
+  //
+  isSticky: boolean;
 }
 
 const HeaderStoreMobile: FC<HeaderStoreMobileProps> = ({
   categoriesList,
   storeName: name,
+  //
+  isSticky,
 }) => {
   const [currnetCategory, setCategory] = useState<number | null>(null);
 
   return (
-    <header className={style["header-store--mobile"]}>
+    <header
+      className={`${style["header-store--mobile"]} ${
+        isSticky && style["header-store--sticky"]
+      }`}
+    >
       <div className={style["topic--mobile"]}>
         <button className={style["button-previous"]}>
           <div className={style["button-previous__icon-wrapper"]}>

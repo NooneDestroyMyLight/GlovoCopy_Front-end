@@ -22,6 +22,7 @@ import { utilPasswordCheckStrogify } from "../../../utils/password/password-chec
 //Hook's
 import { SubmitHandler, useForm } from "react-hook-form";
 import { STYLE_MW_CONTENT_PHONE } from "../../../HOC/model-window/ModelWindow.style";
+import { error } from "console";
 
 //sub-util
 function utilIsValid(isEqial: boolean, formValid: boolean) {
@@ -61,12 +62,12 @@ const {
 const STYLE_CUSTOM_MW_BODY = `${MW_BODY_GENREAL} ${STYLE_MW_BODY_PASSWORD}`;
 
 interface MWUserPasswordEditProps {
-  isMwOpen: boolean;
+  isMWOpen: boolean;
   mwToggle: () => void;
 }
 
 const MWUserPasswordEdit: FC<MWUserPasswordEditProps> = ({
-  isMwOpen,
+  isMWOpen,
   mwToggle,
 }) => {
   const {
@@ -76,7 +77,6 @@ const MWUserPasswordEdit: FC<MWUserPasswordEditProps> = ({
     getValues,
     resetField,
     reset,
-    trigger,
     formState: { errors, isValid: isFormValid },
   } = useForm<IUserPasswordEdit>({ mode: "onChange" });
 
@@ -87,40 +87,23 @@ const MWUserPasswordEdit: FC<MWUserPasswordEditProps> = ({
 
   const registerPasswordOld = useMemo(() => {
     return { ...register("input_password_old", password_old.field_options) };
-  }, [register("input_password_old"), reset]);
+  }, [register, reset, errors.input_password_old, isFormValid]);
 
   const registerPasswordNew = useMemo(() => {
     return {
       ...register("input_password_new", { ...password_new.field_options }),
     };
-  }, [register("input_password_new"), reset]);
+  }, [register, reset, errors.input_password_new, isFormValid]);
 
   const registerPasswordNewConfirm = useMemo(() => {
     return {
       ...register("input_password_new_confirm", password_new.field_options),
     };
-  }, [register("input_password_new_confirm"), reset]);
+  }, [register, reset, errors.input_password_new_confirm, isFormValid]);
 
-  // const registerPasswordOld = {
-  //   ...register("input_password_old", password_old.field_options),
-  // };
-
-  // const registerPasswordNew = {
-  //   ...register("input_password_new", { ...password_new.field_options }),
-  // };
-
-  // const registerPasswordNewConfirm = {
-  //   ...register("input_password_new_confirm", password_new.field_options),
-  // };
-
-  console.log(register("input_password_new"));
   useEffect(() => {
     const subscription = watch(
-      ({
-        input_password_old,
-        input_password_new,
-        input_password_new_confirm,
-      }) => {
+      ({ input_password_new, input_password_new_confirm }) => {
         setPasswordStrongifyMessage(
           utilPasswordCheckStrogify(input_password_new)
         );
@@ -132,23 +115,15 @@ const MWUserPasswordEdit: FC<MWUserPasswordEditProps> = ({
     return () => subscription.unsubscribe();
   }, [watch, isPasswordEqual, setIsPasswordEqual]);
 
-  const onClearButtonClick = useCallback((): void => {
+  const onClearButtonClickFieldPasswordOld = useCallback((): void => {
     resetField("input_password_old");
   }, [resetField]);
 
-  // console.log(`isFormValid:${isFormValid} isPasswordEqual:${isPasswordEqual}`);
-  // console.log(errors);
-
   useEffect(() => {
-    if (isMwOpen) {
+    if (isMWOpen) {
       reset();
     }
-  }, [isMwOpen]);
-
-  // console.log(`isDirty:${dirtyFields}`);
-  // console.log(
-  //   `${getValues("input_password_new")} ${getValues("input_password_old")}`
-  // );
+  }, [isMWOpen]);
 
   const onSubmit: SubmitHandler<IUserPasswordEdit> = (data) => {
     console.log(data);
@@ -160,7 +135,7 @@ const MWUserPasswordEdit: FC<MWUserPasswordEditProps> = ({
   return (
     <ModelWindow
       toggleMW={mwToggle}
-      isOpen={isMwOpen}
+      isOpen={isMWOpen}
       className={STYLE_MW_CONTENT_PHONE}
     >
       <MWWindowBody
@@ -177,7 +152,7 @@ const MWUserPasswordEdit: FC<MWUserPasswordEditProps> = ({
                 register={registerPasswordOld}
                 inputAttributes={password_old.input_attributes}
                 //
-                onClickClearInputButton={onClearButtonClick}
+                onClickClearInputButton={onClearButtonClickFieldPasswordOld}
               />
             </div>
             <div className={style["input__wrapper"]}>

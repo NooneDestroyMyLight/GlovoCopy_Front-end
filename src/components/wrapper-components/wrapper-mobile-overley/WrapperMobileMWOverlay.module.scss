@@ -1,0 +1,18 @@
+.wrapper-mw-overlay--mobile {
+  width: fit-content;
+  height: fit-content;
+  display: none;
+  overflow: hidden;
+}
+
+.wrapper-mw-overlay--desktop {
+}
+
+@media (max-width: 600px) {
+  .wrapper-mw-overlay--mobile {
+    display: block;
+  }
+  .wrapper-mw-overlay--desktop {
+    display: none;
+  }
+}

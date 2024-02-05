@@ -102,3 +102,33 @@
 .mw-window-body--user-info {
   padding-bottom: 0;
 }
+.mw-window-body--store-delivery-fee {
+  padding-left: var(--helio-space-M);
+  padding-right: var(--helio-space-M);
+
+  @media (max-width: 600px) {
+    padding: 0 var(--helio-space-L) var(--helio-space-M) var(--helio-space-L);
+    border-radius: 14px 14px 0 0;
+
+    .mw-window-body__top-buttons-panel {
+      position: relative;
+      height: 38px;
+      .sheet-bar {
+        display: block;
+
+        width: 50px;
+        height: 3px;
+
+        margin: 0 auto;
+
+        border-radius: 14px;
+        background: rgba(0, 0, 0, 0.3);
+
+        cursor: pointer;
+      }
+    }
+    .icon-close-window {
+      display: none;
+    }
+  }
+}

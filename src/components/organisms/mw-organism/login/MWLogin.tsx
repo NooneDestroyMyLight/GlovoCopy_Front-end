@@ -4,24 +4,26 @@ import style from "./MWLogin.module.scss";
 
 import LoginVariantButt from "../../../atoms/login-variant-butt/LoginVariantButt";
 import { MW_LOGIN_DATA } from "./mw-login.data";
+import CloseWindow from "../../../../assets/icons/close-window/CloseWindow";
 
 const { title, description, socialMedia, terms } = MW_LOGIN_DATA;
 
 export interface MWLoginI {
   //   className: string;
-  onIconClick?: () => void;
+  close?: () => void;
   isOpen?: boolean;
 }
 const MWLogin: FC<MWLoginI> = ({
   /*className*/
-  onIconClick,
+  close,
 }) => {
   console.log("MWLogin RERENDER");
   return (
     <ul className={style["mw-login"]}>
       <li className={style["mobile-sheet__pan"]} />
-      <li className={style["close-icon__wrapper"]}>
-        <i className={style["close-icon"]} onClick={onIconClick} />
+      <li onClick={close} className={style["close-icon__wrapper"]}>
+        {/* <i className={style["close-icon"]} onClick={close} /> */}
+        <CloseWindow />
       </li>
       <li className={style["mw-login__content"]}>
         <h3 className={style["title"]}>{title}</h3>

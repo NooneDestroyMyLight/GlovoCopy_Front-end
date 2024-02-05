@@ -44,39 +44,6 @@
 
     padding: var(--helio-space-M);
     box-sizing: content-box;
-
-    .close-icon {
-      display: flex;
-      justify-content: center;
-
-      height: 21px;
-      width: 21px;
-
-      cursor: pointer;
-
-      &:after {
-        content: "";
-        height: inherit;
-        width: 2px;
-
-        background-color: rgb(100, 99, 99);
-        border-radius: 2px;
-
-        transform: rotateZ(135deg);
-        position: absolute;
-      }
-      &:before {
-        content: "";
-        height: inherit;
-        width: 2px;
-
-        background-color: rgb(100, 99, 99);
-        border-radius: 2px;
-
-        transform: rotateZ(45deg);
-        position: absolute;
-      }
-    }
   }
   .mw-login__content {
     padding: 0 var(--helio-space-XL) var(--helio-space-3XL)
@@ -107,7 +74,7 @@
   .mw-login {
   }
 }
-@media (max-width: 650px) {
+@media (max-width: 600px) {
   .mw-login {
     align-self: flex-end;
     width: 100vw;

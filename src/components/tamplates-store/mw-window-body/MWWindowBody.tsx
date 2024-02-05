@@ -15,8 +15,9 @@ const MWWindowBody: FC<MWWindowBodyProps> = ({
   className,
 }) => {
   return (
-    <section className={`${style["mw-window-body"]} ${className}`}>
+    <section className={`${style["mw-window-body"]} ${className} `}>
       <div className={style["mw-window-body__top-buttons-panel"]}>
+        <div className={style["sheet-bar"]} />
         <div />
         <div className={style["icon-close-window"]} onClick={handleCloseWindow}>
           <CloseWindow />

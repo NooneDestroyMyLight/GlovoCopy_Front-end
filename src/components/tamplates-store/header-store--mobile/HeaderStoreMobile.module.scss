@@ -4,8 +4,11 @@
 
 @media (max-width: 600px) {
   .header-store--mobile {
+    background-color: var(--helio-color-floatingElementBackground);
     display: block;
     width: 100%;
+
+    position: relative;
   }
 
   .topic--mobile {
@@ -99,4 +102,8 @@
       }
     }
   }
+}
+.header-store--sticky {
+  position: fixed;
+  z-index: 1;
 }

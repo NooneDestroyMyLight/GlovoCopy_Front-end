@@ -10,7 +10,7 @@ import ProfileParagraphTitle from "../../../atoms/profile/profile-paragraph-titl
 const { text_button, text_email, text_name } = TEMPLATE_USER_INFO;
 
 interface UserInfoProps {
-  onButtonClick: () => void;
+  onButtonClick?: () => void;
 }
 
 const UserInfo: FC<UserInfoProps> = ({ onButtonClick }) => {

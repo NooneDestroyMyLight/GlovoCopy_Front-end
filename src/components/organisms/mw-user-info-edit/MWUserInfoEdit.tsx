@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useMemo } from "react";
+import { FC, memo, useCallback, useEffect, useMemo } from "react";
 import style from "./MWUserInfoEdit.module.scss";
 //components
 import ModelWindow from "../../../HOC/model-window/ModelWindow";
@@ -35,29 +35,22 @@ const { input_field_user_name: user_name, input_field_user_email: user_email } =
   VALID_USER_INFO_EDIT;
 
 interface MWUserInfoEditProps {
-  isMwOpen: boolean;
+  isMWOpen: boolean;
   mwToggle: () => void;
   //
   // userInfo: any;
 }
 
 const MWUserInfoEdit: FC<MWUserInfoEditProps> = memo(
-  ({ isMwOpen, mwToggle }) => {
+  ({ isMWOpen, mwToggle }) => {
     const {
       register,
       handleSubmit,
-      formState: { errors },
+      formState: { errors, isValid: isFormValid },
       setFocus,
       resetField,
+      reset,
     } = useForm<IUserInfoEdit>({ mode: "onChange" });
-
-    const onSubmit: SubmitHandler<IUserInfoEdit> = ({
-      input_user_name,
-      input_user_email,
-    }) => {
-      console.log("Success");
-      console.log(`${input_user_name}${input_user_email}`);
-    };
 
     const onFocusInputUserName = useCallback(() => {
       setFocus("input_user_name");
@@ -81,13 +74,13 @@ const MWUserInfoEdit: FC<MWUserInfoEditProps> = memo(
       return {
         ...register("input_user_name", user_name.field_options),
       };
-    }, [register]);
+    }, [register, isFormValid]);
 
     const registerInputUserEmail = useMemo(() => {
       return {
         ...register("input_user_email", user_email.field_options),
       };
-    }, [register]);
+    }, [register, isFormValid]);
 
     const IconUserName = useCallback(
       () => (
@@ -98,6 +91,7 @@ const MWUserInfoEdit: FC<MWUserInfoEditProps> = memo(
       [errors.input_user_name?.message]
     );
     const IconUserEmail = useCallback(
+      //Need because change a color
       () => (
         <Icon_user_email
           color={errors.input_user_email?.message && STYLE_COLOR_ERROR}
@@ -106,10 +100,22 @@ const MWUserInfoEdit: FC<MWUserInfoEditProps> = memo(
       [errors.input_user_email?.message]
     );
 
+    const onSubmit: SubmitHandler<IUserInfoEdit> = ({
+      input_user_name,
+      input_user_email,
+    }) => {
+      console.log("Success");
+      console.log(`${input_user_name}${input_user_email}`);
+    };
+
+    useEffect(() => {
+      if (isMWOpen) reset();
+    }, [isMWOpen]);
+
     return (
       <ModelWindow
         toggleMW={mwToggle}
-        isOpen={isMwOpen}
+        isOpen={isMWOpen}
         className={STYLE_MW_CONTENT_PHONE}
       >
         <MWWindowBody className={STYLE_CUSTOM} handleCloseWindow={mwToggle}>

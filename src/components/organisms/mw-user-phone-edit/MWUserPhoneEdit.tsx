@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useMemo, useState } from "react";
+import { FC, memo, useCallback, useEffect, useMemo, useState } from "react";
 import style from "./MWUserPhoneEdit.module.scss";
 //Component
 import ModelWindow from "../../../HOC/model-window/ModelWindow";
@@ -131,12 +131,12 @@ export const InputPhone: FC<InputPhoneProps> = memo(
 );
 
 interface MWUserPhoneEditProps {
-  isMwOpen: boolean;
+  isMWOpen: boolean;
   mwToggle: () => void;
 }
 
 const MWUserPhoneEdit: FC<MWUserPhoneEditProps> = memo(
-  ({ isMwOpen, mwToggle }) => {
+  ({ isMWOpen, mwToggle }) => {
     const [countryCode, setCountryCode] = useState<string>(
       country_code_default_value_UA
     );
@@ -144,9 +144,10 @@ const MWUserPhoneEdit: FC<MWUserPhoneEditProps> = memo(
     const {
       register,
       handleSubmit,
-      formState: { errors },
+      formState: { errors, isValid: isFormValid },
       setFocus,
       resetField,
+      reset,
     } = useForm<IInputUserPhone>({ mode: "onChange" });
 
     const onSubmit: SubmitHandler<IInputUserPhone> = ({ phone_number }) => {
@@ -154,7 +155,7 @@ const MWUserPhoneEdit: FC<MWUserPhoneEditProps> = memo(
       console.log(`${countryCode}${phone_number}`);
     };
 
-    const onFocusInput = useCallback(() => {
+    const onFocusInputPhone = useCallback(() => {
       setFocus("phone_number");
     }, [setFocus]);
     const onClickClearInput = useCallback(
@@ -166,12 +167,16 @@ const MWUserPhoneEdit: FC<MWUserPhoneEditProps> = memo(
       return {
         ...register("phone_number", field_options),
       };
-    }, [register]);
+    }, [register, isFormValid]);
+
+    useEffect(() => {
+      if (isMWOpen) reset();
+    }, [isMWOpen]);
 
     return (
       <ModelWindow
         toggleMW={mwToggle}
-        isOpen={isMwOpen}
+        isOpen={isMWOpen}
         // position={STYLE_MW_PHONE}
         className={STYLE_MW_CONTENT_PHONE}
       >
@@ -194,7 +199,7 @@ const MWUserPhoneEdit: FC<MWUserPhoneEditProps> = memo(
                 setCountryCode={setCountryCode}
                 countryCode={countryCode}
                 //
-                onFocusInput={onFocusInput}
+                onFocusInput={onFocusInputPhone}
                 onClickClearIcon={onClickClearInput}
                 //
                 inputAttributes={input_attributes}

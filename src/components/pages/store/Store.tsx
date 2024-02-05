@@ -57,6 +57,8 @@ const Store: FC = ({}) => {
       <HeaderStoreMobile
         categoriesList={STORE_CATALOGUE_LIST_DATA}
         storeName={PATH_TO_STORE_DATA.storeName}
+        //
+        isSticky={isSticky}
       />
       <section className={style["store__body"]}>
         <PathToStore />

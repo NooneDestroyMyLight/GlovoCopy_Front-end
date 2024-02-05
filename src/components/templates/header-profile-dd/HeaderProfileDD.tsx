@@ -52,13 +52,13 @@ const HeaderProfileDD: FC<HeaderProfileDDProps> = memo(
           </HeaderDropdown>
         )}
         {currentMW === MW_NAMES[0] && (
-          <MWUserInfoEdit isMwOpen={isMWOpen} mwToggle={closeMW} />
+          <MWUserInfoEdit isMWOpen={isMWOpen} mwToggle={closeMW} />
         )}
         {currentMW === MW_NAMES[1] && (
-          <MWUserPhoneEdit isMwOpen={isMWOpen} mwToggle={closeMW} />
+          <MWUserPhoneEdit isMWOpen={isMWOpen} mwToggle={closeMW} />
         )}
         {currentMW === MW_NAMES[2] && (
-          <MWUserPasswordEdit isMwOpen={isMWOpen} mwToggle={closeMW} />
+          <MWUserPasswordEdit isMWOpen={isMWOpen} mwToggle={closeMW} />
         )}
       </div>
     );

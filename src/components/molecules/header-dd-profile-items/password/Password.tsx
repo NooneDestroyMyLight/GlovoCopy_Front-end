@@ -9,7 +9,7 @@ import ProfileParagraph from "../../../atoms/profile/profile-paragraph/ProfilePa
 import { PASSWORD_DATA, PASSWORD_TEMPLATE } from "./password.data";
 
 interface PasswordProps {
-  onButtonClick: () => void;
+  onButtonClick?: () => void;
 }
 
 const Password: FC<PasswordProps> = ({ onButtonClick }) => {

@@ -64,7 +64,7 @@ const HeaderProfileMobile: FC = memo(({}) => {
           </div>
           <div className={style["profile--mobile__content"]}>
             {isCurrent === slides[0] && <Orders isTitle={false} />}
-            {isCurrent === slides[1] && <ProfileInfo />}
+            {isCurrent === slides[1] && <ProfileInfo />} {/*Change this one*/}
           </div>
         </div>
       </ModelWindow>

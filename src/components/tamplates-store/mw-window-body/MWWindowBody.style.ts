@@ -5,3 +5,5 @@ export const MW_BODY_GENREAL = style["mw-window-body--general"];
 export const MW_BODY_PHONE = style["mw-window-body--phone"];
 export const STYLE_MW_BODY_PASSWORD = style["mw-window-body--password"];
 export const STYLE_MW_BODY_USER_INFO = style["mw-window-body--user-info"];
+export const STYLE_MW_BODY_STORE_DELIVERY_FEE =
+  style["mw-window-body--store-delivery-fee"];

@@ -15,8 +15,7 @@ import BUTTON_STYLE from "../../atoms/button/Button.module.scss";
 import HeaderUserAddress from "../../molecules/header-user-adress/HeaderUserAddress";
 //
 import ModelWindow from "../../../HOC/model-window/ModelWindow";
-import LoginWrapper from "../../atoms/login-wrapper/LoginWrapper";
-//
+//Style's
 import {
   STYLE_MW_POSITION_LOGIN,
   STYLE_MW_SET_ADDRESS_SIZE,
@@ -30,6 +29,8 @@ import HeaderOrdersDD from "../../molecules/header-orders-dd/HeaderOrdersDD";
 import HeaderProfileMobile from "../header-profile-mobile/HeaderProfileMobile";
 import Profile from "../../../assets/icons/header-auth/profile--desktop/Profile";
 import Order from "../../../assets/icons/header-auth/order/Order";
+import WrapperMobileMWOverlay from "../../wrapper-components/wrapper-mobile-overley/WrapperMobileMWOverlay";
+import MWLogin from "../../organisms/mw-organism/login/MWLogin";
 
 //
 
@@ -41,7 +42,7 @@ const mWName: string[] = ["mw-login", "mw-sLocation-slides"];
 const dDList: string[] = ["header-user-info", "header-user-orders"];
 
 const Header: FC<HeaderI> = memo(({}) => {
-  const [isOpen, currentMW, toggleMW, funArray] = useExclusiveMWToggle(mWName);
+  const [isOpen, currentMW, closeMW, funArray] = useExclusiveMWToggle(mWName);
   const [isSticky, elRef] = useSticky(false);
   const [isCurrent, handleOpenCurrent, handleClickOutside] =
     useExclusiveItem(dDList);
@@ -71,14 +72,14 @@ const Header: FC<HeaderI> = memo(({}) => {
                   <HeaderProfileDD
                     Icon={Profile}
                     isOpen={isCurrent === dDList[0]}
-                    handleToggle={handleOpenCurrent[0]}
+                    handleToggle={handleOpenCurrent[0]} //handleToggle => CloseWindow
                     handleClickOutside={handleClickOutside}
                   />
                   <HeaderOrdersDD
                     Icon={Order}
                     isOpen={isCurrent === dDList[1]}
                     handleToggle={handleOpenCurrent[1]}
-                    handleClickOutside={handleClickOutside}
+                    handleClickOutside={handleClickOutside} //onClickOutside
                   />
                 </div>
                 <div className={style["profile--mobile"]}>
@@ -101,22 +102,24 @@ const Header: FC<HeaderI> = memo(({}) => {
       {currentMW === mWName[0] && (
         <ModelWindow
           isOpen={isOpen}
-          toggleMW={toggleMW}
+          toggleMW={closeMW}
           position={STYLE_MW_SET_ADDRESS_SIZE}
         >
           <MWLocationPages
             setCurrentUserAddress={setUserCurrentAddress}
-            onCloseClick={toggleMW}
+            onCloseClick={closeMW}
           />
         </ModelWindow>
       )}
       {currentMW === mWName[1] && (
         <ModelWindow
           isOpen={isOpen}
-          toggleMW={toggleMW}
+          toggleMW={closeMW}
           position={STYLE_MW_POSITION_LOGIN}
         >
-          <LoginWrapper onIconClick={toggleMW} isOpen={isOpen} />
+          <WrapperMobileMWOverlay close={closeMW}>
+            <MWLogin close={closeMW} isOpen={isOpen} />
+          </WrapperMobileMWOverlay>
         </ModelWindow>
       )}
     </>

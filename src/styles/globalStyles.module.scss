@@ -69,7 +69,7 @@ h3 {
 .mw-position__login {
   @include mw-position(center, center);
 
-  @media (max-width: 650px) {
+  @media (max-width: 600px) {
     @include mw-position(center, self-end);
   }
 }

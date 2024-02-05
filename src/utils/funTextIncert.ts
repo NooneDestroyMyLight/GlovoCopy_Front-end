@@ -1,7 +1,7 @@
 import { funIsString } from "./funIsString";
 
 export interface ITextIncertType {
-  component: JSX.Element;
+  component: JSX.Element | string;
   order: number;
 }
 
@@ -29,6 +29,8 @@ export const funTextIncert = (
         ? findByOrder(ArrProp, +getOrderFromStr(strItem))
         : strItem
     );
+
+  console.log(`step_1:${formattedStr}`);
 
   return (
     formattedStr.map((item) =>

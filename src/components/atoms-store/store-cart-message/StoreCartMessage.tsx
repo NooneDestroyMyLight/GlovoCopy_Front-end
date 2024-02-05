@@ -1,82 +1,127 @@
-import { FC } from "react";
+import { FC, memo, useMemo } from "react";
+import style from "./StoreCartMessage.module.scss";
+//Template's&Data
 import {
   CART_ITEM_TEMPLATE,
   CART_ITEM_DATA,
 } from "../../organisms-store/store-cart/storeCart.data";
-import style from "./StoreCartMessage.module.scss";
-import { ITextIncertType, funTextIncert } from "../../../utils/funTextIncert";
 import { STORE_TEMPLATE } from "../../pages/store/Store.data";
+//Util's
+import { ITextIncertType, funTextIncert } from "../../../utils/funTextIncert";
 import { utilsFormatedPrice } from "../../../utils/formatedPrice";
+//Component's
+import MWStoreDeliveryFee from "../../organisms-store/mw-delivery-fee/MWStoreDeliveryFee";
+//Hook's
+import { useToggle } from "../../../hooks/useToggle";
 
 interface StoreCartMessageProps {
+  closeMW: () => void;
   totalCartCost: number;
 }
 
-const StoreCartMessage: FC<StoreCartMessageProps> = ({ totalCartCost }) => {
-  const TEXT_ARRAY: ITextIncertType[] = [
-    {
-      component: (
-        <strong>
-          {utilsFormatedPrice(CART_ITEM_DATA.breakCredit) +
-            " " +
-            STORE_TEMPLATE.currencySymbol}
-        </strong>
-      ),
-      order: 1,
-    },
-    {
-      component: (
-        <strong>
-          {utilsFormatedPrice(CART_ITEM_DATA.saveCredit) +
-            " " +
-            STORE_TEMPLATE.currencySymbol}
-        </strong>
-      ),
-      order: 2,
-    },
-  ];
+export interface MessageProgressBarProps {
+  percentage: number;
+  isLineProgressComplete: boolean;
+}
 
-  const messsage = funTextIncert(CART_ITEM_TEMPLATE.message, TEXT_ARRAY);
-
-  const messageSuccess = funTextIncert(CART_ITEM_TEMPLATE.successfulMessage, [
-    {
-      component: (
-        <strong>{`${utilsFormatedPrice(CART_ITEM_DATA.saveCredit)}${
-          STORE_TEMPLATE.currencySymbol
-        }`}</strong>
-      ),
-      order: 1,
-    },
-  ]);
-
-  const lineProgress = (totalCartCost / CART_ITEM_DATA.breakCredit) * 100;
+export const MessageProgressBar: FC<MessageProgressBarProps> = ({
+  percentage,
+  isLineProgressComplete,
+}) => {
   document.documentElement.style.setProperty(
     "--percentage",
-    `${lineProgress > 100 ? 100 : lineProgress}%`
+    `${isLineProgressComplete ? 100 : percentage}%`
   );
-
   return (
-    <button
-      className={`${style["store-cart-message"]} ${
-        lineProgress > 100 && style["store-cart-message--hidden"]
-      }`}
-    >
+    <>
       <span className={style["progress-line"]} />
       <span
         className={`${style["progress-line"]} ${style["progress-line__percentage"]}`}
       />
-      <div className={style["store-cart-message__content"]}>
-        {lineProgress > 100 ? (
-          <span>{messageSuccess}</span>
-        ) : (
-          <>
-            {/* <i className={style["icon"]} /> */}
-            <span className={style[""]}>{messsage}</span>
-          </>
-        )}
-      </div>
-    </button>
+    </>
   );
 };
+
+const StoreCartMessage: FC<StoreCartMessageProps> = memo(
+  ({ totalCartCost, closeMW }) => {
+    const arrMessageTitle: ITextIncertType[] = useMemo(
+      () => [
+        {
+          component: (
+            <strong>
+              {utilsFormatedPrice(CART_ITEM_DATA.breakCredit) +
+                " " +
+                STORE_TEMPLATE.currencySymbol}
+            </strong>
+          ),
+          order: 1,
+        },
+        {
+          component: (
+            <strong>
+              {utilsFormatedPrice(CART_ITEM_DATA.saveCredit) +
+                " " +
+                STORE_TEMPLATE.currencySymbol}
+            </strong>
+          ),
+          order: 2,
+        },
+      ],
+      []
+    );
+
+    const messageTitle = funTextIncert(
+      CART_ITEM_TEMPLATE.message,
+      arrMessageTitle
+    );
+
+    const messageSuccess = funTextIncert(CART_ITEM_TEMPLATE.successfulMessage, [
+      {
+        component: (
+          <strong>{`${utilsFormatedPrice(CART_ITEM_DATA.saveCredit)}${
+            STORE_TEMPLATE.currencySymbol
+          }`}</strong>
+        ),
+        order: 1,
+      },
+    ]);
+
+    const lineProgressPercentage = useMemo(
+      () => (totalCartCost / CART_ITEM_DATA.breakCredit) * 100,
+      [totalCartCost, CART_ITEM_DATA.breakCredit]
+    );
+    const isLineProgressComplete = useMemo(
+      () => lineProgressPercentage > 100,
+      [lineProgressPercentage]
+    );
+
+    return (
+      <>
+        <button
+          onClick={closeMW}
+          disabled={isLineProgressComplete}
+          className={`${style["store-cart-message"]} ${
+            isLineProgressComplete && style["store-cart-message--hidden"]
+          }`}
+        >
+          <MessageProgressBar
+            percentage={lineProgressPercentage}
+            isLineProgressComplete={isLineProgressComplete}
+          />
+          <div className={style["store-cart-message__content"]}>
+            {isLineProgressComplete ? (
+              <span>{messageSuccess}</span>
+            ) : (
+              <>
+                {/* <i className={style["icon"]} /> */}
+                <span>{messageTitle}</span>
+              </>
+            )}
+          </div>
+        </button>
+      </>
+    );
+  }
+);
 
 export default StoreCartMessage;

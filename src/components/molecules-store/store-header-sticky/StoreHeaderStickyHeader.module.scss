@@ -3,6 +3,10 @@
   justify-content: center;
   align-items: center;
 
+  @media (max-width: 600px) {
+    display: none;
+  }
+
   padding: 0 var(--helio-space-M);
 
   width: 100%;

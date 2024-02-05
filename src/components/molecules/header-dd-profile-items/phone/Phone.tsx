@@ -7,7 +7,7 @@ import ProfileButton from "../../../atoms/profile/profile-button/ProfileButton";
 import { PHONE_TEMPLATE } from "./phone.data";
 
 interface PhoneProps {
-  onButtonClick: () => void;
+  onButtonClick?: () => void;
 }
 
 const Phone: FC<PhoneProps> = ({ onButtonClick }) => {
@@ -15,7 +15,10 @@ const Phone: FC<PhoneProps> = ({ onButtonClick }) => {
     <ProfileItem>
       <ProfileParagraph>
         <ProfileParagraphTitle text={PHONE_TEMPLATE.phoneTitle}>
-          <ProfileButton onButtonClick={onButtonClick} text={PHONE_TEMPLATE.buttonText} />
+          <ProfileButton
+            onButtonClick={onButtonClick}
+            text={PHONE_TEMPLATE.buttonText}
+          />
         </ProfileParagraphTitle>
         <p className={style["phone-placeholder"]}>
           {PHONE_TEMPLATE.placeholder}

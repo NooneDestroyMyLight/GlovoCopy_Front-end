@@ -1,6 +1,10 @@
-import { FC, memo, useCallback, useState } from "react";
+import { FC, memo, useCallback, useMemo, useState } from "react";
 import style from "./StoreCart.module.scss";
-import { CART_ITEM_TEMPLATE, STORE_CART_TEMPLATE } from "./storeCart.data";
+import {
+  CART_ITEM_DATA,
+  CART_ITEM_TEMPLATE,
+  STORE_CART_TEMPLATE,
+} from "./storeCart.data";
 import { ICartProduct } from "../../../types/IProductCart";
 import { utilsFormatedPrice } from "../../../utils/formatedPrice";
 //
@@ -16,34 +20,32 @@ import { MW_BODY_EXTENDED } from "../../tamplates-store/mw-window-body/MWWindowB
 import StoreCartMessage from "../../atoms-store/store-cart-message/StoreCartMessage";
 import CartItem from "../../atoms-store/store-cart-item/StoreCartItem";
 import StoreCartMobile from "../store-cart--mobile/StoreCartMobile";
+import MWStoreDeliveryFee from "../mw-delivery-fee/MWStoreDeliveryFee";
 
 interface MWLocalComponentProductDetailProps {
   product: ICartProduct;
   handlerMWToggle: () => void;
   isMWOpen: boolean;
 }
-const MWLocalComponentProductDetail: FC<MWLocalComponentProductDetailProps> = ({
-  product,
-  handlerMWToggle,
-  isMWOpen,
-}) => {
-  return (
-    <ModelWindow toggleMW={handlerMWToggle} isOpen={isMWOpen}>
-      <MWWindowBody
-        className={MW_BODY_EXTENDED}
-        handleCloseWindow={handlerMWToggle}
-      >
-        <MWStoreProductDetailExtend
-          product={product}
-          toggleMW={handlerMWToggle}
-          //
-          editableProduct={product}
-          key={product.id}
-        />
-      </MWWindowBody>
-    </ModelWindow>
-  );
-};
+const MWLocalComponentProductDetail: FC<MWLocalComponentProductDetailProps> =
+  memo(({ product, handlerMWToggle, isMWOpen }) => {
+    return (
+      <ModelWindow toggleMW={handlerMWToggle} isOpen={isMWOpen}>
+        <MWWindowBody
+          className={MW_BODY_EXTENDED}
+          handleCloseWindow={handlerMWToggle}
+        >
+          <MWStoreProductDetailExtend
+            product={product}
+            toggleMW={handlerMWToggle}
+            //
+            editableProduct={product}
+            key={product.id}
+          />
+        </MWWindowBody>
+      </ModelWindow>
+    );
+  });
 
 interface StoreCartProps {
   isClosed: boolean;
@@ -52,31 +54,40 @@ interface StoreCartProps {
 
 const StoreCart: FC<StoreCartProps> = memo(({ cartItems, isClosed }) => {
   const [mWProduct, setMWProduct] = useState<ICartProduct | null>(null);
-  const [isMwOpen, mwToggle] = useToggle(false);
+  // const [isMwOpen, toggleMw] = useToggle(false);
+  const [isMWOpen, setMWStatus] = useState<boolean>(false);
 
-  const totalProductCount = cartItems.reduce(
-    (total, item) => total + item.count,
-    0
+  const closeMW = useCallback(() => setMWStatus(false), [setMWStatus]);
+  const openMW = useCallback(() => setMWStatus(true), [setMWStatus]);
+
+  const totalProductCount = useMemo(
+    () => cartItems.reduce((total, item) => total + item.count, 0),
+    [cartItems]
   );
 
-  const totalCartCost = cartItems.reduce(
-    (total: number, { price, discountPrice, count, customizations }) =>
-      (total += getFinalPrice(
-        price,
-        count,
-        discountPrice,
-        customizations?.reduce((total, item) => (total += item.price), 0)
-      )),
-    0
+  const totalCartCost = useMemo(
+    () =>
+      cartItems.reduce(
+        (total: number, { price, discountPrice, count, customizations }) =>
+          (total += getFinalPrice(
+            price,
+            count,
+            discountPrice,
+            customizations?.reduce((total, item) => (total += item.price), 0)
+          )),
+        0
+      ),
+    [cartItems]
   );
 
   const handlerToggle = useCallback(
     (product: ICartProduct) => {
       setMWProduct(product);
-      mwToggle();
+      setMWStatus(false);
     },
     [setMWProduct]
   );
+
   return (
     <>
       <div className={style["store-cart"]}>
@@ -110,7 +121,9 @@ const StoreCart: FC<StoreCartProps> = memo(({ cartItems, isClosed }) => {
             </p>
           )}
         </div>
-        {!isClosed && <StoreCartMessage totalCartCost={totalCartCost} />}
+        {!isClosed && (
+          <StoreCartMessage totalCartCost={totalCartCost} closeMW={openMW} />
+        )}
         {cartItems.length > 0 && (
           <div
             className={`${style["confirm-order-button__wrapper"]} ${style["padding"]}`}
@@ -127,16 +140,28 @@ const StoreCart: FC<StoreCartProps> = memo(({ cartItems, isClosed }) => {
           </div>
         )}
         {mWProduct && (
-          <MWLocalComponentProductDetail
-            handlerMWToggle={mwToggle}
-            isMWOpen={isMwOpen}
+          <MWLocalComponentProductDetail //Editable Product
+            handlerMWToggle={closeMW}
+            isMWOpen={isMWOpen}
             product={mWProduct}
           />
         )}
       </div>
-      <StoreCartMobile
+      {!isClosed && (
+        <StoreCartMobile
+          totalCartCost={totalCartCost}
+          totalProductCount={totalProductCount}
+          //
+          onMessageClick={openMW}
+        />
+      )}
+      <MWStoreDeliveryFee
+        isMWOpen={isMWOpen}
+        mwToggle={closeMW}
+        //
         totalCartCost={totalCartCost}
-        totalProductCount={totalProductCount}
+        breakCredit={CART_ITEM_DATA.breakCredit}
+        saveCredit={CART_ITEM_DATA.saveCredit}
       />
     </>
   );
